@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.MainActivity">
+    tools:context=".view.LoginView">
 
     <androidx.constraintlayout.utils.widget.ImageFilterView
-        android:id="@+id/fondoInicio"
+        android:id="@+id/fondoMenu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:scaleType="centerCrop"
@@ -27,10 +27,9 @@
         android:scaleType="fitEnd"
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/fondoInicio"
-        app:srcCompat="@drawable/Logo" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/logo" />
 
     <LinearLayout
         android:layout_width="0dp"
@@ -38,7 +37,7 @@
         android:layout_marginTop="5dp"
         android:orientation="vertical"
         android:weightSum="2"
-        app:layout_constraintBottom_toBottomOf="@+id/fondoInicio"
+        app:layout_constraintBottom_toBottomOf="@+id/fondoMenu"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/LogoOnTime">
@@ -71,7 +70,7 @@
 
         <Button
             android:id="@+id/btInicio"
-            style="@style/Widget.AppCompat.Button"
+            style="@style/Widget.Material3.Button.IconButton.Outlined"
             android:layout_width="206dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
