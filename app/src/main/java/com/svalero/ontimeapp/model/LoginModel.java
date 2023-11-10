@@ -1,5 +1,6 @@
 package com.svalero.ontimeapp.model;
 
+import android.content.Context;
 import android.database.sqlite.SQLiteConstraintException;
 import android.util.Log;
 
@@ -19,6 +20,10 @@ import retrofit2.Response;
  *Implementamos el contract LoginContract.Model
  */
 public class LoginModel  implements LoginContract.Model {
+    private Context context;
+//    public LoginModel(Context context) {
+//        this.context = context;
+//    }
     private LoginPresenter presenter;
     @Override
     public void getLogin(String username, String pass, OnLoginListener listener) {
@@ -27,13 +32,14 @@ public class LoginModel  implements LoginContract.Model {
          */
         try {
             OnTimeApiInterface onTimeApi = OnTimeApi.buildInstance();
-            Call<User> callUsers = onTimeApi.getLogin(username, pass);
+            Call<User> callUser = onTimeApi.getLogin(username, pass);
             Log.d("login", "Llamada desde el model"); //Para depurar errores y ver si avanza o donde se para
-            callUsers.enqueue(new Callback<User>() {
+            callUser.enqueue(new Callback<User>() {
                 @Override
                 public void onResponse(Call<User> call, Response<User> response) {
                     Log.d("login", "Llamada desde el model OK"); //Para depurar errores y ver si avanza o donde se para
                     User user = response.body();
+                    Log.d("login", "Llamada desde el model OK"); //Para depurar errores y ver si avanza o donde se para
                     listener.onLoginSuccess(user); // recibimos el usuario por el listener
                 }
 

@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -58,12 +59,13 @@ public class LoginView extends AppCompatActivity implements LoginContract.View {
 
     @Override
     public void showMessage(String message, User user) {
+        Log.d("loginView", "Llamada desde la view"); //Para depurar errores y ver si avanza o donde se para
         snackbar.make(((EditText) findViewById(R.id.etUser)), message, BaseTransientBottomBar.LENGTH_SHORT)
                 .setAction(message, new View.OnClickListener() { //Crea un boton en el snackbar
                     @Override
                     public void onClick(View v) {
                         Intent intent = new Intent(context, MainActivity.class);
-                        intent.putExtra("user", user); //Mandamos el objeto entero ya que es una clase serializable
+//                        intent.putExtra("user", user); //Mandamos el objeto entero ya que es una clase serializable
                         context.startActivity(intent);
                     }
                 })

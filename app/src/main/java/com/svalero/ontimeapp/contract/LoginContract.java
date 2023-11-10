@@ -10,7 +10,7 @@ public interface LoginContract {
      * Que necesita el model para solicitar a la API
      */
     interface Model {
-        interface OnLoginListener { //Creamos un listener para devolver el User si está registrado en la BBDD
+        interface OnLoginListener { // Creamos un listener para devolver el User si está registrado en la BBDD
             void onLoginSuccess(User user); //Devolvemos el usuario
             void onLoginError(String message);
         }
