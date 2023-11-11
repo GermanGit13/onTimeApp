@@ -21,4 +21,5 @@ public interface OnTimeApiInterface {
 
     @GET("users/login")
     Call<User> getLogin(@Query("username") String username, @Query("pass") String pass);
+
 }
