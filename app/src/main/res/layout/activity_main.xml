@@ -136,7 +136,7 @@
         tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/tv_Name"
         android:layout_width="164dp"
         android:layout_height="41dp"
         android:layout_marginTop="16dp"

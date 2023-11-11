@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.TextView;
 
 import com.svalero.ontimeapp.R;
 import com.svalero.ontimeapp.domain.User;
@@ -18,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
     private User user;
     long userId;
 
-    @SuppressLint("WrongViewCast") //Para poder presentar el TextView con el nombre de usuario y la foto
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,5 +33,7 @@ public class MainActivity extends AppCompatActivity {
         userId = user.getId();
 
         Log.d("MenuPrincipal", "Ver si traigo el user: " + user.getId());
+        @SuppressLint({"MissingInflatedId", "LocalSuppress"}) TextView tvName = findViewById(R.id.tv_Name);
+        tvName.setText(String.valueOf(user.getName()));
     }
 }
