@@ -46,38 +46,38 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <EditText
+            <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etUser"
-                android:layout_width="250dp"
-                android:layout_height="50dp"
-                android:layout_margin="15dp"
-                android:layout_weight="1"
-                android:ems="10"
-                android:hint="Enter your User"
-                android:inputType="textPersonName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="52dp"
+                android:layout_marginEnd="8dp"
+                android:backgroundTint="@color/DarkGoldenrod"
+                android:drawableStart="@drawable/person"
+                android:hint="@string/enter_your_user"
+                android:inputType="text"
                 android:minHeight="48dp"
-                android:textAlignment="center"
-                android:visibility="visible"
-                tools:ignore="MissingConstraints" />
+                tools:ignore="MissingConstraints"/>
         </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <EditText
+            <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etPass"
-                android:layout_width="250dp"
-                android:layout_height="50dp"
-                android:layout_margin="15dp"
-                android:layout_weight="1"
-                android:ems="10"
-                android:hint="Password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="8dp"
+                android:backgroundTint="#B8860B"
+                android:drawableStart="@drawable/lock"
+                android:hint="@string/enter_your_password"
                 android:inputType="textPassword"
                 android:minHeight="48dp"
-                android:textAlignment="center"
-                android:textColorHint="#A1070707"
-                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="parent"
                 tools:ignore="MissingConstraints" />
         </TableRow>
 
@@ -97,14 +97,15 @@
                 android:onClick="loginUser"
                 android:outlineSpotShadowColor="@color/black"
                 android:shadowColor="@color/black"
-                android:text="Enter"
+                android:text="@string/enter"
                 android:textAllCaps="false"
-                android:textColor="@android:color/holo_orange_light"
+                android:textColor="@color/DarkGoldenrod"
                 android:textColorHighlight="#070607"
                 android:textSize="24sp"
                 android:visibility="visible"
                 app:icon="@drawable/ic_baseline_fingerprint_24"
                 app:iconSize="25dp"
+                app:strokeColor="@color/Black"
                 tools:ignore="MissingConstraints" />
         </TableRow>
     </TableLayout>

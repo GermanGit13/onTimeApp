@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -26,6 +27,9 @@ public class MainActivity extends AppCompatActivity {
     long userId;
     ImageView ivPhotoMenu;
     Button btListSignsDepartment;
+    Button btRegisterSign;
+    Button btBookingDesk;
+    Button btListMySings;
     String photoUrl;
 
     @Override
@@ -55,5 +59,12 @@ public class MainActivity extends AppCompatActivity {
             btListSignsDepartment = findViewById(R.id.btListSignsDepartment);
             btListSignsDepartment.setVisibility(View.GONE);
         }
+
+        btRegisterSign = findViewById(R.id.btRegisterSing);
+        btRegisterSign.setOnClickListener(view -> {
+            Intent intent = new Intent(this, SignRegisterView.class);
+            intent.putExtra("user", user);
+            startActivity(intent);
+        });
     }
 }

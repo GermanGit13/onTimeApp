@@ -47,7 +47,7 @@
             android:paddingTop="1dp"
             app:shapeAppearanceOverlay="@style/circleImageView"
             app:strokeColor="@color/DarkGoldenrod"
-            app:strokeWidth="10dp"
+            app:strokeWidth="5dp"
             tools:ignore="MissingConstraints" />
     </LinearLayout>
 
@@ -74,9 +74,10 @@
                 android:text="@string/register_sign"
                 android:textColor="#0B0B0B"
                 android:textSize="24sp"
-                app:icon="@drawable/baseline_filter_1_24"
+                app:icon="@drawable/reloj"
                 app:iconSize="30dp"
                 app:iconTint="#151414"
+                app:strokeColor="@color/Black"
                 tools:ignore="MissingConstraints" />
 
         </TableRow>
@@ -102,6 +103,7 @@
                 app:icon="@drawable/baseline_filter_1_24"
                 app:iconSize="30dp"
                 app:iconTint="#151414"
+                app:strokeColor="@color/Black"
                 tools:ignore="MissingConstraints" />
         </TableRow>
 
@@ -122,6 +124,7 @@
                 app:icon="@drawable/baseline_filter_1_24"
                 app:iconSize="30dp"
                 app:iconTint="#151414"
+                app:strokeColor="@color/Black"
                 tools:ignore="MissingConstraints" />
         </TableRow>
 
@@ -143,6 +146,7 @@
                 app:icon="@drawable/baseline_filter_1_24"
                 app:iconSize="30dp"
                 app:iconTint="#151414"
+                app:strokeColor="@color/Black"
                 tools:ignore="MissingConstraints" />
         </TableRow>
     </TableLayout>
