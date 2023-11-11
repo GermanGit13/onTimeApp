@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.MainActivity">
+    tools:context=".view.LoginView">
 
     <androidx.constraintlayout.utils.widget.ImageFilterView
-        android:id="@+id/fondoInicio"
+        android:id="@+id/fondoMenu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:scaleType="centerCrop"
@@ -20,67 +20,93 @@
         app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/fondoini" />
 
+
     <androidx.constraintlayout.utils.widget.ImageFilterView
         android:id="@+id/LogoOnTime"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="390dp"
+        android:layout_height="416dp"
+        android:layout_marginTop="28dp"
         android:scaleType="fitEnd"
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.238"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/fondoInicio"
-        app:srcCompat="@drawable/Logo" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/logo" />
 
-    <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="5dp"
-        android:orientation="vertical"
-        android:weightSum="2"
-        app:layout_constraintBottom_toBottomOf="@+id/fondoInicio"
+    <TableLayout
+        android:id="@+id/tableLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/LogoOnTime">
+        app:layout_constraintStart_toStartOf="parent">
 
-
-        <EditText
-            android:id="@+id/etUser"
+        <TableRow
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="15dp"
-            android:layout_weight="1"
-            android:ems="10"
-            android:hint="Enter your User"
-            android:inputType="textPersonName"
-            android:textAlignment="center"
-            android:textColorHighlight="#423939"
-            android:visibility="visible" />
+            android:layout_height="match_parent">
 
-        <EditText
-            android:id="@+id/etPass"
+            <EditText
+                android:id="@+id/etUser"
+                android:layout_width="250dp"
+                android:layout_height="50dp"
+                android:layout_margin="15dp"
+                android:layout_weight="1"
+                android:ems="10"
+                android:hint="Enter your User"
+                android:inputType="textPersonName"
+                android:minHeight="48dp"
+                android:textAlignment="center"
+                android:visibility="visible"
+                tools:ignore="MissingConstraints" />
+        </TableRow>
+
+        <TableRow
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="15dp"
-            android:layout_weight="1"
-            android:ems="10"
-            android:hint="Password"
-            android:inputType="textPassword"
-            android:textAlignment="center"
-            android:visibility="visible" />
+            android:layout_height="match_parent">
 
-        <Button
-            android:id="@+id/btInicio"
-            style="@style/Widget.AppCompat.Button"
-            android:layout_width="206dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_margin="15dp"
-            android:layout_weight="1"
-            android:text="Enter"
-            android:textSize="24sp"
-            android:visibility="visible"
-            app:icon="@drawable/ic_baseline_fingerprint_24" />
-    </LinearLayout>
+            <EditText
+                android:id="@+id/etPass"
+                android:layout_width="250dp"
+                android:layout_height="50dp"
+                android:layout_margin="15dp"
+                android:layout_weight="1"
+                android:ems="10"
+                android:hint="Password"
+                android:inputType="textPassword"
+                android:minHeight="48dp"
+                android:textAlignment="center"
+                android:textColorHint="#A1070707"
+                android:visibility="visible"
+                tools:ignore="MissingConstraints" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="408dp"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/btInicio"
+                style="@style/Widget.Material3.Button.IconButton.Outlined"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:layout_gravity="center"
+                android:layout_margin="15dp"
+                android:layout_weight="1"
+                android:backgroundTint="#390E0D0D"
+                android:onClick="loginUser"
+                android:outlineSpotShadowColor="@color/black"
+                android:shadowColor="@color/black"
+                android:text="Enter"
+                android:textAllCaps="false"
+                android:textColor="@android:color/holo_orange_light"
+                android:textColorHighlight="#070607"
+                android:textSize="24sp"
+                android:visibility="visible"
+                app:icon="@drawable/ic_baseline_fingerprint_24"
+                app:iconSize="25dp"
+                tools:ignore="MissingConstraints" />
+        </TableRow>
+    </TableLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
