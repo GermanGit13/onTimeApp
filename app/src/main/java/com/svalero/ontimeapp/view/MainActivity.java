@@ -6,6 +6,8 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -23,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     private User user;
     long userId;
     ImageView ivPhotoMenu;
+    Button btListSignsDepartment;
     String photoUrl;
 
     @Override
@@ -47,5 +50,10 @@ public class MainActivity extends AppCompatActivity {
                 .load(photoUrl)
                 .error(R.drawable.notphoto)
                 .into(ivPhotoMenu);
+
+        if (user.getRol().equals("USER")) {
+            btListSignsDepartment = findViewById(R.id.btListSignsDepartment);
+            btListSignsDepartment.setVisibility(View.GONE);
+        }
     }
 }
