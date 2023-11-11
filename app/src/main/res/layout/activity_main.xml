@@ -21,8 +21,8 @@
         app:srcCompat="@drawable/fmenu" />
 
     <LinearLayout
-        android:layout_width="226dp"
-        android:layout_height="212dp"
+        android:layout_width="224dp"
+        android:layout_height="257dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -34,16 +34,21 @@
             android:layout_marginTop="10dp"
             android:text="Name"
             android:textAlignment="center"
-            android:textColor="@android:color/holo_orange_light"
+            android:textColor="@color/DarkGoldenrod"
             android:textSize="25sp"
             tools:ignore="MissingConstraints" />
 
-        <ImageView
+        <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/iv_PhotoMenu"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_margin="10dp"
             android:layout_marginTop="10dp"
+            android:padding="10dp"
             android:paddingTop="1dp"
+            app:shapeAppearanceOverlay="@style/circleImageView"
+            app:strokeColor="@color/DarkGoldenrod"
+            app:strokeWidth="10dp"
             tools:ignore="MissingConstraints" />
     </LinearLayout>
 
@@ -66,7 +71,7 @@
                 android:layout_width="250dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:backgroundTint="#4DFFBB33"
+                android:backgroundTint="#40FFBB33"
                 android:text="@string/register_sign"
                 android:textColor="#0B0B0B"
                 android:textSize="24sp"
@@ -91,7 +96,7 @@
                 android:layout_width="250dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:backgroundTint="#4DFFBB33"
+                android:backgroundTint="#40FFBB33"
                 android:text="@string/booking_desk"
                 android:textColor="#0B0B0B"
                 android:textSize="24sp"
@@ -111,7 +116,7 @@
                 android:layout_width="250dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:backgroundTint="#4DFFBB33"
+                android:backgroundTint="#40FFBB33"
                 android:text="@string/list_my_sings"
                 android:textColor="#0B0B0B"
                 android:textSize="24sp"
@@ -131,7 +136,7 @@
                 android:layout_width="250dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:backgroundTint="#4DFFBB33"
+                android:backgroundTint="#40FFBB33"
                 android:text="@string/list_signs_of_department"
                 android:textColor="#0B0B0B"
                 android:textSize="24sp"

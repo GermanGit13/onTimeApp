@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">onTimeApp</string>
+    <string name="register_sign">Register Sign</string>
+    <string name="booking_desk">Booking Desk</string>
+    <string name="list_my_sings">List my Sings</string>
+    <string name="list_signs_of_department">List signs of department</string>
+</resources>
