@@ -2,6 +2,7 @@ package com.svalero.ontimeapp.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -24,10 +25,8 @@ import com.svalero.ontimeapp.presenter.LoginPresenter;
  */
 public class LoginView extends AppCompatActivity implements LoginContract.View {
 
-    private Context context; // Activity en la que estamos
+//    private Context context; // Activity en la que estamos
     private Snackbar snackbar;
-    private Bundle bundle; //creamos un bundle para recoger el objeto extra enviado que esta serializable
-    private User user;
     private LoginPresenter presenter;
 
     /**
@@ -36,8 +35,6 @@ public class LoginView extends AppCompatActivity implements LoginContract.View {
     Button btEnter;
     EditText etUsername;
     EditText etPass;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,18 +55,39 @@ public class LoginView extends AppCompatActivity implements LoginContract.View {
     }
 
     @Override
-    public void showMessage(String message, User user) {
-        Log.d("loginView", "Llamada desde la view"); //Para depurar errores y ver si avanza o donde se para
-        snackbar.make(((EditText) findViewById(R.id.etUser)), message, BaseTransientBottomBar.LENGTH_SHORT)
-                .setAction(message, new View.OnClickListener() { //Crea un boton en el snackbar
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent = new Intent(context, MainActivity.class);
-//                        intent.putExtra("user", user); //Mandamos el objeto entero ya que es una clase serializable
-                        context.startActivity(intent);
-                    }
-                })
-                .show();
+    public void showLogin(User user) {
+        String username = "null";
+        if (user.getUsername() != null) {
+            username = user.getUsername();
+        }
+
+        Log.d("loginView", "Llamada desde la view: " + username); // Para depurar errores y ver si avanza o donde se para
+
+        if (user !=null ){
+            Intent intent = new Intent(LoginView.this, MainActivity.class);
+            intent.putExtra("user", user); // Mandamos el objeto entero ya que es una clase serializable
+            startActivity(intent);
+//          Opción para crear un mensaje  con un boton
+//            snackbar.make(((EditText) findViewById(R.id.etUser)), message, BaseTransientBottomBar.LENGTH_SHORT)
+//                    .setAction("Entrar", new View.OnClickListener() { //Crea un boton en el snackbar
+//                        @Override
+//                        public void onClick(View v) {
+//                            Intent intent = new Intent(LoginView.this, MainActivity.class);
+//                            intent.putExtra("user", user); // Mandamos el objeto entero ya que es una clase serializable
+//                            startActivity(intent);
+//                        }
+//                    })
+//                    .show();
+        } else {
+            snackbar.make(((EditText) findViewById(R.id.etUser)), "Datos incorrectos", BaseTransientBottomBar.LENGTH_SHORT)
+                    .setAction("Datos incorrectos", new View.OnClickListener() { // Crea un boton en el snackbar
+                        @Override
+                        public void onClick(View v) {
+                            onBackPressed();
+                        }
+                    })
+                    .show();
+        }
     }
 
     @Override

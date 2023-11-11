@@ -19,7 +19,7 @@ public interface LoginContract {
 
     interface View {
         void showError(String errorMessage);
-        void showMessage(String message, User user);
+        void showLogin(User user);
     }
 
     interface Presenter {

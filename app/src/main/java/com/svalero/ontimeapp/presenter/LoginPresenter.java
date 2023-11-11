@@ -18,7 +18,7 @@ public class LoginPresenter implements LoginContract.Presenter, LoginContract.Mo
 
     @Override
     public void onLoginSuccess(User user) {
-        view.showMessage("Bienvenido a OnTIme", user);
+        view.showLogin(user );
     }
 
     @Override
