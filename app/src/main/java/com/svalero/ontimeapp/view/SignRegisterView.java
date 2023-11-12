@@ -26,7 +26,10 @@ import com.svalero.ontimeapp.presenter.SignRegisterPresenter;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
 import java.util.Date;
 
 public class SignRegisterView extends AppCompatActivity implements SignRegisterContract.View {
@@ -36,18 +39,18 @@ public class SignRegisterView extends AppCompatActivity implements SignRegisterC
     private Bundle bundle; // creamos un bundle para crecoger el objeta extra enviado que esta serializable
     private Snackbar snackbar;
     private User user;
+    private Sign sign;
     ImageView ivPhotoMenu;
     TextView tvInRegister;
     TextView tvOutRegister;
     RadioGroup groupIncidence;
     RadioGroup groupModality;
-    LocalDate day;
-    LocalTime in_time;
-    LocalTime out_time;
+    String day;
+    String  in_time;
+    String out_time;
     String modality;
     String incidence_in;
     String incidence_out;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,9 +86,8 @@ public class SignRegisterView extends AppCompatActivity implements SignRegisterC
 
     @Override
     public void showMessage(String message) {
-//          Opción para crear un mensaje  con un boton
-            snackbar.make(((EditText) findViewById(R.id.et_snackback)), message, BaseTransientBottomBar.LENGTH_SHORT)
-                    .setAction("Entrar", new View.OnClickListener() { //Crea un boton en el snackbar
+            snackbar.make(((EditText) findViewById(R.id.et_snackback)), (message + sign.getUser().getUsername() + " in day: " + sign.getDay()), BaseTransientBottomBar.LENGTH_LONG)
+                    .setAction(R.string.accept, new View.OnClickListener() { //Crea un boton en el snackbar
                         @Override
                         public void onClick(View v) {
                             Intent intent = new Intent(SignRegisterView.this, MainActivity.class);
@@ -102,9 +104,9 @@ public class SignRegisterView extends AppCompatActivity implements SignRegisterC
     }
 
     public void registerInSign(View view) {
-        LocalDate day = LocalDate.now();
-//        DateFormat formatTime = new SimpleDateFormat("HH:mm:ss");
-        LocalTime in_time = LocalTime.now();
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("HH:mm:ss");
+        in_time = LocalDateTime.now().toLocalTime().format(format);
+        day = LocalDate.now().toString();
 
         Log.d("Register Sign", "Ver el día y la hora que recojo: " + day + " - " + in_time);
 
@@ -136,9 +138,48 @@ public class SignRegisterView extends AppCompatActivity implements SignRegisterC
         } else if (groupIncidence.getCheckedRadioButtonId() == R.id.rb_personal){
             incidence_in = getString(R.string.personalbd);
         }
-        Log.d("Register Sign", "Ver la incidencia seleccionada: " + incidence_in);
 
-        Sign sign = new Sign(modality, day, in_time, out_time, incidence_in, incidence_out, user);
+        sign = new Sign(modality, day, in_time, incidence_in, user);
+        presenter.registerSign(user.getId(), sign);
+    }
+
+    public void registerOutSign(View view) {
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("HH:mm:ss");
+        out_time = LocalDateTime.now().toLocalTime().format(format);
+        day = LocalDate.now().toString();
+
+        Log.d("Register Sign", "Ver el día y la hora que recojo: " + day + " - " + in_time);
+
+        if (groupModality.isActivated()) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle(R.string.assign_a_modality_for_register_you_sign);
+            builder.setMessage(R.string.select_office_or_homework);
+            builder.setPositiveButton(R.string.accept, null);
+            AlertDialog dialog = builder.create();
+            dialog.show();
+        } else if (groupModality.getCheckedRadioButtonId() == R.id.rb_office) {
+            modality = getString(R.string.officeBD);
+        } else {
+            modality = getString(R.string.homeworkBD);
+        }
+        Log.d("Register Sign", "Ver la modalidad seleccionada: " + modality);
+
+        if (groupIncidence.isActivated()) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle(R.string.sign_with_incidence);
+            builder.setMessage(R.string.do_you_want_to_register_a_incidence_in_your_sign);
+            builder.setPositiveButton(R.string.accept, null);
+            AlertDialog dialog = builder.create();
+            dialog.show();
+        } else if (groupIncidence.getCheckedRadioButtonId() == R.id.rb_holidays) {
+            incidence_in = getString(R.string.holidaysbd);
+        } else if (groupIncidence.getCheckedRadioButtonId() == R.id.rb_medical) {
+            incidence_in = getString(R.string.medicalbd);
+        } else if (groupIncidence.getCheckedRadioButtonId() == R.id.rb_personal){
+            incidence_in = getString(R.string.personalbd);
+        }
+
+        sign = new Sign(modality, day, in_time, incidence_in, user);
         presenter.registerSign(user.getId(), sign);
     }
 

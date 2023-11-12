@@ -18,9 +18,9 @@ public class Sign implements Serializable {
 
     long id;
     String modality;
-    LocalDate day;
-    LocalTime in_time;
-    LocalTime out_time;
+    String day;
+    String in_time;
+    String out_time;
     String incidence_in;
     String incidence_out;
     User user;
@@ -28,13 +28,21 @@ public class Sign implements Serializable {
     /**
      * Para registrar un fichaje
      */
-    public Sign(String modality, LocalDate day, LocalTime in_time, LocalTime out_time, String incidence_in, String incidence_out, User user) {
+    public Sign(String modality, String day, String in_time, String out_time, String incidence_in, String incidence_out, User user) {
         this.modality = modality;
         this.day = day;
         this.in_time = in_time;
         this.out_time = out_time;
         this.incidence_in = incidence_in;
         this.incidence_out = incidence_out;
+        this.user = user;
+    }
+
+    public Sign(String modality, String day, String in_time, String incidence_in, User user) {
+        this.modality = modality;
+        this.day = day;
+        this.in_time = in_time;
+        this.incidence_in = incidence_in;
         this.user = user;
     }
 
@@ -54,27 +62,27 @@ public class Sign implements Serializable {
         this.modality = modality;
     }
 
-    public LocalDate getDay() {
+    public String getDay() {
         return day;
     }
 
-    public void setDay(LocalDate day) {
+    public void setDay(String day) {
         this.day = day;
     }
 
-    public LocalTime getIn_time() {
+    public String getIn_time() {
         return in_time;
     }
 
-    public void setIn_time(LocalTime in_time) {
+    public void setIn_time(String in_time) {
         this.in_time = in_time;
     }
 
-    public LocalTime getOut_time() {
+    public String getOut_time() {
         return out_time;
     }
 
-    public void setOut_time(LocalTime out_time) {
+    public void setOut_time(String out_time) {
         this.out_time = out_time;
     }
 

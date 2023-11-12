@@ -30,4 +30,5 @@
     <string name="holidaysbd">HOLIDAYS</string>
     <string name="medicalbd">MEDICAL</string>
     <string name="personalbd">PERSONAL</string>
+    <string name="sign_register_ok_to">"Sign register OK to "</string>
 </resources>
