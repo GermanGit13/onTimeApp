@@ -110,6 +110,14 @@
             app:layout_constraintStart_toEndOf="@+id/linearLayoutText"
             app:layout_constraintTop_toBottomOf="@+id/linearLayoutName">
 
+            <EditText
+                android:id="@+id/et_snackback"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="text"
+                android:visibility="gone" />
+
             <TextView
                 android:id="@+id/tv_in_register"
                 android:layout_width="match_parent"
@@ -171,7 +179,7 @@
         app:layout_constraintTop_toBottomOf="@+id/constraintLayoutLogo">
 
         <Button
-            android:id="@+id/btOut"
+            android:id="@+id/bt_out"
             style="@style/Widget.Material3.Button.TonalButton.Icon"
             android:layout_width="154dp"
             android:layout_height="57dp"
@@ -192,13 +200,13 @@
             app:iconTint="@color/DarkGoldenrod"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.709"
-            app:layout_constraintStart_toEndOf="@+id/btIn"
+            app:layout_constraintStart_toEndOf="@+id/bt_in"
             app:strokeWidth="2dp"
             tools:ignore="MissingConstraints"
             tools:layout_editor_absoluteY="7dp" />
 
         <Button
-            android:id="@+id/btIn"
+            android:id="@+id/bt_in"
             style="@style/Widget.Material3.Button.TonalButton.Icon"
             android:layout_width="154dp"
             android:layout_height="57dp"
@@ -207,6 +215,7 @@
             android:layout_marginStart="24dp"
             android:layout_weight="1"
             android:backgroundTint="@color/DarkGreen"
+            android:onClick="registerInSign"
             android:outlineSpotShadowColor="@color/black"
             android:shadowColor="@color/black"
             android:text="@string/in"
@@ -276,7 +285,7 @@
                     android:text="@string/holidays" />
 
                 <RadioButton
-                    android:id="@+id/rd_medical"
+                    android:id="@+id/rb_medical"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:text="@string/medical" />
@@ -297,7 +306,6 @@
         android:layout_width="5dp"
         android:layout_height="191dp"
         android:orientation="horizontal"
-        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="@+id/imageView"
         app:layout_constraintEnd_toStartOf="@+id/linearLayoutModality"
         app:layout_constraintStart_toEndOf="@+id/linearLayoutIncidence"
@@ -362,7 +370,7 @@
                     android:text="@string/office" />
 
                 <RadioButton
-                    android:id="@+id/rd_homeWork"
+                    android:id="@+id/rb_homework"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:text="@string/homework" />

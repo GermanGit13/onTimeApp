@@ -19,7 +19,7 @@ public class SignRegisterPresenter implements SignRegisterContract.Presenter, Si
     /**
      * Constructor para pasarle ambas cosas
      */
-    public SignRegisterPresenter(SignRegisterModel model, SignRegisterView view) {
+    public SignRegisterPresenter(SignRegisterView view) {
         this.model = model;
         this.view = view;
     }

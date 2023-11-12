@@ -19,4 +19,15 @@
     <string name="homework">HOMEWORK</string>
     <string name="office">OFFICE</string>
     <string name="select_modality">Select Modality</string>
+    <string name="officeBD">OFFICE</string>
+    <string name="homeworkBD">HOMEWORK</string>
+    <string name="select_modalityBD">Select Modality</string>
+    <string name="assign_a_modality_for_register_you_sign">Assign a modality for register you sign</string>
+    <string name="select_office_or_homework">Select Office or HomeWork</string>
+    <string name="accept">Accept</string>
+    <string name="sign_with_incidence">Sign with Incidence</string>
+    <string name="do_you_want_to_register_a_incidence_in_your_sign">Do you want to register a incidence in your sign?</string>
+    <string name="holidaysbd">HOLIDAYS</string>
+    <string name="medicalbd">MEDICAL</string>
+    <string name="personalbd">PERSONAL</string>
 </resources>
