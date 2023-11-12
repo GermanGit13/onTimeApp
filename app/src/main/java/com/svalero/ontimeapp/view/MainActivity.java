@@ -55,14 +55,21 @@ public class MainActivity extends AppCompatActivity {
                 .error(R.drawable.notphoto)
                 .into(ivPhotoMenu);
 
-        if (user.getRol().equals("USER")) {
+        if (!user.getRol().equals("USER")) {
             btListSignsDepartment = findViewById(R.id.btListSignsDepartment);
-            btListSignsDepartment.setVisibility(View.GONE);
+            btListSignsDepartment.setVisibility(View.VISIBLE);
         }
 
         btRegisterSign = findViewById(R.id.btRegisterSing);
         btRegisterSign.setOnClickListener(view -> {
             Intent intent = new Intent(this, SignRegisterView.class);
+            intent.putExtra("user", user);
+            startActivity(intent);
+        });
+
+        btListSignsDepartment = findViewById(R.id.btListSignsDepartment);
+        btListSignsDepartment.setOnClickListener(view -> {
+            Intent intent = new Intent(this, SignListView.class);
             intent.putExtra("user", user);
             startActivity(intent);
         });

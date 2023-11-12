@@ -32,4 +32,6 @@ public interface OnTimeApiInterface {
     @POST("users/{userId}/signs")
     Call<Sign> addSign(@Path("userId") long userId, @Body Sign sign);
 
+    @GET("signs")
+    Call<List<Sign>> getSigns();
 }

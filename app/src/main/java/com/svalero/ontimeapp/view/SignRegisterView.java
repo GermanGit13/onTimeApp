@@ -23,14 +23,9 @@ import com.svalero.ontimeapp.domain.Sign;
 import com.svalero.ontimeapp.domain.User;
 import com.svalero.ontimeapp.presenter.SignRegisterPresenter;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeFormatterBuilder;
-import java.util.Date;
 
 public class SignRegisterView extends AppCompatActivity implements SignRegisterContract.View {
 
@@ -66,7 +61,7 @@ public class SignRegisterView extends AppCompatActivity implements SignRegisterC
         Log.d("Register Sign", "Ver si traigo el user: " + user.getId() + " photo: " + user.getPhoto());
         @SuppressLint({"MissingInflatedId", "LocalSuppress"}) TextView tvName = findViewById(R.id.tv_name_register);
         tvName.setText(String.valueOf(user.getName()));
-        ivPhotoMenu = findViewById(R.id.iv_photo_register);
+        ivPhotoMenu = findViewById(R.id.iv_card_photo);
         Glide.with(this)
                 .load(user.getPhoto())
                 .error(R.drawable.notphoto)

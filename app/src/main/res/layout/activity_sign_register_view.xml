@@ -54,7 +54,7 @@
             tools:ignore="MissingConstraints">
 
             <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/iv_photo_register"
+                android:id="@+id/iv_card_photo"
                 android:layout_width="71dp"
                 android:layout_height="70dp"
                 android:layout_margin="10dp"
