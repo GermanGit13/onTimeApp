@@ -31,4 +31,6 @@
     <string name="medicalbd">MEDICAL</string>
     <string name="personalbd">PERSONAL</string>
     <string name="sign_register_ok_to">"Sign register OK to "</string>
+    <string name="exit">EXIT:</string>
+    <string name="entrace">ENTRACE:</string>
 </resources>
