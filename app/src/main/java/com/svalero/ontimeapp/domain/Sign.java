@@ -23,7 +23,7 @@ public class Sign implements Serializable {
     String out_time;
     String incidence_in;
     String incidence_out;
-    User user;
+    User userInSign;
 
     /**
      * Para registrar un fichaje
@@ -35,7 +35,7 @@ public class Sign implements Serializable {
         this.out_time = out_time;
         this.incidence_in = incidence_in;
         this.incidence_out = incidence_out;
-        this.user = user;
+        this.userInSign = user;
     }
 
     public Sign(String modality, String day, String in_time, String incidence_in, User user) {
@@ -43,7 +43,7 @@ public class Sign implements Serializable {
         this.day = day;
         this.in_time = in_time;
         this.incidence_in = incidence_in;
-        this.user = user;
+        this.userInSign = user;
     }
 
     public long getId() {
@@ -103,10 +103,10 @@ public class Sign implements Serializable {
     }
 
     public User getUser() {
-        return user;
+        return userInSign;
     }
 
     public void setUser(User user) {
-        this.user = user;
+        this.userInSign = user;
     }
 }

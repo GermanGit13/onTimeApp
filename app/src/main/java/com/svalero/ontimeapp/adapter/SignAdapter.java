@@ -65,14 +65,15 @@ public class SignAdapter extends RecyclerView.Adapter<SignAdapter.SignHolder> {
      */
     @Override
     public void onBindViewHolder(SignHolder holder, int position) {
-        holder.signUsername.setText(String.valueOf(signsList.get(position).getModality()));
+        holder.signUsername.setText(String.valueOf(signsList.get(position).getUserInSign().getUsername()));
         holder.signIn.setText(signsList.get(position).getIn_time());
         holder.signOut.setText(signsList.get(position).getOut_time());
-//        if (signsList.get(position).getUser().getPhoto() == null){
-//            holder.signPhoto.setImageResource(R.drawable.notphoto);
-//        } else{
-//            holder.signPhoto.setImageURI(Uri.parse(signsList.get(position).getUser().getPhoto())); // Todo REVISAR
-//        }
+        holder.modality.setText(signsList.get(position).getModality());
+        if (signsList.get(position).getUserInSign().getPhoto() == null){
+            holder.signPhoto.setImageResource(R.drawable.notphoto);
+        } else{
+            holder.signPhoto.setImageURI(Uri.parse(signsList.get(position).getUserInSign().getPhoto()));
+        }
     }
 
     /**
@@ -93,6 +94,7 @@ public class SignAdapter extends RecyclerView.Adapter<SignAdapter.SignHolder> {
         public TextView signUsername;
         public TextView signIn;
         public TextView signOut;
+        public TextView modality;
         public ImageView signPhoto;
 
         public Button modifySignButton;
@@ -111,6 +113,7 @@ public class SignAdapter extends RecyclerView.Adapter<SignAdapter.SignHolder> {
             signUsername = view.findViewById(R.id.tv_card_username);
             signIn = view.findViewById(R.id.tv_card_in);
             signOut = view.findViewById(R.id.tv_card_out);
+            modality = view.findViewById(R.id.tv_card_modality);
             signPhoto = view.findViewById(R.id.iv_card_photo);
 //            Glide.with(this)
 //                    .load(photoUrl)
