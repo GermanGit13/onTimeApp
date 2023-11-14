@@ -43,6 +43,7 @@ dependencies {
     implementation 'androidx.cardview:cardview:1.0.0'
 
 
+
     // Room BBDD
     implementation 'androidx.room:room-runtime:2.5.2'
     implementation 'androidx.appcompat:appcompat:1.6.1'

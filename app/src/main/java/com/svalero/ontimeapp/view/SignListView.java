@@ -65,11 +65,15 @@ public class SignListView extends AppCompatActivity implements SignListContract.
         Log.d("List Sign", "Llamada desde view"); // depurar para ver hasta donde llego
         presenter.loalAllSigns(); // Le decimos al presenter cuando vuelve del resume que cargue xtodo de nuevo
     }
+
     @Override
     public void showSigns(List<Sign> signs) {
+         // depurar para ver hasta donde llego
         signsList.clear(); // Limpiamos la lista para evitar que tenga datos previos
-        signs.addAll(signs); // Añadimos a la lista creada la que recibimos
+        signsList.addAll(signs); // Añadimos a la lista creada la que recibimos
         adapter.notifyDataSetChanged(); // Notificamos al adapter los cambios
+        Log.d("List Sign", "Llamada desde view_ showSigns: " + signs.get(1));
+
     }
 
     @Override

@@ -13,10 +13,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.svalero.ontimeapp.R;
-import com.svalero.ontimeapp.contract.SignListContract;
 import com.svalero.ontimeapp.domain.Sign;
 
-import java.io.File;
 import java.util.List;
 
 /**
@@ -67,10 +65,14 @@ public class SignAdapter extends RecyclerView.Adapter<SignAdapter.SignHolder> {
      */
     @Override
     public void onBindViewHolder(SignHolder holder, int position) {
-        holder.signUsername.setText(String.valueOf(signsList.get(position).getUser().getUsername()));
+        holder.signUsername.setText(String.valueOf(signsList.get(position).getModality()));
         holder.signIn.setText(signsList.get(position).getIn_time());
         holder.signOut.setText(signsList.get(position).getOut_time());
-        holder.signPhoto.setImageURI(Uri.fromFile(new File(signsList.get(position).getUser().getPhoto()))); // Todo REVISAR
+//        if (signsList.get(position).getUser().getPhoto() == null){
+//            holder.signPhoto.setImageResource(R.drawable.notphoto);
+//        } else{
+//            holder.signPhoto.setImageURI(Uri.parse(signsList.get(position).getUser().getPhoto())); // Todo REVISAR
+//        }
     }
 
     /**
@@ -110,6 +112,10 @@ public class SignAdapter extends RecyclerView.Adapter<SignAdapter.SignHolder> {
             signIn = view.findViewById(R.id.tv_card_in);
             signOut = view.findViewById(R.id.tv_card_out);
             signPhoto = view.findViewById(R.id.iv_card_photo);
+//            Glide.with(this)
+//                    .load(photoUrl)
+//                    .error(R.drawable.notphoto)
+//                    .into(signPhoto);
 
             modifySignButton = view.findViewById(R.id.bt_card_modify);
             deleteSignButton = view.findViewById(R.id.bt_card_delete);
