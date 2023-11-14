@@ -27,7 +27,7 @@
                 android:orientation="horizontal">
 
                 <com.google.android.material.imageview.ShapeableImageView
-                    android:id="@+id/iv_card_photo"
+                    android:id="@+id/rv_card_photo"
                     android:layout_width="71dp"
                     android:layout_height="70dp"
                     android:layout_margin="10dp"
@@ -35,7 +35,7 @@
                     android:paddingTop="1dp"
                     app:shapeAppearanceOverlay="@style/circleImageView"
                     app:strokeColor="@color/DarkGoldenrod"
-                    app:strokeWidth="3dp" />
+                    app:strokeWidth="3dp"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -76,7 +76,7 @@
                             android:background="@color/DarkGreen"
                             android:text="00:00:00"
                             android:textAppearance="?attr/textAppearanceBody2"
-                            android:textColor="@color/DarkGoldenrod" />
+                            android:textColor="#FFC107" />
 
                     </LinearLayout>
 
@@ -102,7 +102,7 @@
                             android:background="@color/Brown"
                             android:text="00:00:00"
                             android:textAppearance="?attr/textAppearanceBody2"
-                            android:textColor="@color/DarkGoldenrod" />
+                            android:textColor="#FFCA28" />
                     </LinearLayout>
 
                     <TextView

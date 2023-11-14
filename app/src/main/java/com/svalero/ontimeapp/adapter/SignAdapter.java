@@ -1,7 +1,6 @@
 package com.svalero.ontimeapp.adapter;
 
 import android.content.Context;
-import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -69,11 +68,12 @@ public class SignAdapter extends RecyclerView.Adapter<SignAdapter.SignHolder> {
         holder.signIn.setText(signsList.get(position).getIn_time());
         holder.signOut.setText(signsList.get(position).getOut_time());
         holder.modality.setText(signsList.get(position).getModality());
-        if (signsList.get(position).getUserInSign().getPhoto() == null){
-            holder.signPhoto.setImageResource(R.drawable.notphoto);
-        } else{
-            holder.signPhoto.setImageURI(Uri.parse(signsList.get(position).getUserInSign().getPhoto()));
-        }
+        holder.signPhoto.setImageResource(R.drawable.fmenu);
+//        if ((signsList.get(position).getUserInSign().getPhoto()) == null){
+//            holder.signPhoto.setImageResource(R.drawable.notphoto);
+//        } else{
+//            holder.signPhoto.setImageURI(Uri.parse(signsList.get(position).getUserInSign().getPhoto()));
+//        }
     }
 
     /**
@@ -114,7 +114,7 @@ public class SignAdapter extends RecyclerView.Adapter<SignAdapter.SignHolder> {
             signIn = view.findViewById(R.id.tv_card_in);
             signOut = view.findViewById(R.id.tv_card_out);
             modality = view.findViewById(R.id.tv_card_modality);
-            signPhoto = view.findViewById(R.id.iv_card_photo);
+            signPhoto = view.findViewById(R.id.rv_card_photo);
 //            Glide.with(this)
 //                    .load(photoUrl)
 //                    .error(R.drawable.notphoto)

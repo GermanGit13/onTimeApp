@@ -61,7 +61,7 @@ public class SignRegisterView extends AppCompatActivity implements SignRegisterC
         Log.d("Register Sign", "Ver si traigo el user: " + user.getId() + " photo: " + user.getPhoto());
         @SuppressLint({"MissingInflatedId", "LocalSuppress"}) TextView tvName = findViewById(R.id.tv_name_register);
         tvName.setText(String.valueOf(user.getName()));
-        ivPhotoMenu = findViewById(R.id.iv_card_photo);
+        ivPhotoMenu = findViewById(R.id.iv_register_photo);
         Glide.with(this)
                 .load(user.getPhoto())
                 .error(R.drawable.notphoto)
