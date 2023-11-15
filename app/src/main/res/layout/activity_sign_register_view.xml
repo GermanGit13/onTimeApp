@@ -1,0 +1,383 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.SignRegisterView">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/fondofichaje" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayoutDatos"
+        android:layout_width="412dp"
+        android:layout_height="93dp"
+        android:layout_weight="1"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="0dp">
+
+        <LinearLayout
+            android:id="@+id/linearLayoutName"
+            android:layout_width="207dp"
+            android:layout_height="30dp"
+            android:orientation="vertical"
+            app:layout_constraintStart_toEndOf="@+id/linearLayoutPhoto"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/tv_name_register"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textAlignment="center"
+                android:textStyle="bold"
+                android:visibility="visible"
+                tools:ignore="MissingConstraints" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayoutPhoto"
+            android:layout_width="83dp"
+            android:layout_height="90dp"
+            android:orientation="vertical"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="MissingConstraints">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/iv_register_photo"
+                android:layout_width="71dp"
+                android:layout_height="70dp"
+                android:layout_margin="10dp"
+                android:padding="10dp"
+                android:paddingTop="1dp"
+                app:shapeAppearanceOverlay="@style/circleImageView"
+                app:strokeColor="@color/DarkGoldenrod"
+                app:strokeWidth="3dp"
+                tools:ignore="MissingConstraints" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayoutText"
+            android:layout_width="207dp"
+            android:layout_height="60dp"
+            android:orientation="vertical"
+            app:layout_constraintStart_toEndOf="@+id/linearLayoutPhoto"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayoutName">
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:text="@string/start_your_job_at"
+                android:textAlignment="center"
+                android:visibility="visible"
+                tools:ignore="MissingConstraints" />
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:text="@string/finish_your_job_at"
+                android:textAlignment="center"
+                android:visibility="visible"
+                tools:ignore="MissingConstraints" />
+
+            <View
+                android:id="@+id/view"
+                android:layout_width="320dp"
+                android:layout_height="2dp"
+                android:layout_marginBottom="28dp"
+                android:background="@color/DarkGoldenrod"
+                tools:ignore="MissingConstraints" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayoutTextVariable"
+            android:layout_width="98dp"
+            android:layout_height="60dp"
+            android:orientation="vertical"
+            app:layout_constraintStart_toEndOf="@+id/linearLayoutText"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayoutName">
+
+            <EditText
+                android:id="@+id/et_snackback"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="text"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/tv_in_register"
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:background="@color/DarkGreen"
+                android:textAlignment="textStart"
+                android:textColor="@color/DarkGoldenrod"
+                android:visibility="visible"
+                tools:ignore="MissingConstraints" />
+
+            <TextView
+                android:id="@+id/tv_out_register"
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:background="@color/Brown"
+                android:textAlignment="textStart"
+                android:textColor="@color/DarkGoldenrod"
+                android:visibility="visible"
+                tools:ignore="MissingConstraints" />
+
+            <View
+                android:id="@+id/view2"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginBottom="28dp"
+                android:background="@color/DarkGoldenrod"
+                tools:ignore="MissingConstraints" />
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayoutLogo"
+        android:layout_width="wrap_content"
+        android:layout_height="313dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayoutDatos"
+        tools:ignore="MissingConstraints">
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="386dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:srcCompat="@drawable/logo"
+            tools:ignore="MissingConstraints" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayoutBotones"
+        android:layout_width="386dp"
+        android:layout_height="75dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayoutLogo">
+
+        <Button
+            android:id="@+id/bt_out"
+            style="@style/Widget.Material3.Button.TonalButton.Icon"
+            android:layout_width="154dp"
+            android:layout_height="57dp"
+            android:layout_gravity="center"
+            android:layout_margin="25dp"
+            android:layout_weight="1"
+            android:backgroundTint="@color/Brown"
+            android:outlineSpotShadowColor="@color/black"
+            android:shadowColor="@color/black"
+            android:text="@string/out"
+            android:textAllCaps="false"
+            android:textColor="@color/DarkGoldenrod"
+            android:textColorHighlight="#070607"
+            android:textSize="24sp"
+            android:visibility="visible"
+            app:icon="@drawable/baseline_output_24"
+            app:iconSize="25dp"
+            app:iconTint="@color/DarkGoldenrod"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.709"
+            app:layout_constraintStart_toEndOf="@+id/bt_in"
+            app:strokeWidth="2dp"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteY="7dp" />
+
+        <Button
+            android:id="@+id/bt_in"
+            style="@style/Widget.Material3.Button.TonalButton.Icon"
+            android:layout_width="154dp"
+            android:layout_height="57dp"
+            android:layout_gravity="center"
+            android:layout_margin="25dp"
+            android:layout_marginStart="24dp"
+            android:layout_weight="1"
+            android:backgroundTint="@color/DarkGreen"
+            android:onClick="registerInSign"
+            android:outlineSpotShadowColor="@color/black"
+            android:shadowColor="@color/black"
+            android:text="@string/in"
+            android:textAllCaps="false"
+            android:textColor="@color/DarkGoldenrod"
+            android:textColorHighlight="#070607"
+            android:textSize="24sp"
+            android:visibility="visible"
+            app:icon="@drawable/baseline_input_24"
+            app:iconSize="25dp"
+            app:iconTint="@color/DarkGoldenrod"
+            app:layout_constraintStart_toStartOf="parent"
+            app:strokeColor="@color/Black"
+            app:strokeWidth="2dp"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteY="7dp" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayoutIncidence"
+        android:layout_width="181dp"
+        android:layout_height="191dp"
+        android:layout_marginStart="10dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayoutBotones">
+
+        <View
+            android:id="@+id/viewIncidence"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/DarkGoldenrod"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:id="@+id/textViewIncidence"
+            style="@android:style/Widget.Holo.Light.TextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/select_option_in_case_of_signing_in_with_incident"
+            android:textAlignment="center"
+            android:textStyle="bold" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayoutRadioIncidence"
+            android:layout_width="165dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/constraintLayoutModality"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="MissingConstraints">
+
+
+            <RadioGroup
+                android:id="@+id/rg_incidence"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <RadioButton
+                    android:id="@+id/rb_holidays"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/holidays" />
+
+                <RadioButton
+                    android:id="@+id/rb_medical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/medical" />
+
+                <RadioButton
+                    android:id="@+id/rb_personal"
+                    android:layout_width="151dp"
+                    android:layout_height="match_parent"
+                    android:text="@string/personal_issues" />
+            </RadioGroup>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayouySeparacion"
+        android:layout_width="5dp"
+        android:layout_height="191dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintEnd_toStartOf="@+id/linearLayoutModality"
+        app:layout_constraintStart_toEndOf="@+id/linearLayoutIncidence"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayoutBotones">
+
+        <View
+            android:id="@+id/viewSeparacion"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/DarkGoldenrod"
+            tools:ignore="MissingConstraints" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayoutModality"
+        android:layout_width="181dp"
+        android:layout_height="191dp"
+        android:layout_marginEnd="10dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayoutBotones"
+        tools:ignore="MissingConstraints">
+
+        <View
+            android:id="@+id/view3"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/DarkGoldenrod"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:id="@+id/textViewModality"
+            style="@android:style/Widget.Holo.Light.TextView"
+            android:layout_width="match_parent"
+            android:layout_height="37dp"
+            android:text="@string/select_modality"
+            android:textAlignment="center"
+            android:textStyle="bold" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayoutRadioModality"
+            android:layout_width="165dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/constraintLayoutModality"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="MissingConstraints">
+
+            <RadioGroup
+                android:id="@+id/rg_modality"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <RadioButton
+                    android:id="@+id/rb_office"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/office" />
+
+                <RadioButton
+                    android:id="@+id/rb_homework"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/homework" />
+
+            </RadioGroup>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
