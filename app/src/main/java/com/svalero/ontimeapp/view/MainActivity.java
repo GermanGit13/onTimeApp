@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
     Button btRegisterSign;
     Button btBookingDesk;
     Button btListMySings;
+    Button btListAllSings;
     String photoUrl;
 
     @Override
@@ -56,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
                 .into(ivPhotoMenu);
 
         if (!user.getRol().equals("USER")) {
-            btListSignsDepartment = findViewById(R.id.btListSignsDepartment);
+            btListSignsDepartment = findViewById(R.id.btListAllSigns);
             btListSignsDepartment.setVisibility(View.VISIBLE);
         }
 
@@ -67,8 +68,22 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        btListSignsDepartment = findViewById(R.id.btListSignsDepartment);
+        btListMySings = findViewById(R.id.btListMySign);
+        btListMySings.setOnClickListener(view -> {
+            Intent intent = new Intent(this, SignListByUserView.class);
+            intent.putExtra("user", user);
+            startActivity(intent);
+        });
+
+        btListSignsDepartment = findViewById(R.id.btListSignsByDepartment);
         btListSignsDepartment.setOnClickListener(view -> {
+            Intent intent = new Intent(this, SignListByDepartmenView.class);
+            intent.putExtra("user", user);
+            startActivity(intent);
+        });
+
+        btListAllSings = findViewById(R.id.btListAllSigns);
+        btListAllSings.setOnClickListener(view -> {
             Intent intent = new Intent(this, SignListView.class);
             intent.putExtra("user", user);
             startActivity(intent);

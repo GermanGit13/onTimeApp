@@ -34,4 +34,5 @@
     <string name="sign_register_ok_to">"Sign register OK to "</string>
     <string name="exit">EXIT:</string>
     <string name="entrace">ENTRACE:</string>
+    <string name="list_all_signs">List All Signs</string>
 </resources>

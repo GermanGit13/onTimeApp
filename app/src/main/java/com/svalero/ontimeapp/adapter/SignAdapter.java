@@ -31,6 +31,7 @@ public class SignAdapter extends RecyclerView.Adapter<SignAdapter.SignHolder> {
 
     private Context context;
     private List<Sign> signsList;
+    private String department;
     private Sign sign;
     private View snackBarView;
 
@@ -44,6 +45,13 @@ public class SignAdapter extends RecyclerView.Adapter<SignAdapter.SignHolder> {
         this.signsList = dataList;
 //        presenter = new SignDeletePresenter(this);
     }
+
+//    public SignAdapter(Context context, List<Sign> dataList, String department) {
+//        this.context = context;
+//        this.signsList = dataList;
+//        this.department = department;
+////        presenter = new SignDeletePresenter(this);
+//    }
 
     public Context getContext() {
         return context;

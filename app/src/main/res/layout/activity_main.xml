@@ -20,6 +20,7 @@
         app:srcCompat="@drawable/fmenu" />
 
     <LinearLayout
+        android:id="@+id/linearLayout2"
         android:layout_width="224dp"
         android:layout_height="257dp"
         android:orientation="vertical"
@@ -55,7 +56,6 @@
         android:id="@+id/tableLayout2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
@@ -133,7 +133,7 @@
             android:layout_height="match_parent">
 
             <Button
-                android:id="@+id/btListSignsDepartment"
+                android:id="@+id/btListSignsByDepartment"
                 style="@style/Widget.Material3.Button.IconButton.Outlined"
                 android:layout_width="250dp"
                 android:layout_height="wrap_content"
@@ -149,6 +149,30 @@
                 app:strokeColor="@color/Black"
                 tools:ignore="MissingConstraints" />
         </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/btListAllSigns"
+                style="@style/Widget.Material3.Button.IconButton.Outlined"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="#40FFBB33"
+                android:text="@string/list_all_signs"
+                android:textColor="#0B0B0B"
+                android:textSize="24sp"
+                android:visibility="visible"
+                app:icon="@drawable/baseline_filter_1_24"
+                app:iconSize="30dp"
+                app:iconTint="#151414"
+                app:strokeColor="@color/Black"
+                tools:ignore="MissingConstraints" />
+
+        </TableRow>
+
     </TableLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

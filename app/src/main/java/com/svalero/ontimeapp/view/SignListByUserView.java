@@ -4,43 +4,44 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
 import com.svalero.ontimeapp.R;
 import com.svalero.ontimeapp.adapter.SignAdapter;
-import com.svalero.ontimeapp.contract.SignListContract;
+import com.svalero.ontimeapp.contract.SignListByUserContract;
 import com.svalero.ontimeapp.domain.Sign;
 import com.svalero.ontimeapp.domain.User;
-import com.svalero.ontimeapp.presenter.SignListPresenter;
+import com.svalero.ontimeapp.presenter.SignListByUserPresenter;
 
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Extiende de AppCompatActivity: donde hay un motón de código para usar por esos sobreescribimos los métodos de esta clase
- */
-public class SignListView extends AppCompatActivity implements SignListContract.View {
+public class SignListByUserView extends AppCompatActivity implements SignListByUserContract.View {
 
     private List<Sign> signsList; // Creamos la lista que vamos a recibir
     private SignAdapter adapter; // Declaramos el adapter
-    private SignListPresenter presenter; // Declaramos el presenter para solicitar los datos
+    private SignListByUserPresenter presenter; // Declaramos el presenter para solicitar los datos
     private Bundle bundle; // creamos un bundle para crecoger el objeta extra enviado que esta serializable
     private User user;
+    private String userId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sign_list_view);
+        setContentView(R.layout.activity_sign_list_by_user_view);
 
         /**
          * Recuperamos el objeto selecciona en el adapterUSer
          */
         bundle = getIntent().getExtras();
         user = (User) bundle.getSerializable("user");
+        userId = String.valueOf(user.getId());
 
-        presenter = new SignListPresenter(this); // Instanciamos el presenter y le pasamos el contexto
+        presenter = new SignListByUserPresenter(this); // Instanciamos el presenter y le pasamos el contexto
+        presenter.loadSignsByUser(userId);
         initializeRecyclerView(); //inicializamos el RecyclerView
     }
 
@@ -50,7 +51,7 @@ public class SignListView extends AppCompatActivity implements SignListContract.
     private void initializeRecyclerView() {
         signsList = new ArrayList<>();
 
-        RecyclerView recyclerView = findViewById(R.id.rc_sign_all);// recreamos un objeto RecyclerView y le pasamos el id del creado en el layout activity_sign_list_view.xml
+        RecyclerView recyclerView = findViewById(R.id.rc_signs_by_user);// recreamos un objeto RecyclerView y le pasamos el id del creado en el layout activity_sign_list_view.xml
         recyclerView.setHasFixedSize(true);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
@@ -61,24 +62,22 @@ public class SignListView extends AppCompatActivity implements SignListContract.
     @Override
     protected void onResume() {
         super.onResume();
-
-        Log.d("List Sign", "Llamada desde view"); // depurar para ver hasta donde llego
-        presenter.loalAllSigns(); // Le decimos al presenter cuando vuelve del resume que cargue xtodo de nuevo
+        super.onResume();
+        Log.d("List Sign By User", "Llamada desde view"); // depurar para ver hasta donde llego
+        presenter.loadSignsByUser(userId);
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     @Override
-    public void showSigns(List<Sign> signs) {
-         // depurar para ver hasta donde llego
-        signsList.clear(); // Limpiamos la lista para evitar que tenga datos previos
-        signsList.addAll(signs); // Añadimos a la lista creada la que recibimos
-        adapter.notifyDataSetChanged(); // Notificamos al adapter los cambios
-        Log.d("List Sign", "Llamada desde view showSigns: " + signs.get(1));
+    public void showSignsByUser(List<Sign> signs) {
+        signsList.clear();
+        signsList.addAll(signs);
+        adapter.notifyDataSetChanged();
+        Log.d("List Sign By User", "Llamada desde view_showSignsByDepartment: " + signs.get(1));
     }
 
     @Override
     public void showMessage(String message) {
         Toast.makeText(this, message, Toast.LENGTH_LONG).show();
     }
-
-    // Todo Falta añadir Menu actionBar
 }
