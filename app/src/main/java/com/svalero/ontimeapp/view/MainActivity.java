@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
 
         btListSignsDepartment = findViewById(R.id.btListSignsByDepartment);
         btListSignsDepartment.setOnClickListener(view -> {
-            Intent intent = new Intent(this, SignListByDepartmenView.class);
+            Intent intent = new Intent(this, SignListByParamsView.class);
             intent.putExtra("user", user);
             startActivity(intent);
         });

@@ -33,7 +33,7 @@
             android:name=".view.SignListByUser"
             android:exported="false" />
         <activity
-            android:name=".view.SignListByDepartmenView"
+            android:name=".view.SignListByParamsView"
             android:exported="false" />
         <activity
             android:name=".view.SignListView"

@@ -35,4 +35,6 @@
     <string name="exit">EXIT:</string>
     <string name="entrace">ENTRACE:</string>
     <string name="list_all_signs">List All Signs</string>
+    <string name="not_found_data_in_this_day">"Not Found data in this day "</string>
+    <string name="select_day_to_search">Select day to search</string>
 </resources>

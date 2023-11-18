@@ -1,13 +1,11 @@
 package com.svalero.ontimeapp.adapter;
 
 import android.content.Context;
-import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -130,15 +128,15 @@ public class SignAdapter extends RecyclerView.Adapter<SignAdapter.SignHolder> {
             signUsername = view.findViewById(R.id.tv_card_username);
             signIn = view.findViewById(R.id.tv_card_in);
             signOut = view.findViewById(R.id.tv_card_out);
-            modality = view.findViewById(R.id.tv_card_modality);
+            modality = view.findViewById(R.id.tv_list_all_date);
             signPhoto = view.findViewById(R.id.rv_card_photo);
 //            Glide.with(this)
 //                    .load(photoUrl)
 //                    .error(R.drawable.notphoto)
 //                    .into(signPhoto);
 
-            modifySignButton = view.findViewById(R.id.bt_card_modify);
-            deleteSignButton = view.findViewById(R.id.bt_card_delete);
+            modifySignButton = view.findViewById(R.id.bt_list_all_find);
+            deleteSignButton = view.findViewById(R.id.bt_list_all_clear);
             detailsSignButton = view.findViewById(R.id.bt_card_details);
 
             // TODO añadir opción que realizarán los botones

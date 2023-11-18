@@ -6,12 +6,94 @@
     android:layout_height="match_parent"
     tools:context=".view.SignListView">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rc_sign_all"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="20dp"
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardList"
+        android:layout_width="398dp"
+        android:layout_height="126dp"
+        android:layout_margin="5dp"
+        android:layout_marginStart="5dp"
+        app:cardBackgroundColor="@color/DarkGoldenrod"
+        app:cardCornerRadius="@dimen/mapbox_cameraModeButton_paddingStart"
+        app:cardElevation="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Media -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp">
+
+                <!-- Title, secondary and supporting text -->
+
+                <EditText
+                    android:id="@+id/etPlannedDate"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:clickable="true"
+                    android:focusable="false"
+                    android:hint="@string/select_day_to_search"
+                    android:inputType="date"
+                    android:maxLines="1"
+                    android:textAlignment="center"
+                    tools:ignore="TouchTargetSizeCheck" />
+
+            </LinearLayout>
+
+            <!-- Buttons -->
+            <LinearLayout
+                android:layout_width="390dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:orientation="horizontal">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/bt_list_all_clear"
+                        style="?attr/borderlessButtonStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="65dp"
+                        android:text="Clear"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        tools:ignore="TouchTargetSizeCheck"
+                        tools:layout_editor_absoluteY="0dp" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/bt_list_all_find"
+                        style="?attr/borderlessButtonStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Search"
+                        app:layout_constraintEnd_toStartOf="@+id/bt_list_all_clear"
+                        app:layout_constraintStart_toStartOf="parent"
+                        tools:ignore="TouchTargetSizeCheck"
+                        tools:layout_editor_absoluteY="0dp" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rc_sign_all"
+        android:layout_width="379dp"
+        android:layout_height="0dp"
+        android:padding="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardList" />
 </androidx.constraintlayout.widget.ConstraintLayout>

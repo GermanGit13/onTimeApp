@@ -36,7 +36,7 @@ public interface OnTimeApiInterface {
     Call<List<Sign>> getSigns();
 
     @GET("signs")
-    Call<List<Sign>> getSigns(@Query("userInSign_department") String department);
+    Call<List<Sign>> getSigns(@Query("userInSign_department") String department, @Query("day") String day);
 
     @GET("/users/{userId}/signs")
     Call<List<Sign>> findByUserInSign(@Path("userId") String userId);

@@ -6,6 +6,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.svalero.ontimeapp.R;
@@ -42,6 +44,9 @@ public class SignListView extends AppCompatActivity implements SignListContract.
 
         presenter = new SignListPresenter(this); // Instanciamos el presenter y le pasamos el contexto
         initializeRecyclerView(); //inicializamos el RecyclerView
+
+//        EditText etPlannedDate = (EditText) findViewById(R.id.etPlannedDate);
+//        etPlannedDate.setOnClickListener((View.OnClickListener) this);
     }
 
     /**

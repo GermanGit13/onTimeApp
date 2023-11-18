@@ -7,7 +7,7 @@
     android:padding="3dp">
 
     <com.google.android.material.card.MaterialCardView
-        android:id="@+id/card"
+        android:id="@+id/cardList"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="2dp"
@@ -109,7 +109,7 @@
                     </LinearLayout>
 
                     <TextView
-                        android:id="@+id/tv_card_modality"
+                        android:id="@+id/tv_list_all_date"
                         android:layout_width="274dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
@@ -129,7 +129,7 @@
                 android:orientation="horizontal">
 
                 <com.google.android.material.button.MaterialButton
-                    android:id="@+id/bt_card_modify"
+                    android:id="@+id/bt_list_all_find"
                     style="?attr/borderlessButtonStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -137,7 +137,7 @@
                     android:text="Modify" />
 
                 <com.google.android.material.button.MaterialButton
-                    android:id="@+id/bt_card_delete"
+                    android:id="@+id/bt_list_all_clear"
                     style="?attr/borderlessButtonStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
