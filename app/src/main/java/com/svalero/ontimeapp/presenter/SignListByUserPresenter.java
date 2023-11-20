@@ -28,7 +28,7 @@ public class SignListByUserPresenter implements SignListByUserContract.Presenter
     }
 
     @Override
-    public void loadSignsByUser(String userId) {
-        model.loadSignsByUser(userId, this);
+    public void loadSignsByUser(String userId, String firstDay) {
+        model.loadSignsByUser(userId, this, firstDay);
     }
 }

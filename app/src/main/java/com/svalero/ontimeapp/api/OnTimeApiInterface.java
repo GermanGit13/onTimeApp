@@ -33,11 +33,12 @@ public interface OnTimeApiInterface {
     Call<Sign> addSign(@Path("userId") long userId, @Body Sign sign);
 
     @GET("signs")
-    Call<List<Sign>> getSigns();
+    Call<List<Sign>> getSigns(@Query("day") String day);
 
     @GET("signs")
     Call<List<Sign>> getSigns(@Query("userInSign_department") String department, @Query("day") String day);
 
+
     @GET("/users/{userId}/signs")
-    Call<List<Sign>> findByUserInSign(@Path("userId") String userId);
+    Call<List<Sign>> findByUserInSign(@Path("userId") String userId, @Query("day") String day);
 }

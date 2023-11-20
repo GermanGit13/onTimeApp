@@ -12,7 +12,7 @@ public interface SignListByUserContract {
             void OnLoadSignsByUserListenerError(String message);
         }
 
-        void loadSignsByUser(String userId, OnLoadSignsByUserListener listener);
+        void loadSignsByUser(String userId, OnLoadSignsByUserListener listener, String firstDay);
     }
 
     interface View {
@@ -21,6 +21,6 @@ public interface SignListByUserContract {
     }
 
     interface Presenter {
-        void loadSignsByUser(String userId);
+        void loadSignsByUser(String userId, String firstDay);
     }
 }

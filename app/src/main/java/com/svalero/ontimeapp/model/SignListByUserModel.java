@@ -23,22 +23,22 @@ public class SignListByUserModel implements SignListByUserContract.Model {
     }
 
     @Override
-    public void loadSignsByUser(String userId, OnLoadSignsByUserListener listener) {
+    public void loadSignsByUser(String userId, OnLoadSignsByUserListener listener, String firstDay) {
         //Nos devuelve una instancia de onTimeApi como la definimos en OnTimeApiInterface, tiene los métodos que usamos para comunicarnos con la API
         OnTimeApiInterface onTimeApi = OnTimeApi.buildInstance();
-        Call<List<Sign>> callSigns = onTimeApi.findByUserInSign(userId);
-        Log.d("List Sign By User", "Llamada desde el model"); //Para depurar errores y ver si avanza o donde se para
+        Call<List<Sign>> callSigns = onTimeApi.findByUserInSign(userId, firstDay);
+        Log.d("List Sign By User and Day", "Llamada desde el model " + userId + " / " + firstDay); //Para depurar errores y ver si avanza o donde se para
         callSigns.enqueue(new Callback<List<Sign>>() {
             @Override
             public void onResponse(Call<List<Sign>> call, Response<List<Sign>> response) {
-                Log.d("List Sign By User", "Llamada desde el model OK"); //Para depurar errores y ver si avanza o donde se para
+                Log.d("List Sign By User and Day", "Llamada desde el model OK "); //Para depurar errores y ver si avanza o donde se para
                 List<Sign> signs = response.body();
                 listener.OnLoadSignsByUserListenerSucess(signs);
             }
 
             @Override
             public void onFailure(Call<List<Sign>> call, Throwable t) {
-                Log.d("List Sign By User", "Llamada desde el model ERROR"); //Para depurar errores y ver si avanza o donde se para
+                Log.d("List Sign By User and Day", "Llamada desde el model ERROR"); //Para depurar errores y ver si avanza o donde se para
                 t.printStackTrace();
                 String message = "Error invocando la operación";
                 listener.OnLoadSignsByUserListenerError(message);
