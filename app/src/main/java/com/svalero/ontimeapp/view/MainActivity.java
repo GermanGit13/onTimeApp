@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.svalero.ontimeapp.R;
 import com.svalero.ontimeapp.domain.User;
 
@@ -77,9 +79,25 @@ public class MainActivity extends AppCompatActivity {
 
         btListSignsDepartment = findViewById(R.id.btListSignsByDepartment);
         btListSignsDepartment.setOnClickListener(view -> {
+        if (user.getDepartment().equals("")) {
+            new MaterialAlertDialogBuilder(this)
+                    .setTitle(R.string.you_don_t_have_an_department)
+                    .setMessage(R.string.contact_with_administration_depatment)
+                    .setPositiveButton(R.string.accept, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+//                            Intent intent = new Intent(context, MainActivity.class);
+//                            intent.putExtra("user", user);
+//                            startActivity(intent);
+                        }
+                    })
+                    .show();
+        } else {
             Intent intent = new Intent(this, SignListByParamsView.class);
             intent.putExtra("user", user);
             startActivity(intent);
+        }
+
         });
 
         btListAllSings = findViewById(R.id.btListAllSigns);
