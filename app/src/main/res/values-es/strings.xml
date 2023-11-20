@@ -40,4 +40,6 @@
     <string name="there_is_no_data_for_the_selected_date">There is no data for the selected date.</string>
     <string name="you_don_t_have_an_department">You don\'t have an department</string>
     <string name="contact_with_administration_depatment">Contact with Administration for that assign an department</string>
+    <string name="date">DATE:</string>
+    <string name="select_incidence">Select Incidence</string>
 </resources>

@@ -75,9 +75,12 @@ public class SignAdapter extends RecyclerView.Adapter<SignAdapter.SignHolder> {
     @Override
     public void onBindViewHolder(SignHolder holder, int position) {
         holder.signUsername.setText(String.valueOf(signsList.get(position).getUserInSign().getUsername()));
+        holder.date.setText(String.valueOf(signsList.get(position).getDay()));
         holder.signIn.setText(signsList.get(position).getIn_time());
         holder.signOut.setText(signsList.get(position).getOut_time());
         holder.modality.setText(signsList.get(position).getModality());
+        holder.incidenceIn.setText(signsList.get(position).getIncidence_in());
+        holder.incidenceOut.setText(signsList.get(position).getIncidence_out());
         String urlPhoto = signsList.get(position).getUserInSign().getPhoto();
         Log.d("List Sign", "Llamada desde el adapter: " + urlPhoto); //Para depurar errores y ver si avanza o donde se para
         Glide.with(context)
@@ -110,6 +113,9 @@ public class SignAdapter extends RecyclerView.Adapter<SignAdapter.SignHolder> {
         public TextView signIn;
         public TextView signOut;
         public TextView modality;
+        public TextView date;
+        public TextView incidenceIn;
+        public TextView incidenceOut;
         public ShapeableImageView signPhoto;
 
         public Button modifySignButton;
@@ -126,10 +132,15 @@ public class SignAdapter extends RecyclerView.Adapter<SignAdapter.SignHolder> {
             parentView = view; // Guardamos el componente padre
 
             signUsername = view.findViewById(R.id.tv_card_username);
+            date = view.findViewById(R.id.tv_card_date);
             signIn = view.findViewById(R.id.tv_card_in);
             signOut = view.findViewById(R.id.tv_card_out);
-            modality = view.findViewById(R.id.tv_list_all_date);
+            modality = view.findViewById(R.id.tv_card_modality);
+            incidenceIn = view.findViewById(R.id.tv_card_incidence_in);
+            incidenceOut = view.findViewById(R.id.tv_card_incidence_out);
             signPhoto = view.findViewById(R.id.rv_card_photo);
+
+
 //            Glide.with(this)
 //                    .load(photoUrl)
 //                    .error(R.drawable.notphoto)
