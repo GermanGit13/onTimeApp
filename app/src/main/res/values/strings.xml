@@ -41,4 +41,7 @@
     <string name="contact_with_administration_depatment">Contact with Administration for that assign an department</string>
     <string name="date">DATE:</string>
     <string name="select_incidence">Select Incidence</string>
+    <string name="search_by_date">Search by Date</string>
+    <string name="search_by">"Search by: "</string>
+    <string name="in_case_of_no_data_delete_filters_and_search_again">in case of no data delete filters and search again</string>
 </resources>

@@ -37,7 +37,8 @@
                     android:id="@+id/etPlannedDate"
                     android:layout_width="211dp"
                     android:layout_height="match_parent"
-                    android:textAlignment="center" />
+                    android:textAlignment="center"
+                    tools:ignore="TouchTargetSizeCheck" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/bt_pick_date_list_all"

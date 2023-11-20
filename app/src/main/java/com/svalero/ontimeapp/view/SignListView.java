@@ -159,6 +159,11 @@ public class SignListView extends AppCompatActivity implements SignListContract.
         Log.d("List Sign", "Llamada desde view showSigns: ");
     }
 
+    @Override
+    public void showMessage(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+    }
+
     public void findSignsByDay() {
         SimpleDateFormat fechaFormateada = new SimpleDateFormat("dd-MM-yyyy");
         firstDay = etPlannedDate.getText().toString();
@@ -184,11 +189,6 @@ public class SignListView extends AppCompatActivity implements SignListContract.
         ((TextView) findViewById(R.id.etPlannedDate)).setText("");
 
         ((TextView) findViewById(R.id.etPlannedDate)).requestFocus();
-    }
-
-    @Override
-    public void showMessage(String message) {
-        Toast.makeText(this, message, Toast.LENGTH_LONG).show();
     }
 
     // Todo Falta añadir Menu actionBar
