@@ -17,7 +17,6 @@ public class SignListPresenter implements SignListContract.Presenter, SignListCo
      */
     private SignListModel model;
     private SignListView view;
-    private String department;
 
     public SignListPresenter(SignListView view) {
         this.view = view;
@@ -35,22 +34,7 @@ public class SignListPresenter implements SignListContract.Presenter, SignListCo
     }
 
     @Override
-    public void loalAllSigns() {
-        model.loadAllSigns(this);
+    public void loadAllSings(String firstDay) {
+        model.loadAllSigns(this, firstDay);
     }
-
-//    @Override
-//    public void loadSignsByDeparment(String department) {
-//        model.loadSignsByDeparment(this, department);
-//    }
-//
-//    @Override
-//    public void OnLoadSignsByDepartmentSucess(List<Sign> signs) {
-//        view.showSignsByDepartment(signs);
-//    }
-//
-//    @Override
-//    public void OnLoadSignsByDepartmentError(String message) {
-//        view.showMessage(message);
-//    }
 }
