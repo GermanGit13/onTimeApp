@@ -8,8 +8,8 @@
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cardList"
-        android:layout_width="398dp"
-        android:layout_height="126dp"
+        android:layout_width="374dp"
+        android:layout_height="102dp"
         android:layout_margin="5dp"
         android:layout_marginStart="5dp"
         app:cardBackgroundColor="@color/DarkGoldenrod"
@@ -28,21 +28,23 @@
             <!-- Media -->
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="48dp"
                 android:padding="5dp">
 
                 <!-- Title, secondary and supporting text -->
 
                 <EditText
                     android:id="@+id/etPlannedDate"
-                    android:layout_width="match_parent"
+                    android:layout_width="211dp"
                     android:layout_height="match_parent"
-                    android:clickable="true"
-                    android:focusable="false"
-                    android:hint="@string/select_day_to_search"
-                    android:inputType="date"
-                    android:maxLines="1"
-                    android:textAlignment="center"
+                    android:textAlignment="center" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/bt_pick_date_list_all"
+                    style="?attr/borderlessButtonStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Open Calender"
                     tools:ignore="TouchTargetSizeCheck" />
 
             </LinearLayout>
@@ -64,6 +66,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="65dp"
+                        android:onClick="resetDay"
                         android:text="Clear"
                         app:layout_constraintEnd_toEndOf="parent"
                         tools:ignore="TouchTargetSizeCheck"
@@ -74,11 +77,13 @@
                         style="?attr/borderlessButtonStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:onClick="findSignsByDay"
                         android:text="Search"
                         app:layout_constraintEnd_toStartOf="@+id/bt_list_all_clear"
                         app:layout_constraintStart_toStartOf="parent"
                         tools:ignore="TouchTargetSizeCheck"
                         tools:layout_editor_absoluteY="0dp" />
+
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
             </LinearLayout>
