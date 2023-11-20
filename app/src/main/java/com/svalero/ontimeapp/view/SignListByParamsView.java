@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
@@ -25,6 +27,7 @@ import java.util.List;
  */
 public class SignListByParamsView extends AppCompatActivity implements SignListByParamsContract.View {
 
+    private Context context;
     private List<Sign> signsList; // Creamos la lista que vamos a recibir
     private SignAdapter adapter; // Declaramos el adapter
     private SignListByParamsPresenter presenter; // Declaramos el presenter para solicitar los datos
@@ -44,11 +47,9 @@ public class SignListByParamsView extends AppCompatActivity implements SignListB
         bundle = getIntent().getExtras();
         user = (User) bundle.getSerializable("user");
         department = user.getDepartment();
-        if (department.equals("")) {
-            department = "SISTEMAS";
-        }
-        department = "";
-        firstDay = "2013-11-04";
+
+//        department = "Informatica";
+//        firstDay = "2013-11-04";
 
         Log.d("List Sign Params", "Llamada desde view "+ department + " / " + firstDay); // depurar para ver hasta donde llego
 
@@ -86,7 +87,7 @@ public class SignListByParamsView extends AppCompatActivity implements SignListB
         if (signs.isEmpty()) {
             new MaterialAlertDialogBuilder(this)
                     .setTitle(R.string.not_found_data_in_this_day)
-                    .setMessage("Your message goes here. Keep it short but clear.")
+                    .setMessage(R.string.there_is_no_data_for_the_selected_date)
                     .setPositiveButton(R.string.accept, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
