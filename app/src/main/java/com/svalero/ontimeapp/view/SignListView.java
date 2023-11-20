@@ -28,6 +28,8 @@ import com.svalero.ontimeapp.domain.User;
 import com.svalero.ontimeapp.presenter.SignListByParamsPresenter;
 import com.svalero.ontimeapp.presenter.SignListPresenter;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -47,6 +49,9 @@ public class SignListView extends AppCompatActivity implements SignListContract.
     private Button btPickDate;
     private EditText etPlannedDate;
     private String firstDay = "";
+    private Button btSearch;
+    private Button btClear;
+
 
 
     @SuppressLint("MissingInflatedId")
@@ -64,6 +69,20 @@ public class SignListView extends AppCompatActivity implements SignListContract.
         presenter = new SignListPresenter(this); // Instanciamos el presenter y le pasamos el contexto
         initializeRecyclerView(); //inicializamos el RecyclerView
         initializeDatePicker(); //Inicializamos el DatePicker
+
+        btSearch = findViewById(R.id.bt_list_all_find);
+        btSearch.setOnClickListener(view -> {
+        findSignsByDay();
+        });
+
+        btClear = findViewById(R.id.bt_list_all_clear);
+        btClear.setOnClickListener(view -> {
+            resetDay();
+        });
+
+//        firstDay = String.valueOf(((TextView) findViewById(R.id.etPlannedDate)));
+//        Log.d("List Sign", "Fecha del calendario " + firstDay); // depurar para ver hasta donde llego
+
     }
 
     /**
@@ -141,23 +160,30 @@ public class SignListView extends AppCompatActivity implements SignListContract.
     }
 
     public void findSignsByDay() {
-        new MaterialAlertDialogBuilder(this)
-                .setTitle(R.string.you_don_t_have_an_department)
-                .setMessage(R.string.contact_with_administration_depatment)
-                .setPositiveButton(R.string.accept, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        presenter.loadAllSings(firstDay);
-                    }
-                })
-                .show();
-        Log.d("List Sign with Day", "Llamada desde view showSigns with Day: " );
+        SimpleDateFormat fechaFormateada = new SimpleDateFormat("dd-MM-yyyy");
+        firstDay = etPlannedDate.getText().toString();
+        Log.d("List Sign", "Fecha del calendario " + firstDay); // depurar para ver hasta donde llego
+
+        presenter.loadAllSings(firstDay);
+        adapter.notifyDataSetChanged(); // Notificamos al adapter los cambios
+
+//        new MaterialAlertDialogBuilder(this)
+//                .setTitle(R.string.you_don_t_have_an_department)
+//                .setMessage(R.string.contact_with_administration_depatment)
+//                .setPositiveButton(R.string.accept, new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialogInterface, int i) {
+//                        presenter.loadAllSings(firstDay);
+//                    }
+//                })
+//                .show();
+        Log.d("List Sign with Day", "Llamada desde view showSigns with Day: " + firstDay );
     }
 
     public void resetDay() {
-        ((TextView) findViewById(R.id.bt_list_all_clear)).setText("");
+        ((TextView) findViewById(R.id.etPlannedDate)).setText("");
 
-//        ((TextView) findViewById(R.id.bt_list_all_clear)).requestFocus();
+        ((TextView) findViewById(R.id.etPlannedDate)).requestFocus();
     }
 
     @Override
