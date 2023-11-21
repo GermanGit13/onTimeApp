@@ -6,12 +6,100 @@
     android:layout_height="match_parent"
     tools:context=".view.SignListByUserView">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rc_signs_by_user"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="20dp"
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardListByUser"
+        android:layout_width="374dp"
+        android:layout_height="102dp"
+        android:layout_margin="5dp"
+        android:layout_marginStart="5dp"
+        app:cardBackgroundColor="@color/DarkGoldenrod"
+        app:cardCornerRadius="@dimen/mapbox_cameraModeButton_paddingStart"
+        app:cardElevation="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Media -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:padding="5dp">
+
+                <!-- Title, secondary and supporting text -->
+
+                <EditText
+                    android:id="@+id/etPlannedDateByUser"
+                    android:layout_width="211dp"
+                    android:layout_height="match_parent"
+                    android:textAlignment="center"
+                    tools:ignore="TouchTargetSizeCheck" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/bt_pick_date_list_by_user"
+                    style="?attr/borderlessButtonStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Open Calender"
+                    tools:ignore="TouchTargetSizeCheck" />
+
+            </LinearLayout>
+
+            <!-- Buttons -->
+            <LinearLayout
+                android:layout_width="390dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:orientation="horizontal">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/bt_list_by_user_clear"
+                        style="?attr/borderlessButtonStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="65dp"
+                        android:onClick="resetUserByDay"
+                        android:text="Clear"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        tools:ignore="TouchTargetSizeCheck"
+                        tools:layout_editor_absoluteY="0dp" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/bt_list_by_user_find"
+                        style="?attr/borderlessButtonStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:onClick="findSignsUserByDay"
+                        android:text="Search"
+                        app:layout_constraintEnd_toStartOf="@+id/bt_list_by_user_clear"
+                        app:layout_constraintStart_toStartOf="parent"
+                        tools:ignore="TouchTargetSizeCheck"
+                        tools:layout_editor_absoluteY="0dp" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rc_signs_by_user"
+        android:layout_width="388dp"
+        android:layout_height="0dp"
+        android:padding="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardListByUser" />
 </androidx.constraintlayout.widget.ConstraintLayout>
