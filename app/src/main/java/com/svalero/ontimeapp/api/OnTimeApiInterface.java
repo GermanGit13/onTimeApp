@@ -7,6 +7,7 @@ import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
@@ -38,7 +39,8 @@ public interface OnTimeApiInterface {
     @GET("signs")
     Call<List<Sign>> getSigns(@Query("userInSign_department") String department, @Query("day") String day);
 
-
     @GET("/users/{userId}/signs")
     Call<List<Sign>> findByUserInSign(@Path("userId") String userId, @Query("day") String day);
+    @DELETE("/signs/{id}")
+    Call<Void> deleteSign(@Path("id") String signId); // Void porque la operación de borrado no devuelve nada
 }

@@ -1,6 +1,11 @@
 package com.svalero.ontimeapp.adapter;
 
+import static android.app.ProgressDialog.show;
+
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,9 +17,12 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.imageview.ShapeableImageView;
 import com.svalero.ontimeapp.R;
+import com.svalero.ontimeapp.contract.SignDeleteContract;
 import com.svalero.ontimeapp.domain.Sign;
+import com.svalero.ontimeapp.presenter.SignDeletePresenter;
 
 import java.util.List;
 
@@ -24,14 +32,14 @@ import java.util.List;
  * al extender de la clase RecyclerView los @Override los añadira automáticamente para el patron Holder, solo añadiremos nosotros el 5)
  * implements TeamDeleteContract.View porque hace las funciones de view para implentar sus metodos
  */
-public class SignAdapter extends RecyclerView.Adapter<SignAdapter.SignHolder> {
-    //TODO Falta implementar SignDeleteContract.View
+public class SignAdapter extends RecyclerView.Adapter<SignAdapter.SignHolder> implements SignDeleteContract.View {
 
     private Context context;
     private List<Sign> signsList;
     private String department;
     private Sign sign;
     private View snackBarView;
+    private SignDeletePresenter presenter;
 
     /**
      * 1) Constructor que creamos para pasarle los datos que queremos que pinte
@@ -41,15 +49,8 @@ public class SignAdapter extends RecyclerView.Adapter<SignAdapter.SignHolder> {
     public SignAdapter(Context context, List<Sign> dataList) {
         this.context = context;
         this.signsList = dataList;
-//        presenter = new SignDeletePresenter(this);
+        presenter = new SignDeletePresenter(this);
     }
-
-//    public SignAdapter(Context context, List<Sign> dataList, String department) {
-//        this.context = context;
-//        this.signsList = dataList;
-//        this.department = department;
-////        presenter = new SignDeletePresenter(this);
-//    }
 
     public Context getContext() {
         return context;
@@ -140,22 +141,59 @@ public class SignAdapter extends RecyclerView.Adapter<SignAdapter.SignHolder> {
             incidenceOut = view.findViewById(R.id.tv_card_incidence_out);
             signPhoto = view.findViewById(R.id.rv_card_photo);
 
-
-//            Glide.with(this)
-//                    .load(photoUrl)
-//                    .error(R.drawable.notphoto)
-//                    .into(signPhoto);
-
             modifySignButton = view.findViewById(R.id.bt_list_all_find);
             deleteSignButton = view.findViewById(R.id.bt_list_all_clear);
             detailsSignButton = view.findViewById(R.id.bt_card_details);
 
             // TODO añadir opción que realizarán los botones
+            deleteSignButton.setOnClickListener( v -> deleteSign(getAdapterPosition()));
         }
+    }
+
+    @Override
+    public void showError(String message) {
+
+    }
+
+    @Override
+    public void showMessage(String message) {
+
     }
 
     /**
      * Métodos de los botones del layout para recoger el id y registrar una inspection
      */
     // TODO añadir los métodos que son llamados por los botones
+    private void deleteSign(int position) {
+        Sign sign = signsList.get(position);
+        Log.d("Delete Sign", "Desde Aviso de Borrar:" + sign.getId());
+
+//        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+//        builder.setMessage(R.string.delete_sign)
+//                .setTitle("Delete select Sign")
+//                .setPositiveButton(R.string.yes, (dialog, id) -> {
+//                    presenter.deleteSign(String.valueOf(sign.getId()));
+//
+//                    signsList.remove(position);
+//                    notifyItemRemoved(position);
+//                })
+//                .setNegativeButton(R.string.not, (dialog, id) -> dialog.dismiss());
+//        AlertDialog dialog = builder.create();
+//        dialog.show();
+
+        new MaterialAlertDialogBuilder(context)
+                .setTitle(R.string.delete_select_sign)
+                .setMessage(context.getString(R.string.the_sign_dated) + sign.getDay() + context.getString(R.string.will_be_deleted))
+                .setPositiveButton(R.string.accept, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        presenter.deleteSign(String.valueOf(sign.getId()));
+
+                        signsList.remove(position);
+                        notifyItemRemoved(position);
+                    }
+                })
+                .setNegativeButton(R.string.not , ((dialog, which) -> dialog.dismiss()))
+                .show();
+    }
 }

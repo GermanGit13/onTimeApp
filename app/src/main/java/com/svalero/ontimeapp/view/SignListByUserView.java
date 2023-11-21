@@ -26,6 +26,7 @@ import com.svalero.ontimeapp.domain.User;
 import com.svalero.ontimeapp.presenter.SignListByUserPresenter;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -110,6 +111,7 @@ public class SignListByUserView extends AppCompatActivity implements SignListByU
                 int month = c.get(Calendar.MONTH);
                 int day = c.get(Calendar.DAY_OF_MONTH);
 
+
                 // on below line we are creating a variable for date picker dialog.
                 DatePickerDialog datePickerDialog = new DatePickerDialog(
                         // on below line we are passing context.
@@ -119,7 +121,8 @@ public class SignListByUserView extends AppCompatActivity implements SignListByU
                             public void onDateSet(DatePicker view, int year,
                                                   int monthOfYear, int dayOfMonth) {
                                 // on below line we are setting date to our text view.
-                                etPlannedDateByUser.setText(  year + "-" + (monthOfYear + 1) + "-" + dayOfMonth);
+                                LocalDate date = LocalDate.of(year, (monthOfYear + 1), dayOfMonth); // Pasar yyyy-MM-dd
+                                etPlannedDateByUser.setText(date.toString());
 
                             }
                         },
@@ -164,7 +167,7 @@ public class SignListByUserView extends AppCompatActivity implements SignListByU
                     })
                     .show();
         }
-        Log.d("List Sign By User and Day", "Llamada desde view_showSignsByDepartment: " + signs.get(1));
+        Log.d("List Sign By User and Day", "Llamada desde view_showSignsByDepartment: ");
     }
 
     @Override

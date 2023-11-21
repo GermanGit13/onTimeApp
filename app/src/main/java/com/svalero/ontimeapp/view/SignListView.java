@@ -30,6 +30,7 @@ import com.svalero.ontimeapp.presenter.SignListPresenter;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -128,7 +129,10 @@ public class SignListView extends AppCompatActivity implements SignListContract.
                             public void onDateSet(DatePicker view, int year,
                                                   int monthOfYear, int dayOfMonth) {
                                 // on below line we are setting date to our text view.
-                                etPlannedDate.setText(  year + "-" + (monthOfYear + 1) + "-" + dayOfMonth);
+                                LocalDate date = LocalDate.of(year, (monthOfYear + 1), dayOfMonth); // Pasar yyyy-MM-dd
+
+                                Log.d("List Sign Prueba Calender", "Llamada desde view " + date); // depurar para ver hasta donde llego
+                                etPlannedDate.setText(date.toString());
 
                             }
                         },
@@ -165,7 +169,6 @@ public class SignListView extends AppCompatActivity implements SignListContract.
     }
 
     public void findSignsByDay() {
-        SimpleDateFormat fechaFormateada = new SimpleDateFormat("dd-MM-yyyy");
         firstDay = etPlannedDate.getText().toString();
         Log.d("List Sign", "Fecha del calendario " + firstDay); // depurar para ver hasta donde llego
 

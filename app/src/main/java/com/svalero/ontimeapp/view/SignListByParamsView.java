@@ -26,6 +26,7 @@ import com.svalero.ontimeapp.domain.User;
 import com.svalero.ontimeapp.presenter.SignListByParamsPresenter;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -121,7 +122,8 @@ public class SignListByParamsView extends AppCompatActivity implements SignListB
                             public void onDateSet(DatePicker view, int year,
                                                   int monthOfYear, int dayOfMonth) {
                                 // on below line we are setting date to our text view.
-                                etPlannedDateParams.setText(  year + "-" + (monthOfYear + 1) + "-" + dayOfMonth);
+                                LocalDate date = LocalDate.of(year, (monthOfYear + 1), dayOfMonth); // Pasar yyyy-MM-dd
+                                etPlannedDateParams.setText(date.toString());
 
                             }
                         },
