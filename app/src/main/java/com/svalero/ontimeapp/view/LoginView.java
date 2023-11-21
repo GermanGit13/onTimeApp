@@ -56,34 +56,16 @@ public class LoginView extends AppCompatActivity implements LoginContract.View {
 
     @Override
     public void showLogin(User user) {
-        String username = "null";
-        if (user.getUsername() != null) {
-            username = user.getUsername();
-        }
-
-        Log.d("loginView", "Llamada desde la view: " + username); // Para depurar errores y ver si avanza o donde se para
-
         if (user !=null ){
             Intent intent = new Intent(LoginView.this, MainActivity.class);
             intent.putExtra("user", user); // Mandamos el objeto entero ya que es una clase serializable
             startActivity(intent);
-//          Opción para crear un mensaje  con un boton
-//            snackbar.make(((EditText) findViewById(R.id.etUser)), message, BaseTransientBottomBar.LENGTH_SHORT)
-//                    .setAction("Entrar", new View.OnClickListener() { //Crea un boton en el snackbar
-//                        @Override
-//                        public void onClick(View v) {
-//                            Intent intent = new Intent(LoginView.this, MainActivity.class);
-//                            intent.putExtra("user", user); // Mandamos el objeto entero ya que es una clase serializable
-//                            startActivity(intent);
-//                        }
-//                    })
-//                    .show();
         } else {
-            snackbar.make(((EditText) findViewById(R.id.etUser)), "Datos incorrectos", BaseTransientBottomBar.LENGTH_SHORT)
-                    .setAction("Datos incorrectos", new View.OnClickListener() { // Crea un boton en el snackbar
+            snackbar.make(((EditText) findViewById(R.id.etUser)), "Incorrect Data", BaseTransientBottomBar.LENGTH_SHORT)
+                    .setAction("Accept", new View.OnClickListener() { // Crea un boton en el snackbar
                         @Override
                         public void onClick(View v) {
-                            onBackPressed();
+//                            onBackPressed();
                         }
                     })
                     .show();
