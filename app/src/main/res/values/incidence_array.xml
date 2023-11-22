@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="incidence_array">
+        <item></item>
+        <item>HOLIDAYS</item>
+        <item>MEDICAL</item>
+        <item>PERSONAL ISSUES</item>
+    </string-array>
+</resources>

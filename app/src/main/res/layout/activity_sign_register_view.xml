@@ -238,8 +238,8 @@
 
     <LinearLayout
         android:id="@+id/linearLayoutIncidence"
-        android:layout_width="181dp"
-        android:layout_height="191dp"
+        android:layout_width="180dp"
+        android:layout_height="110dp"
         android:layout_marginStart="10dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="@+id/imageView"
@@ -269,42 +269,21 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/constraintLayoutModality"
             app:layout_constraintStart_toStartOf="parent"
-            tools:ignore="MissingConstraints">
-
-
-            <RadioGroup
-                android:id="@+id/rg_incidence"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintEnd_toEndOf="parent">
-
-                <RadioButton
-                    android:id="@+id/rb_holidays"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="@string/holidays" />
-
-                <RadioButton
-                    android:id="@+id/rb_medical"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="@string/medical" />
-
-                <RadioButton
-                    android:id="@+id/rb_personal"
-                    android:layout_width="151dp"
-                    android:layout_height="match_parent"
-                    android:text="@string/personal_issues" />
-            </RadioGroup>
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
+            tools:ignore="MissingConstraints" />
+        <Spinner
+            android:id="@+id/incidence_spinner"
+            style="@android:style/Widget.Spinner.DropDown"
+            android:layout_width="176dp"
+            android:layout_height="50dp"
+            tools:layout_editor_absoluteX="-1dp"
+            tools:layout_editor_absoluteY="0dp" />
 
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/linearLayouySeparacion"
         android:layout_width="5dp"
-        android:layout_height="191dp"
+        android:layout_height="110dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="@+id/imageView"
         app:layout_constraintEnd_toStartOf="@+id/linearLayoutModality"
@@ -314,7 +293,7 @@
         <View
             android:id="@+id/viewSeparacion"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="110dp"
             android:background="@color/DarkGoldenrod"
             tools:ignore="MissingConstraints" />
 
@@ -322,8 +301,8 @@
 
     <LinearLayout
         android:id="@+id/linearLayoutModality"
-        android:layout_width="181dp"
-        android:layout_height="191dp"
+        android:layout_width="180dp"
+        android:layout_height="110dp"
         android:layout_marginEnd="10dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="@+id/imageView"

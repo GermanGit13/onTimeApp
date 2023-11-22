@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -23,6 +24,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.snackbar.BaseTransientBottomBar;
 import com.google.android.material.snackbar.Snackbar;
 import com.svalero.ontimeapp.R;
@@ -35,7 +37,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class SignRegisterView extends AppCompatActivity implements SignRegisterContract.View, AdapterView.OnItemSelectedListener {
+public class SignRegisterView extends AppCompatActivity implements SignRegisterContract.View {
 
     private SignRegisterPresenter presenter;
     private Context context;
@@ -47,6 +49,7 @@ public class SignRegisterView extends AppCompatActivity implements SignRegisterC
     TextView tvInRegister;
     TextView tvOutRegister;
     Spinner spinnerModality;
+    Spinner spinnerIncidence;
     String day;
     String  in_time;
     String out_time;
@@ -74,35 +77,9 @@ public class SignRegisterView extends AppCompatActivity implements SignRegisterC
                 .error(R.drawable.notphoto)
                 .into(ivPhotoMenu);
 
-        initializeSpinner();
+        initializeSpinnerModality();
+        initializeSpinnerIncidence();
         presenter = new SignRegisterPresenter(this);
-    }
-
-    public void initializeSpinner() {
-        spinnerModality = (Spinner) findViewById(R.id.modality_spinner);
-        spinnerModality.setOnItemSelectedListener(this);
-// Create an ArrayAdapter using the string array and a default spinner layout.
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
-                this,
-                R.array.modality_array,
-                android.R.layout.simple_spinner_item
-        );
-// Specify the layout to use when the list of choices appears.
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-// Apply the adapter to the spinner.
-        spinnerModality.setAdapter(adapter);
-    }
-
-    @Override
-    public void onItemSelected(AdapterView<?> parent, View view,
-                               int pos, long id) {
-        // An item is selected. You can retrieve the selected item using
-        // parent.getItemAtPosition(pos).
-        modality = (String) parent.getItemAtPosition(pos);
-    }
-
-    public void onNothingSelected(AdapterView<?> parent) {
-
     }
 
     @Override
@@ -113,16 +90,18 @@ public class SignRegisterView extends AppCompatActivity implements SignRegisterC
 
     @Override
     public void showMessage(String message) {
-            snackbar.make(((EditText) findViewById(R.id.et_snackback)), (message + sign.getUser().getUsername() + " in day: " + sign.getDay()), BaseTransientBottomBar.LENGTH_LONG)
-                    .setAction(R.string.accept, new View.OnClickListener() { //Crea un boton en el snackbar
-                        @Override
-                        public void onClick(View v) {
-                            Intent intent = new Intent(SignRegisterView.this, MainActivity.class);
-                            intent.putExtra("user", user); // Mandamos el objeto entero ya que es una clase serializable
-                            startActivity(intent);
-                        }
-                    })
-                    .show();
+        new MaterialAlertDialogBuilder(this)
+                .setTitle(R.string.sign_register)
+                .setMessage(message + sign.getUser().getUsername() + getString(R.string.in_day) + sign.getDay())
+                .setPositiveButton(R.string.accept, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Intent intent = new Intent(SignRegisterView.this, MainActivity.class);
+                        intent.putExtra("user", user); // Mandamos el objeto entero ya que es una clase serializable
+                        startActivity(intent);
+                    }
+                })
+                .show();
     }
 
     @Override
@@ -136,21 +115,24 @@ public class SignRegisterView extends AppCompatActivity implements SignRegisterC
         day = LocalDate.now().toString();
 
         Log.d("Register Sign", "Ver el día y la hora que recojo: " + day + " - " + in_time);
+
         if (modality.equals("")) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle(R.string.sign_with_incidence);
-            builder.setMessage(R.string.do_you_want_to_register_a_incidence_in_your_sign);
-            builder.setPositiveButton(R.string.accept, null);
-            AlertDialog dialog = builder.create();
-            dialog.show();
+              new MaterialAlertDialogBuilder(this)
+                .setTitle(R.string.select_modality)
+                .setMessage(R.string.you_must_select_a_modality_in_order_to_register_your_sign)
+                .setPositiveButton(R.string.accept, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                    }
+                })
+                .show();
         } else {
             sign = new Sign(modality, day, in_time, incidence_in, user);
             presenter.registerSign(user.getId(), sign);
         }
 
         Log.d("Register Sign", "Ver la modalidad seleccionada: " + modality);
-
-
     }
 
     public void registerOutSign(View view) {
@@ -160,11 +142,64 @@ public class SignRegisterView extends AppCompatActivity implements SignRegisterC
 
         Log.d("Register Sign", "Ver el día y la hora que recojo: " + day + " - " + in_time);
 
-
         Log.d("Register Sign", "Ver la modalidad seleccionada: " + modality);
 
         sign = new Sign(modality, day, in_time, incidence_in, user);
         presenter.registerSign(user.getId(), sign);
+    }
+
+    public void initializeSpinnerModality() {
+        spinnerModality = (Spinner) findViewById(R.id.modality_spinner);
+        // Create an ArrayAdapter using the string array and a default spinner layout.
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
+                this,
+                R.array.modality_array,
+                android.R.layout.simple_spinner_item
+        );
+        // Specify the layout to use when the list of choices appears.
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        // Apply the adapter to the spinner.
+        spinnerModality.setAdapter(adapter);
+        // Apply the adapter to the spinner.
+
+        spinnerModality.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                modality = (String) parent.getItemAtPosition(position);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+    }
+
+    public void initializeSpinnerIncidence() {
+        spinnerIncidence= (Spinner) findViewById(R.id.incidence_spinner);
+        // Create an ArrayAdapter using the string array and a default spinner layout.
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
+                this,
+                R.array.incidence_array,
+                android.R.layout.simple_spinner_item
+        );
+        // Specify the layout to use when the list of choices appears.
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        // Apply the adapter to the spinner.
+        spinnerIncidence.setAdapter(adapter);
+        // Apply the adapter to the spinner.
+
+        spinnerIncidence.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                incidence_in = (String) parent.getItemAtPosition(position);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
     }
 
     public void goBackButton(View view) {
