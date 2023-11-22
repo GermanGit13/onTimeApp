@@ -356,26 +356,11 @@
             app:layout_constraintStart_toStartOf="parent"
             tools:ignore="MissingConstraints">
 
-            <RadioGroup
-                android:id="@+id/rg_modality"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent">
+            <Spinner
+                android:id="@+id/modality_spinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
-                <RadioButton
-                    android:id="@+id/rb_office"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="@string/office" />
-
-                <RadioButton
-                    android:id="@+id/rb_homework"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="@string/homework" />
-
-            </RadioGroup>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </LinearLayout>

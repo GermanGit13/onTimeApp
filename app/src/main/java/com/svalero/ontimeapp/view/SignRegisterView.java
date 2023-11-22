@@ -1,5 +1,8 @@
 package com.svalero.ontimeapp.view;
 
+import static androidx.core.content.ContentProviderCompat.requireContext;
+import static com.google.android.gms.common.util.CollectionUtils.listOf;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
@@ -9,9 +12,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -27,7 +34,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class SignRegisterView extends AppCompatActivity implements SignRegisterContract.View {
+public class SignRegisterView extends AppCompatActivity implements SignRegisterContract.View, AdapterView.OnItemSelectedListener {
 
     private SignRegisterPresenter presenter;
     private Context context;
@@ -38,12 +45,11 @@ public class SignRegisterView extends AppCompatActivity implements SignRegisterC
     ImageView ivPhotoMenu;
     TextView tvInRegister;
     TextView tvOutRegister;
-    RadioGroup groupIncidence;
-    RadioGroup groupModality;
+    Spinner spinnerModality;
     String day;
     String  in_time;
     String out_time;
-    String modality;
+    String modality = "";
     String incidence_in;
     String incidence_out;
 
@@ -67,10 +73,39 @@ public class SignRegisterView extends AppCompatActivity implements SignRegisterC
                 .error(R.drawable.notphoto)
                 .into(ivPhotoMenu);
 
-        groupIncidence = (RadioGroup) findViewById(R.id.rg_incidence);
-        groupModality = (RadioGroup) findViewById(R.id.rg_modality);
-
+        initializeSpinner();
         presenter = new SignRegisterPresenter(this);
+    }
+
+    public void initializeSpinner() {
+        spinnerModality = (Spinner) findViewById(R.id.modality_spinner);
+        spinnerModality.setOnItemSelectedListener(this);
+// Create an ArrayAdapter using the string array and a default spinner layout.
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
+                this,
+                R.array.modality_array,
+                android.R.layout.simple_spinner_item
+        );
+// Specify the layout to use when the list of choices appears.
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+// Apply the adapter to the spinner.
+        spinnerModality.setAdapter(adapter);
+    }
+
+    public void onItemSelected(AdapterView<?> parent, View view,
+                               int pos, long id) {
+        // An item is selected. You can retrieve the selected item using
+        // parent.getItemAtPosition(pos).
+        modality = (String) parent.getItemAtPosition(pos);
+    }
+
+    public void onNothingSelected(AdapterView<?> parent) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle(R.string.sign_with_incidence);
+            builder.setMessage(R.string.do_you_want_to_register_a_incidence_in_your_sign);
+            builder.setPositiveButton(R.string.accept, null);
+            AlertDialog dialog = builder.create();
+            dialog.show();
     }
 
     @Override
@@ -103,39 +138,17 @@ public class SignRegisterView extends AppCompatActivity implements SignRegisterC
         in_time = LocalDateTime.now().toLocalTime().format(format);
         day = LocalDate.now().toString();
 
+
         Log.d("Register Sign", "Ver el día y la hora que recojo: " + day + " - " + in_time);
 
-        if (groupModality.isActivated()) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle(R.string.assign_a_modality_for_register_you_sign);
-            builder.setMessage(R.string.select_office_or_homework);
-            builder.setPositiveButton(R.string.accept, null);
-            AlertDialog dialog = builder.create();
-            dialog.show();
-        } else if (groupModality.getCheckedRadioButtonId() == R.id.rb_office) {
-            modality = getString(R.string.officeBD);
-        } else {
-            modality = getString(R.string.homeworkBD);
-        }
-        Log.d("Register Sign", "Ver la modalidad seleccionada: " + modality);
 
-        if (groupIncidence.isActivated()) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle(R.string.sign_with_incidence);
-            builder.setMessage(R.string.do_you_want_to_register_a_incidence_in_your_sign);
-            builder.setPositiveButton(R.string.accept, null);
-            AlertDialog dialog = builder.create();
-            dialog.show();
-        } else if (groupIncidence.getCheckedRadioButtonId() == R.id.rb_holidays) {
-            incidence_in = getString(R.string.holidaysbd);
-        } else if (groupIncidence.getCheckedRadioButtonId() == R.id.rb_medical) {
-            incidence_in = getString(R.string.medicalbd);
-        } else if (groupIncidence.getCheckedRadioButtonId() == R.id.rb_personal){
-            incidence_in = getString(R.string.personalbd);
-        }
+        Log.d("Register Sign", "Ver la modalidad seleccionada: " + modality);
 
         sign = new Sign(modality, day, in_time, incidence_in, user);
         presenter.registerSign(user.getId(), sign);
+
+//        sign = new Sign(modality, day, in_time, incidence_in, user);
+//        presenter.registerSign(user.getId(), sign);
     }
 
     public void registerOutSign(View view) {
@@ -145,34 +158,8 @@ public class SignRegisterView extends AppCompatActivity implements SignRegisterC
 
         Log.d("Register Sign", "Ver el día y la hora que recojo: " + day + " - " + in_time);
 
-        if (groupModality.isActivated()) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle(R.string.assign_a_modality_for_register_you_sign);
-            builder.setMessage(R.string.select_office_or_homework);
-            builder.setPositiveButton(R.string.accept, null);
-            AlertDialog dialog = builder.create();
-            dialog.show();
-        } else if (groupModality.getCheckedRadioButtonId() == R.id.rb_office) {
-            modality = getString(R.string.officeBD);
-        } else {
-            modality = getString(R.string.homeworkBD);
-        }
-        Log.d("Register Sign", "Ver la modalidad seleccionada: " + modality);
 
-        if (groupIncidence.isActivated()) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle(R.string.sign_with_incidence);
-            builder.setMessage(R.string.do_you_want_to_register_a_incidence_in_your_sign);
-            builder.setPositiveButton(R.string.accept, null);
-            AlertDialog dialog = builder.create();
-            dialog.show();
-        } else if (groupIncidence.getCheckedRadioButtonId() == R.id.rb_holidays) {
-            incidence_in = getString(R.string.holidaysbd);
-        } else if (groupIncidence.getCheckedRadioButtonId() == R.id.rb_medical) {
-            incidence_in = getString(R.string.medicalbd);
-        } else if (groupIncidence.getCheckedRadioButtonId() == R.id.rb_personal){
-            incidence_in = getString(R.string.personalbd);
-        }
+        Log.d("Register Sign", "Ver la modalidad seleccionada: " + modality);
 
         sign = new Sign(modality, day, in_time, incidence_in, user);
         presenter.registerSign(user.getId(), sign);
