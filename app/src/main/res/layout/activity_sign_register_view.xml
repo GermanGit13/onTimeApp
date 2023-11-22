@@ -349,7 +349,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayoutRadioModality"
-            android:layout_width="165dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/constraintLayoutModality"
@@ -358,8 +358,11 @@
 
             <Spinner
                 android:id="@+id/modality_spinner"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                style="@android:style/Widget.Spinner.DropDown"
+                android:layout_width="176dp"
+                android:layout_height="50dp"
+                tools:layout_editor_absoluteX="-1dp"
+                tools:layout_editor_absoluteY="0dp" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

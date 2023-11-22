@@ -20,6 +20,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.google.android.material.snackbar.BaseTransientBottomBar;
@@ -92,6 +93,7 @@ public class SignRegisterView extends AppCompatActivity implements SignRegisterC
         spinnerModality.setAdapter(adapter);
     }
 
+    @Override
     public void onItemSelected(AdapterView<?> parent, View view,
                                int pos, long id) {
         // An item is selected. You can retrieve the selected item using
@@ -100,12 +102,7 @@ public class SignRegisterView extends AppCompatActivity implements SignRegisterC
     }
 
     public void onNothingSelected(AdapterView<?> parent) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle(R.string.sign_with_incidence);
-            builder.setMessage(R.string.do_you_want_to_register_a_incidence_in_your_sign);
-            builder.setPositiveButton(R.string.accept, null);
-            AlertDialog dialog = builder.create();
-            dialog.show();
+
     }
 
     @Override
@@ -138,17 +135,22 @@ public class SignRegisterView extends AppCompatActivity implements SignRegisterC
         in_time = LocalDateTime.now().toLocalTime().format(format);
         day = LocalDate.now().toString();
 
-
         Log.d("Register Sign", "Ver el día y la hora que recojo: " + day + " - " + in_time);
-
+        if (modality.equals("")) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle(R.string.sign_with_incidence);
+            builder.setMessage(R.string.do_you_want_to_register_a_incidence_in_your_sign);
+            builder.setPositiveButton(R.string.accept, null);
+            AlertDialog dialog = builder.create();
+            dialog.show();
+        } else {
+            sign = new Sign(modality, day, in_time, incidence_in, user);
+            presenter.registerSign(user.getId(), sign);
+        }
 
         Log.d("Register Sign", "Ver la modalidad seleccionada: " + modality);
 
-        sign = new Sign(modality, day, in_time, incidence_in, user);
-        presenter.registerSign(user.getId(), sign);
 
-//        sign = new Sign(modality, day, in_time, incidence_in, user);
-//        presenter.registerSign(user.getId(), sign);
     }
 
     public void registerOutSign(View view) {

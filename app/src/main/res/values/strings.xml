@@ -50,4 +50,5 @@
     <string name="delete_select_sign">Delete select Sign</string>
     <string name="the_sign_dated">"The sign dated "</string>
     <string name="will_be_deleted">" will be deleted."</string>
+    <string name="modality">MODALITY</string>
 </resources>
