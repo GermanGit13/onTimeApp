@@ -31,6 +31,7 @@ import com.svalero.ontimeapp.R;
 import com.svalero.ontimeapp.contract.SignRegisterContract;
 import com.svalero.ontimeapp.domain.Sign;
 import com.svalero.ontimeapp.domain.User;
+import com.svalero.ontimeapp.presenter.SignListByUserPresenter;
 import com.svalero.ontimeapp.presenter.SignRegisterPresenter;
 
 import java.time.LocalDate;
@@ -80,6 +81,8 @@ public class SignRegisterView extends AppCompatActivity implements SignRegisterC
         initializeSpinnerModality();
         initializeSpinnerIncidence();
         presenter = new SignRegisterPresenter(this);
+
+
     }
 
     @Override
@@ -110,10 +113,7 @@ public class SignRegisterView extends AppCompatActivity implements SignRegisterC
     }
 
     public void registerInSign(View view) {
-        DateTimeFormatter format = DateTimeFormatter.ofPattern("HH:mm:ss");
-        in_time = LocalDateTime.now().toLocalTime().format(format);
-        day = LocalDate.now().toString();
-
+//        day = LocalDate.now().toString();
         Log.d("Register Sign", "Ver el día y la hora que recojo: " + day + " - " + in_time);
 
         if (modality.equals("")) {
