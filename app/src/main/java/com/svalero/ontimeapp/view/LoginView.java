@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.google.android.material.snackbar.BaseTransientBottomBar;
 import com.google.android.material.snackbar.Snackbar;
@@ -30,6 +31,7 @@ public class LoginView extends AppCompatActivity implements LoginContract.View {
      * Declaramos la parte gráfica de la activity uy le asociamos el id del recurso
      */
     Button btEnter;
+//    TextView tvUser;
     EditText etUsername;
     EditText etPass;
 
@@ -42,6 +44,7 @@ public class LoginView extends AppCompatActivity implements LoginContract.View {
     }
 
     public void loginUser(View view) {
+//        tvUser = findViewById(R.id.tvUserLogin);
         etUsername = findViewById(R.id.etUserLogin);
         etPass = findViewById(R.id.etPassLogin);
 
@@ -53,7 +56,7 @@ public class LoginView extends AppCompatActivity implements LoginContract.View {
 
     @Override
     public void showLogin(User user) {
-        if (user !=null ){
+        if (user != null ){
             Intent intent = new Intent(LoginView.this, MainActivity.class);
             intent.putExtra("user", user); // Mandamos el objeto entero ya que es una clase serializable
             startActivity(intent);
