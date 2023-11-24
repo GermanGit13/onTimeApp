@@ -2,11 +2,8 @@ package com.svalero.ontimeapp.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.annotation.SuppressLint;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -45,8 +42,8 @@ public class LoginView extends AppCompatActivity implements LoginContract.View {
     }
 
     public void loginUser(View view) {
-        etUsername = findViewById(R.id.etUser);
-        etPass = findViewById(R.id.etPass);
+        etUsername = findViewById(R.id.etUserLogin);
+        etPass = findViewById(R.id.etPassLogin);
 
         String username = etUsername.getText().toString();
         String pass = etPass.getText().toString();
@@ -61,7 +58,7 @@ public class LoginView extends AppCompatActivity implements LoginContract.View {
             intent.putExtra("user", user); // Mandamos el objeto entero ya que es una clase serializable
             startActivity(intent);
         } else {
-            snackbar.make(((EditText) findViewById(R.id.etUser)), "Incorrect Data", BaseTransientBottomBar.LENGTH_SHORT)
+            snackbar.make(((EditText) findViewById(R.id.tvUserLogin)), "Incorrect Data", BaseTransientBottomBar.LENGTH_SHORT)
                     .setAction("Accept", new View.OnClickListener() { // Crea un boton en el snackbar
                         @Override
                         public void onClick(View v) {
@@ -74,7 +71,7 @@ public class LoginView extends AppCompatActivity implements LoginContract.View {
 
     @Override
     public void showError(String errorMessage) {
-        Snackbar.make(((EditText) findViewById(R.id.etUser)), errorMessage,
+        Snackbar.make(((EditText) findViewById(R.id.tvUserLogin)), errorMessage,
                 BaseTransientBottomBar.LENGTH_SHORT).show();
     }
 }
