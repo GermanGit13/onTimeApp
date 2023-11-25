@@ -26,11 +26,11 @@ public class SignListByParamsModel implements SignListByParamsContract.Model {
      * Sustituimos la llamada a la BBDD por la llamada a la API
      */
     @Override
-    public void loadSignsByParams(OnLoadSignsByParamsListener listener, String department, String firstDay) {
+    public void loadSignsByParams(OnLoadSignsByParamsListener listener, String department, String firstDay, String secondDay, String name) {
         //Nos devuelve una instancia de onTimeApi como la definimos en OnTimeApiInterface, tiene los métodos que usamos para comunicarnos con la API
         OnTimeApiInterface onTimeApi = OnTimeApi.buildInstance();
-        Call<List<Sign>> callSignsByParams = onTimeApi.getSigns(department, firstDay);
-        Log.d("List Sign Params", "Llamada desde el model " + department + " / " + firstDay); //Para depurar errores y ver si avanza o donde se para
+        Call<List<Sign>> callSignsByParams = onTimeApi.getSigns(department, firstDay, secondDay, name);
+        Log.d("List Sign Params", "Llamada desde el model " + department + " / " + firstDay + " / " + secondDay + " / " + name); //Para depurar errores y ver si avanza o donde se para
         callSignsByParams.enqueue(new Callback<List<Sign>>() {
             @Override
             public void onResponse(Call<List<Sign>> call, Response<List<Sign>> response) {

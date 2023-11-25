@@ -7,13 +7,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,7 +34,7 @@ import java.util.List;
 /**
  * Extiende de AppCompatActivity: donde hay un motón de código para usar por esos sobreescribimos los métodos de esta clase
  */
-public class SignListByParamsView extends AppCompatActivity implements SignListByParamsContract.View {
+public class SignListByParamsView extends AppCompatActivity implements SignListByParamsContract.View, SearchView.OnQueryTextListener {
 
     private Context context;
     private List<Sign> signsList; // Creamos la lista que vamos a recibir
@@ -46,8 +46,11 @@ public class SignListByParamsView extends AppCompatActivity implements SignListB
     private Button btPickDate;
     private EditText etPlannedDateParams;
     private String firstDay = "";
+    private String secondDay = "";
+    private String name = "";
     private Button btSearchParams;
     private Button btClearParams;
+    private SearchView svSearchParams;
 
 
     @Override
@@ -64,7 +67,7 @@ public class SignListByParamsView extends AppCompatActivity implements SignListB
         Log.d("List Sign Params", "Llamada desde view "+ department + " / " + firstDay); // depurar para ver hasta donde llego
 
         presenter = new SignListByParamsPresenter(this); // Instanciamos el presenter y le pasamos el contexto
-        presenter.loadSignsByParams(department, firstDay);
+        presenter.loadSignsByParams(department, firstDay, secondDay, name);
         initializeRecyclerView(); //inicializamos el RecyclerView
         initializeDatePicker(); //Inicializamos el DatePicker
 
@@ -77,6 +80,9 @@ public class SignListByParamsView extends AppCompatActivity implements SignListB
         btClearParams.setOnClickListener(view -> {
             resetDay();
         });
+
+        svSearchParams = findViewById(R.id.svSearchParams);
+        svSearchParams.setOnQueryTextListener(this);
     }
 
     /**
@@ -141,7 +147,7 @@ public class SignListByParamsView extends AppCompatActivity implements SignListB
     protected void onResume() {
         super.onResume();
         Log.d("List Sign Params", "Llamada desde view"); // depurar para ver hasta donde llego
-        presenter.loadSignsByParams(user.getDepartment(), firstDay); // Le decimos al presenter cuando vuelve del resume que cargue xtodo de nuevo
+        presenter.loadSignsByParams(user.getDepartment(), firstDay, secondDay, name); // Le decimos al presenter cuando vuelve del resume que cargue xtodo de nuevo
     }
 
     @Override
@@ -156,8 +162,10 @@ public class SignListByParamsView extends AppCompatActivity implements SignListB
                     .setPositiveButton(R.string.accept, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
-                            String failDay = "";
-                            presenter.loadSignsByParams(user.getDepartment(), failDay);
+                            String failFirstDay = "";
+                            String failSecondDay = "";
+                            String failName = "";
+                            presenter.loadSignsByParams(user.getDepartment(), failFirstDay, failSecondDay, name);
                             signsList.clear(); // Limpiamos la lista para evitar que tenga datos previos
                             signsList.addAll(signs); // Añadimos a la lista creada la que recibimos
                             adapter.notifyDataSetChanged(); // Notificamos al adapter los cambios
@@ -178,7 +186,7 @@ public class SignListByParamsView extends AppCompatActivity implements SignListB
         firstDay = etPlannedDateParams.getText().toString();
         Log.d("List Sign with Params", "Fecha del calendario " + firstDay + " / " + department); // depurar para ver hasta donde llego
 
-        presenter.loadSignsByParams(user.getDepartment(), firstDay);
+        presenter.loadSignsByParams(user.getDepartment(), firstDay, secondDay, name);
         adapter.notifyDataSetChanged(); // Notificamos al adapter los cambios
 
 //        new MaterialAlertDialogBuilder(this)
@@ -199,6 +207,23 @@ public class SignListByParamsView extends AppCompatActivity implements SignListB
         ((TextView) findViewById(R.id.etPlannedDateParams)).setText("");
 
         ((TextView) findViewById(R.id.etPlannedDateParams)).requestFocus();
+    }
+
+
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+        return false;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String newText) {
+        String failSecondDay = "";
+        name = newText;
+        signsList.clear(); // Limpiamos la lista para evitar que tenga datos previos
+        presenter.loadSignsByParams(user.getDepartment(), firstDay, failSecondDay, name);
+
+        adapter.notifyDataSetChanged(); // Notificamos al adapter los cambios
+        return false;
     }
 
     // Todo Falta añadir Menu actionBar

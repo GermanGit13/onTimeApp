@@ -29,64 +29,77 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
-                android:padding="5dp">
+                android:gravity="center"
+                android:orientation="horizontal">
 
                 <!-- Title, secondary and supporting text -->
 
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/bt_list_params_up"
+                    style="?attr/borderlessButtonStyle"
+                    android:layout_width="33dp"
+                    android:layout_height="wrap_content"
+                    app:icon="@drawable/baseline_arrow_circle_left_24"
+                    tools:ignore="TouchTargetSizeCheck" />
+
                 <EditText
                     android:id="@+id/etPlannedDateParams"
-                    android:layout_width="211dp"
+                    android:layout_width="109dp"
                     android:layout_height="match_parent"
+                    android:paddingTop="2dp"
                     android:textAlignment="center"
+                    tools:ignore="TouchTargetSizeCheck" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/bt_list_params_down"
+                    style="?attr/borderlessButtonStyle"
+                    android:layout_width="33dp"
+                    android:layout_height="wrap_content"
+                    app:icon="@drawable/baseline_arrow_circle_right_24"
+                    tools:ignore="TouchTargetSizeCheck" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/bt_list_params_find"
+                    style="?attr/borderlessButtonStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="findSignsByDepartmentAndDay"
+                    android:text="Search"
+                    app:icon="@drawable/baseline_search_24"
                     tools:ignore="TouchTargetSizeCheck" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/bt_pick_date_list_params"
                     style="?attr/borderlessButtonStyle"
-                    android:layout_width="wrap_content"
+                    android:layout_width="34dp"
                     android:layout_height="wrap_content"
-                    android:text="Open Calender"
+                    android:paddingEnd="0dp"
+                    app:icon="@drawable/baseline_calendar_month_24"
+                    tools:ignore="TouchTargetSizeCheck" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/bt_list_params_clear"
+                    style="?attr/borderlessButtonStyle"
+                    android:layout_width="42dp"
+                    android:layout_height="wrap_content"
+                    android:onClick="resetDay"
+                    app:icon="@drawable/baseline_delete_24"
                     tools:ignore="TouchTargetSizeCheck" />
 
             </LinearLayout>
 
             <!-- Buttons -->
             <LinearLayout
-                android:layout_width="390dp"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
                 android:layout_margin="5dp"
                 android:orientation="horizontal">
 
-                <androidx.constraintlayout.widget.ConstraintLayout
+
+                <SearchView
+                    android:id="@+id/svSearchParams"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <com.google.android.material.button.MaterialButton
-                        android:id="@+id/bt_list_params_clear"
-                        style="?attr/borderlessButtonStyle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="65dp"
-                        android:onClick="resetDay"
-                        android:text="Clear"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        tools:ignore="TouchTargetSizeCheck"
-                        tools:layout_editor_absoluteY="0dp" />
-
-                    <com.google.android.material.button.MaterialButton
-                        android:id="@+id/bt_list_params_find"
-                        style="?attr/borderlessButtonStyle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:onClick="findSignsByDepartmentAndDay"
-                        android:text="Search"
-                        app:layout_constraintEnd_toStartOf="@+id/bt_list_params_clear"
-                        app:layout_constraintStart_toStartOf="parent"
-                        tools:ignore="TouchTargetSizeCheck"
-                        tools:layout_editor_absoluteY="0dp" />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
+                    android:layout_height="match_parent" />
             </LinearLayout>
 
         </LinearLayout>

@@ -33,7 +33,7 @@ public class SignListByParamsPresenter implements SignListByParamsContract.Prese
     }
 
     @Override
-    public void loadSignsByParams(String department, String firstDay) {
-        model.loadSignsByParams(this, department, firstDay);
+    public void loadSignsByParams(String department, String firstDay, String seconDay, String name) {
+        model.loadSignsByParams(this, department, firstDay, seconDay, name);
     }
 }

@@ -17,7 +17,7 @@ public interface SignListByParamsContract {
 
         }
 
-        void loadSignsByParams( OnLoadSignsByParamsListener listener, String department, String firstDay);
+        void loadSignsByParams( OnLoadSignsByParamsListener listener, String department, String firstDay, String secondDay, String name);
     }
 
     /**
@@ -31,6 +31,6 @@ public interface SignListByParamsContract {
 
 
     interface Presenter {
-        void loadSignsByParams(String department, String firstDay);
+        void loadSignsByParams(String department, String firstDay, String secondDay, String name);
     }
 }
