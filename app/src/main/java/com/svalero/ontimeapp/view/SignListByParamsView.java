@@ -108,8 +108,6 @@ public class SignListByParamsView extends AppCompatActivity implements SignListB
 
         svSearchParams = findViewById(R.id.svSearchParams);
         svSearchParams.setOnQueryTextListener(this); // uso la implementacion con sus métodos para buscar por nombre
-
-
     }
 
     /**
