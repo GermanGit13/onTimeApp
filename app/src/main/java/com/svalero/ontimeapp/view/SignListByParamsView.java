@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
@@ -22,6 +23,7 @@ import com.svalero.ontimeapp.presenter.SignListByParamsPresenter;
 import com.svalero.ontimeapp.util.Calendario;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,9 +49,14 @@ public class SignListByParamsView extends AppCompatActivity implements SignListB
     private String name = "";
     private Button btSearchParams;
     private Button btClearParams;
+    private Button btIncreaseDayFrom;
+    private Button btDecreateDayFrom;
+    private Button btIncreaseDayTo;
+    private Button btDecreateDayTo;
     private SearchView svSearchParams;
 
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,8 +85,30 @@ public class SignListByParamsView extends AppCompatActivity implements SignListB
             resetDay();
         });
 
+        btIncreaseDayFrom = findViewById(R.id.bt_list_paramsFrom_increase);
+        btIncreaseDayFrom.setOnClickListener(view -> {
+            increaseDaySearchFrom();
+        });
+
+        btDecreateDayFrom = findViewById(R.id.bt_list_paramsFrom_decrement);
+        btDecreateDayFrom.setOnClickListener(view -> {
+            subtractDaySearchFrom();
+        });
+
+        btIncreaseDayTo = findViewById(R.id.bt_list_paramsTo_increase);
+        btIncreaseDayTo.setOnClickListener(view -> {
+            increaseDaySearchTo();
+        });
+
+        btDecreateDayTo = findViewById(R.id.bt_list_paramsTo_decrement);
+        btDecreateDayTo.setOnClickListener(view -> {
+            subtractDaySearchTo();
+        });
+
         svSearchParams = findViewById(R.id.svSearchParams);
-        svSearchParams.setOnQueryTextListener(this); // uso la implementacion con sus métodos
+        svSearchParams.setOnQueryTextListener(this); // uso la implementacion con sus métodos para buscar por nombre
+
+
     }
 
     /**
@@ -161,19 +190,49 @@ public class SignListByParamsView extends AppCompatActivity implements SignListB
         Log.d("List Sign with Params", "Llamada desde view loadSignsByParams with Params: " + firstDay + " / " + department);
     }
 
-//    public void sumeDaySearchFrom() {
-////        firstDay = etPlannedDateFromParams.getText().toString();
-//        LocalDate masOne = LocalDate.now();
-////        masOne = masOne.plusDays(1);
-//        etPlannedDateFromParams.setText(masOne.toString());
-//        firstDay = "2023-11-05";
-//        Log.d("List Sign with Params Mas one", "Fecha del calendario " + firstDay + " / " + department); // depurar para ver hasta donde llego
-//
-//        presenter.loadSignsByParams(user.getDepartment(), firstDay, secondDay, name);
-//        adapter.notifyDataSetChanged(); // Notificamos al adapter los cambios
-//
-//        Log.d("List Sign with Params", "Llamada desde view loadSignsByParams with Params: " + firstDay + " / " + department);
-//    }
+    public void increaseDaySearchFrom() {
+        firstDay = etPlannedDateFromParams.getText().toString();
+        LocalDate masOne = LocalDate.parse(firstDay);
+        masOne = masOne.plusDays(1);
+        firstDay= String.valueOf(masOne);
+        etPlannedDateFromParams.setText(masOne.toString());
+
+        presenter.loadSignsByParams(user.getDepartment(), firstDay, secondDay, name);
+        adapter.notifyDataSetChanged(); // Notificamos al adapter los cambios
+    }
+
+    public void subtractDaySearchFrom() {
+        firstDay = etPlannedDateFromParams.getText().toString();
+        LocalDate masOne = LocalDate.parse(firstDay);
+        masOne = masOne.minusDays(1);
+        firstDay= String.valueOf(masOne);
+        etPlannedDateFromParams.setText(masOne.toString());
+
+        presenter.loadSignsByParams(user.getDepartment(), firstDay, secondDay, name);
+        adapter.notifyDataSetChanged(); // Notificamos al adapter los cambios
+    }
+
+    public void increaseDaySearchTo() {
+        secondDay = etPlannedDateToParams.getText().toString();
+        LocalDate masOne = LocalDate.parse(secondDay);
+        masOne = masOne.plusDays(1);
+        secondDay= String.valueOf(masOne);
+        etPlannedDateToParams.setText(masOne.toString());
+
+        presenter.loadSignsByParams(user.getDepartment(), firstDay, secondDay, name);
+        adapter.notifyDataSetChanged(); // Notificamos al adapter los cambios
+    }
+
+    public void subtractDaySearchTo() {
+        secondDay = etPlannedDateToParams.getText().toString();
+        LocalDate masOne = LocalDate.parse(secondDay);
+        masOne = masOne.minusDays(1);
+        secondDay= String.valueOf(masOne);
+        etPlannedDateToParams.setText(masOne.toString());
+
+        presenter.loadSignsByParams(user.getDepartment(), firstDay, secondDay, name);
+        adapter.notifyDataSetChanged(); // Notificamos al adapter los cambios
+    }
 
     /**
      * Limiar filtros de busqueda
