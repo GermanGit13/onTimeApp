@@ -44,7 +44,9 @@ public class SignListByParamsView extends AppCompatActivity implements SignListB
     private User user;
     private String department;
     private Button btPickDate;
-    private EditText etPlannedDateParams;
+    private Button btPickDateTo;
+    private EditText etPlannedDateFromParams;
+    private EditText etPlannedDateToParams;
     private String firstDay = "";
     private String secondDay = "";
     private String name = "";
@@ -103,8 +105,10 @@ public class SignListByParamsView extends AppCompatActivity implements SignListB
      * Método para el Calendario
      */
     private void initializeDatePicker() {
-        etPlannedDateParams = findViewById(R.id.etPlannedDateParams);
+        etPlannedDateFromParams = findViewById(R.id.etPlannedDateParams);
+        etPlannedDateToParams = findViewById(R.id.etPlannedToDateParams);
         btPickDate = findViewById(R.id.bt_pick_date_list_params);
+        btPickDateTo = findViewById(R.id.bt_pick_date_list_paramsTo);
 
         btPickDate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -129,8 +133,42 @@ public class SignListByParamsView extends AppCompatActivity implements SignListB
                                                   int monthOfYear, int dayOfMonth) {
                                 // on below line we are setting date to our text view.
                                 LocalDate date = LocalDate.of(year, (monthOfYear + 1), dayOfMonth); // Pasar yyyy-MM-dd
-                                etPlannedDateParams.setText(date.toString());
+                                etPlannedDateFromParams.setText(date.toString());
+                            }
+                        },
+                        // on below line we are passing year,
+                        // month and day for selected date in our date picker.
+                        year, month, day);
+                // at last we are calling show to
+                // display our date picker dialog.
+                datePickerDialog.show();
+            }
+        });
 
+        btPickDateTo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // on below line we are getting
+                // the instance of our calendar.
+                final Calendar c = Calendar.getInstance();
+
+                // on below line we are getting
+                // our day, month and year.
+                int year = c.get(Calendar.YEAR);
+                int month = c.get(Calendar.MONTH);
+                int day = c.get(Calendar.DAY_OF_MONTH);
+
+                // on below line we are creating a variable for date picker dialog.
+                DatePickerDialog datePickerDialog = new DatePickerDialog(
+                        // on below line we are passing context.
+                        SignListByParamsView.this,
+                        new DatePickerDialog.OnDateSetListener() {
+                            @Override
+                            public void onDateSet(DatePicker view, int year,
+                                                  int monthOfYear, int dayOfMonth) {
+                                // on below line we are setting date to our text view.
+                                LocalDate date = LocalDate.of(year, (monthOfYear + 1), dayOfMonth); // Pasar yyyy-MM-dd
+                                etPlannedDateToParams.setText(date.toString());
                             }
                         },
                         // on below line we are passing year,
@@ -155,24 +193,24 @@ public class SignListByParamsView extends AppCompatActivity implements SignListB
         signsList.clear(); // Limpiamos la lista para evitar que tenga datos previos
         signsList.addAll(signs); // Añadimos a la lista creada la que recibimos
         adapter.notifyDataSetChanged(); // Notificamos al adapter los cambios
-        if (signs.isEmpty()) {
-            new MaterialAlertDialogBuilder(this)
-                    .setTitle(R.string.not_found_data_in_this_day)
-                    .setMessage(R.string.there_is_no_data_for_the_selected_date)
-                    .setPositiveButton(R.string.accept, new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            String failFirstDay = "";
-                            String failSecondDay = "";
-                            String failName = "";
-                            presenter.loadSignsByParams(user.getDepartment(), failFirstDay, failSecondDay, name);
-                            signsList.clear(); // Limpiamos la lista para evitar que tenga datos previos
-                            signsList.addAll(signs); // Añadimos a la lista creada la que recibimos
-                            adapter.notifyDataSetChanged(); // Notificamos al adapter los cambios
-                        }
-                    })
-                    .show();
-        }
+//        if (signs.isEmpty()) {
+//            new MaterialAlertDialogBuilder(this)
+//                    .setTitle(R.string.not_found_data_in_this_day)
+//                    .setMessage(R.string.there_is_no_data_for_the_selected_date)
+//                    .setPositiveButton(R.string.accept, new DialogInterface.OnClickListener() {
+//                        @Override
+//                        public void onClick(DialogInterface dialogInterface, int i) {
+//                            String failFirstDay = "";
+//                            String failSecondDay = "";
+//                            String failName = "";
+//                            presenter.loadSignsByParams(user.getDepartment(), failFirstDay, failSecondDay, name);
+//                            signsList.clear(); // Limpiamos la lista para evitar que tenga datos previos
+//                            signsList.addAll(signs); // Añadimos a la lista creada la que recibimos
+//                            adapter.notifyDataSetChanged(); // Notificamos al adapter los cambios
+//                        }
+//                    })
+//                    .show();
+//        }
         Log.d("List Sign Params", "Llamada desde view showSignsByParams: " );
     }
 
@@ -183,7 +221,8 @@ public class SignListByParamsView extends AppCompatActivity implements SignListB
 
     public void findSignsByDepartmentAndDay() {
         SimpleDateFormat fechaFormateada = new SimpleDateFormat("dd-MM-yyyy");
-        firstDay = etPlannedDateParams.getText().toString();
+        firstDay = etPlannedDateFromParams.getText().toString();
+        secondDay = etPlannedDateToParams.getText().toString();
         Log.d("List Sign with Params", "Fecha del calendario " + firstDay + " / " + department); // depurar para ver hasta donde llego
 
         presenter.loadSignsByParams(user.getDepartment(), firstDay, secondDay, name);
@@ -203,8 +242,23 @@ public class SignListByParamsView extends AppCompatActivity implements SignListB
         Log.d("List Sign with Params", "Llamada desde view loadSignsByParams with Params: " + firstDay + " / " + department);
     }
 
+//    public void sumeDaySearchFrom() {
+////        firstDay = etPlannedDateFromParams.getText().toString();
+//        LocalDate masOne = LocalDate.now();
+////        masOne = masOne.plusDays(1);
+//        etPlannedDateFromParams.setText(masOne.toString());
+//        firstDay = "2023-11-05";
+//        Log.d("List Sign with Params Mas one", "Fecha del calendario " + firstDay + " / " + department); // depurar para ver hasta donde llego
+//
+//        presenter.loadSignsByParams(user.getDepartment(), firstDay, secondDay, name);
+//        adapter.notifyDataSetChanged(); // Notificamos al adapter los cambios
+//
+//        Log.d("List Sign with Params", "Llamada desde view loadSignsByParams with Params: " + firstDay + " / " + department);
+//    }
+
     public void resetDay() {
         ((TextView) findViewById(R.id.etPlannedDateParams)).setText("");
+        ((TextView) findViewById(R.id.etPlannedToDateParams)).setText("");
 
         ((TextView) findViewById(R.id.etPlannedDateParams)).requestFocus();
     }
@@ -225,6 +279,5 @@ public class SignListByParamsView extends AppCompatActivity implements SignListB
         adapter.notifyDataSetChanged(); // Notificamos al adapter los cambios
         return false;
     }
-
     // Todo Falta añadir Menu actionBar
 }
