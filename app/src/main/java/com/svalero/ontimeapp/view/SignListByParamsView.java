@@ -4,35 +4,30 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.app.DatePickerDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.svalero.ontimeapp.R;
 import com.svalero.ontimeapp.adapter.SignAdapter;
 import com.svalero.ontimeapp.contract.SignListByParamsContract;
 import com.svalero.ontimeapp.domain.Sign;
 import com.svalero.ontimeapp.domain.User;
 import com.svalero.ontimeapp.presenter.SignListByParamsPresenter;
+import com.svalero.ontimeapp.util.Calendario;
 
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 /**
  * Extiende de AppCompatActivity: donde hay un motón de código para usar por esos sobreescribimos los métodos de esta clase
+ * Implemento SearchView.OnQueryTextListener para poder hacer busquedas por nombre
  */
 public class SignListByParamsView extends AppCompatActivity implements SignListByParamsContract.View, SearchView.OnQueryTextListener {
 
@@ -84,7 +79,7 @@ public class SignListByParamsView extends AppCompatActivity implements SignListB
         });
 
         svSearchParams = findViewById(R.id.svSearchParams);
-        svSearchParams.setOnQueryTextListener(this);
+        svSearchParams.setOnQueryTextListener(this); // uso la implementacion con sus métodos
     }
 
     /**
@@ -106,79 +101,14 @@ public class SignListByParamsView extends AppCompatActivity implements SignListB
      */
     private void initializeDatePicker() {
         etPlannedDateFromParams = findViewById(R.id.etPlannedDateParams);
-        etPlannedDateToParams = findViewById(R.id.etPlannedToDateParams);
+        etPlannedDateToParams =findViewById(R.id.etPlannedToDateParams);
         btPickDate = findViewById(R.id.bt_pick_date_list_params);
         btPickDateTo = findViewById(R.id.bt_pick_date_list_paramsTo);
 
-        btPickDate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // on below line we are getting
-                // the instance of our calendar.
-                final Calendar c = Calendar.getInstance();
-
-                // on below line we are getting
-                // our day, month and year.
-                int year = c.get(Calendar.YEAR);
-                int month = c.get(Calendar.MONTH);
-                int day = c.get(Calendar.DAY_OF_MONTH);
-
-                // on below line we are creating a variable for date picker dialog.
-                DatePickerDialog datePickerDialog = new DatePickerDialog(
-                        // on below line we are passing context.
-                        SignListByParamsView.this,
-                        new DatePickerDialog.OnDateSetListener() {
-                            @Override
-                            public void onDateSet(DatePicker view, int year,
-                                                  int monthOfYear, int dayOfMonth) {
-                                // on below line we are setting date to our text view.
-                                LocalDate date = LocalDate.of(year, (monthOfYear + 1), dayOfMonth); // Pasar yyyy-MM-dd
-                                etPlannedDateFromParams.setText(date.toString());
-                            }
-                        },
-                        // on below line we are passing year,
-                        // month and day for selected date in our date picker.
-                        year, month, day);
-                // at last we are calling show to
-                // display our date picker dialog.
-                datePickerDialog.show();
-            }
-        });
-
-        btPickDateTo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // on below line we are getting
-                // the instance of our calendar.
-                final Calendar c = Calendar.getInstance();
-
-                // on below line we are getting
-                // our day, month and year.
-                int year = c.get(Calendar.YEAR);
-                int month = c.get(Calendar.MONTH);
-                int day = c.get(Calendar.DAY_OF_MONTH);
-
-                // on below line we are creating a variable for date picker dialog.
-                DatePickerDialog datePickerDialog = new DatePickerDialog(
-                        // on below line we are passing context.
-                        SignListByParamsView.this,
-                        new DatePickerDialog.OnDateSetListener() {
-                            @Override
-                            public void onDateSet(DatePicker view, int year,
-                                                  int monthOfYear, int dayOfMonth) {
-                                // on below line we are setting date to our text view.
-                                LocalDate date = LocalDate.of(year, (monthOfYear + 1), dayOfMonth); // Pasar yyyy-MM-dd
-                                etPlannedDateToParams.setText(date.toString());
-                            }
-                        },
-                        // on below line we are passing year,
-                        // month and day for selected date in our date picker.
-                        year, month, day);
-                // at last we are calling show to
-                // display our date picker dialog.
-                datePickerDialog.show();
-            }
-        });
+        Calendario datePickerFrom = new Calendario();
+        datePickerFrom.datepicker(btPickDate, etPlannedDateFromParams, this);
+        Calendario datePickerTo = new Calendario();
+        datePickerTo.datepicker(btPickDateTo, etPlannedDateToParams, this);
     }
 
     @Override
@@ -228,17 +158,6 @@ public class SignListByParamsView extends AppCompatActivity implements SignListB
         presenter.loadSignsByParams(user.getDepartment(), firstDay, secondDay, name);
         adapter.notifyDataSetChanged(); // Notificamos al adapter los cambios
 
-//        new MaterialAlertDialogBuilder(this)
-//                .setTitle(R.string.search_by_date)
-//                .setMessage(getString(R.string.search_by) + firstDay + getString(R.string.in_case_of_no_data_delete_filters_and_search_again))
-//                .setPositiveButton(R.string.accept, new DialogInterface.OnClickListener() {
-//                    @Override
-//                    public void onClick(DialogInterface dialogInterface, int i) {
-//                        presenter.loadSignsByParams(department, firstDay);
-//                        adapter.notifyDataSetChanged(); // Notificamos al adapter los cambios
-//                    }
-//                })
-//                .show();
         Log.d("List Sign with Params", "Llamada desde view loadSignsByParams with Params: " + firstDay + " / " + department);
     }
 
@@ -256,6 +175,9 @@ public class SignListByParamsView extends AppCompatActivity implements SignListB
 //        Log.d("List Sign with Params", "Llamada desde view loadSignsByParams with Params: " + firstDay + " / " + department);
 //    }
 
+    /**
+     * Limiar filtros de busqueda
+     */
     public void resetDay() {
         ((TextView) findViewById(R.id.etPlannedDateParams)).setText("");
         ((TextView) findViewById(R.id.etPlannedToDateParams)).setText("");
@@ -264,11 +186,17 @@ public class SignListByParamsView extends AppCompatActivity implements SignListB
     }
 
 
+    /**
+     * Buscar por letra se implementan con SearchView.OnQueryTextListener en la clase
+     */
     @Override
     public boolean onQueryTextSubmit(String query) {
         return false;
     }
 
+    /**
+     * Buscar por letra: se implementan con SearchView.OnQueryTextListener en la clase
+     */
     @Override
     public boolean onQueryTextChange(String newText) {
         String failSecondDay = "";
