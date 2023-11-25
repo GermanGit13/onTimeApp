@@ -24,6 +24,7 @@ import com.svalero.ontimeapp.util.Calendario;
 
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -192,6 +193,11 @@ public class SignListByParamsView extends AppCompatActivity implements SignListB
 
     public void increaseDaySearchFrom() {
         firstDay = etPlannedDateFromParams.getText().toString();
+        if (firstDay.equals("")) {
+            DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            LocalDate dateNow = LocalDate.now();
+            firstDay = String.valueOf(dateNow.format(dateTimeFormatter));
+        }
         LocalDate masOne = LocalDate.parse(firstDay);
         masOne = masOne.plusDays(1);
         firstDay= String.valueOf(masOne);
@@ -203,6 +209,11 @@ public class SignListByParamsView extends AppCompatActivity implements SignListB
 
     public void subtractDaySearchFrom() {
         firstDay = etPlannedDateFromParams.getText().toString();
+        if (firstDay.equals("")) {
+            DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            LocalDate dateNow = LocalDate.now();
+            firstDay = String.valueOf(dateNow.format(dateTimeFormatter));
+        }
         LocalDate masOne = LocalDate.parse(firstDay);
         masOne = masOne.minusDays(1);
         firstDay= String.valueOf(masOne);
@@ -214,6 +225,11 @@ public class SignListByParamsView extends AppCompatActivity implements SignListB
 
     public void increaseDaySearchTo() {
         secondDay = etPlannedDateToParams.getText().toString();
+        if (secondDay.equals("")) {
+            DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            LocalDate dateNow = LocalDate.now();
+            secondDay = String.valueOf(dateNow.format(dateTimeFormatter));
+        }
         LocalDate masOne = LocalDate.parse(secondDay);
         masOne = masOne.plusDays(1);
         secondDay= String.valueOf(masOne);
@@ -225,6 +241,11 @@ public class SignListByParamsView extends AppCompatActivity implements SignListB
 
     public void subtractDaySearchTo() {
         secondDay = etPlannedDateToParams.getText().toString();
+        if (secondDay.equals("")) {
+            DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            LocalDate dateNow = LocalDate.now();
+            secondDay = String.valueOf(dateNow.format(dateTimeFormatter));
+        }
         LocalDate masOne = LocalDate.parse(secondDay);
         masOne = masOne.minusDays(1);
         secondDay= String.valueOf(masOne);
