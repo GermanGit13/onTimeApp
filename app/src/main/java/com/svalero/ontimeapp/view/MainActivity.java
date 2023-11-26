@@ -21,6 +21,7 @@ import com.svalero.ontimeapp.contract.SignListByUserContract;
 import com.svalero.ontimeapp.domain.Sign;
 import com.svalero.ontimeapp.domain.User;
 import com.svalero.ontimeapp.presenter.SignListByUserPresenter;
+import com.svalero.ontimeapp.util.SavePreference;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -33,7 +34,6 @@ public class MainActivity extends AppCompatActivity implements SignListByUserCon
 
     private Context context;
     private SignListByUserPresenter presenter; // Declaramos el presenter para solicitar los datos
-
     private Bundle bundle; // creamos un bundle para crecoger el objeta extra enviado que esta serializable
     private User user;
     private String userId;
@@ -56,17 +56,27 @@ public class MainActivity extends AppCompatActivity implements SignListByUserCon
         bundle = getIntent().getExtras();
         user = (User) bundle.getSerializable("user");
         userId = String.valueOf(user.getId());
-        photoUrl = user.getPhoto();
+
+        /**
+         * Salvar los datos de usuario en SharedPreference
+         */
+        SavePreference.setSavePreference("userId", String.valueOf(user.getId()), this);
+        SavePreference.setSavePreference("username", String.valueOf(user.getUsername()), this);
+        SavePreference.setSavePreference("rol", String.valueOf(user.getRol()), this);
+        SavePreference.setSavePreference("name", String.valueOf(user.getName()), this);
+        SavePreference.setSavePreference("surname", String.valueOf(user.getSurname()), this);
+        SavePreference.setSavePreference("department", String.valueOf(user.getDepartment()), this );
+        SavePreference.setSavePreference("userPhoto", String.valueOf(user.getPhoto()), this);
 
         presenter = new SignListByUserPresenter(this);
         notifiedNoSign(); // Para saber si ficho el día anterior
 
         Log.d("MenuPrincipal", "Ver si traigo el user: " + user.getId() + " photo: " + user.getPhoto());
         @SuppressLint({"MissingInflatedId", "LocalSuppress"}) TextView tvName = findViewById(R.id.tv_Name);
-        tvName.setText(String.valueOf(user.getName()));
+        tvName.setText(SavePreference.getSavePreference("name", this));
         ivPhotoMenu = findViewById(R.id.iv_PhotoMenu);
         Glide.with(this)
-                .load(photoUrl)
+                .load(SavePreference.getSavePreference("userPhoto", this))
                 .error(R.drawable.notphoto)
                 .into(ivPhotoMenu);
 
