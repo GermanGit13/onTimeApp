@@ -1,12 +1,10 @@
 package com.svalero.ontimeapp.view;
 
-import static androidx.core.content.ContentProviderCompat.requireContext;
 import static com.google.android.gms.common.util.CollectionUtils.listOf;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
-import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -17,11 +15,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
@@ -31,7 +26,6 @@ import com.svalero.ontimeapp.R;
 import com.svalero.ontimeapp.contract.SignRegisterContract;
 import com.svalero.ontimeapp.domain.Sign;
 import com.svalero.ontimeapp.domain.User;
-import com.svalero.ontimeapp.presenter.SignListByUserPresenter;
 import com.svalero.ontimeapp.presenter.SignRegisterPresenter;
 
 import java.time.LocalDate;
@@ -46,17 +40,17 @@ public class SignRegisterView extends AppCompatActivity implements SignRegisterC
     private Snackbar snackbar;
     private User user;
     private Sign sign;
-    ImageView ivPhotoMenu;
-    TextView tvInRegister;
-    TextView tvOutRegister;
-    Spinner spinnerModality;
-    Spinner spinnerIncidence;
-    String day;
-    String  in_time;
-    String out_time;
-    String modality = "";
-    String incidence_in;
-    String incidence_out;
+    private ImageView ivPhotoMenu;
+    private TextView tvInRegister;
+    private TextView tvOutRegister;
+    private Spinner spinnerModality;
+    private Spinner spinnerIncidence;
+    private String day;
+    private String  in_time;
+    private String out_time;
+    private String modality = "";
+    private String incidence_in;
+    private String incidence_out;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

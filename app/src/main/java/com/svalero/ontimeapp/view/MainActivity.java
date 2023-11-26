@@ -67,6 +67,7 @@ public class MainActivity extends AppCompatActivity implements SignListByUserCon
         SavePreference.setSavePreference("surname", String.valueOf(user.getSurname()), this);
         SavePreference.setSavePreference("department", String.valueOf(user.getDepartment()), this );
         SavePreference.setSavePreference("userPhoto", String.valueOf(user.getPhoto()), this);
+//        SavePreference.setSavePreference("modality", "", this);
 
         presenter = new SignListByUserPresenter(this);
         notifiedNoSign(); // Para saber si ficho el día anterior

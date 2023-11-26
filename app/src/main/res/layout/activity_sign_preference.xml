@@ -96,6 +96,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/linearLayout3"
         android:layout_width="283dp"
         android:layout_height="264dp"
         android:orientation="vertical"
@@ -161,6 +162,68 @@
                 android:textAlignment="center"
                 android:textColor="@color/Black" />
 
+            <TextView
+                android:id="@+id/tvModalityPreferences"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/style_borde_textview"
+                android:backgroundTint="@color/AliceBlue"
+                android:textAlignment="center"
+                android:textColor="@color/Black" />
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayoutIncidence"
+        android:layout_width="229dp"
+        android:layout_height="118dp"
+        android:layout_marginStart="88dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
+
+        <View
+            android:id="@+id/viewIncidence"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/DarkGoldenrod"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:id="@+id/textViewIncidence"
+            style="@android:style/Widget.Holo.Light.TextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/you_can_select_a_modality_in_your_preferences_of_sign"
+            android:textAlignment="center"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <Spinner
+                android:id="@+id/preference_spinner"
+                style="@android:style/Widget.Spinner.DropDown"
+                android:layout_width="176dp"
+                android:layout_height="50dp" />
+
+            <Button
+                android:id="@+id/btSavePreferences"
+                android:layout_width="44dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:onClick="savePreferences"
+                app:icon="@drawable/baseline_save_24" />
 
         </LinearLayout>
 
