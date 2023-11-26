@@ -92,6 +92,13 @@ public class MainActivity extends AppCompatActivity implements SignListByUserCon
             startActivity(intent);
         });
 
+        btBookingDesk = findViewById(R.id.btBookingDesk);
+        btBookingDesk.setOnClickListener(view -> {
+            Intent intent = new Intent(this, SignPreference.class);
+            intent.putExtra("user", user);
+            startActivity(intent);
+        });
+
         btListMySings = findViewById(R.id.btListMySign);
         btListMySings.setOnClickListener(view -> {
             Intent intent = new Intent(this, SignListByUserView.class);

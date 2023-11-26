@@ -58,4 +58,6 @@
     <string name="back">Back</string>
     <string name="there_is_no_record_of_a_signing_yesterday">There is no record of a signing yesterday</string>
     <string name="no_signing">No signing</string>
+    <string name="new_password">New Password</string>
+    <string name="personal_data">Personal Data</string>
 </resources>

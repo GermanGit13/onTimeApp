@@ -30,10 +30,10 @@ public class LoginView extends AppCompatActivity implements LoginContract.View {
     /**
      * Declaramos la parte gráfica de la activity uy le asociamos el id del recurso
      */
-    Button btEnter;
+    private Button btEnter;
 //    TextView tvUser;
-    EditText etUsername;
-    EditText etPass;
+    private EditText etUsername;
+    private EditText etPass;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -27,6 +27,9 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".view.SignPreference"
+            android:exported="false" />
+        <activity
             android:name=".view.SignListByUserView"
             android:exported="false" />
         <activity
