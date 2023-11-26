@@ -27,10 +27,13 @@ import com.svalero.ontimeapp.contract.SignRegisterContract;
 import com.svalero.ontimeapp.domain.Sign;
 import com.svalero.ontimeapp.domain.User;
 import com.svalero.ontimeapp.presenter.SignRegisterPresenter;
+import com.svalero.ontimeapp.util.SavePreference;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 
 public class SignRegisterView extends AppCompatActivity implements SignRegisterContract.View {
 
@@ -51,6 +54,7 @@ public class SignRegisterView extends AppCompatActivity implements SignRegisterC
     private String modality = "";
     private String incidence_in;
     private String incidence_out;
+    private String modalityPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -143,13 +147,19 @@ public class SignRegisterView extends AppCompatActivity implements SignRegisterC
     }
 
     public void initializeSpinnerModality() {
+        modalityPreferences = SavePreference.getSavePreference("modality", this); // Recuperamos la modalidad de las preferencias
+        String[] tu_spinner_array = getResources().getStringArray(R.array.modality_array); // creamos un array de String con el Array-string xml
+        tu_spinner_array[0] = modalityPreferences; // asignamos a la posicion 0 la modalidad de las preferencias
+
         spinnerModality = (Spinner) findViewById(R.id.modality_spinner);
+
         // Create an ArrayAdapter using the string array and a default spinner layout.
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
-                this,
-                R.array.modality_array,
-                android.R.layout.simple_spinner_item
-        );
+//        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
+//                this,
+//                R.array.modality_array,
+//                android.R.layout.simple_spinner_item
+//        );
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, tu_spinner_array);
         // Specify the layout to use when the list of choices appears.
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         // Apply the adapter to the spinner.
