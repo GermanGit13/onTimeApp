@@ -54,4 +54,7 @@
     <string name="you_must_select_a_modality_in_order_to_register_your_sign">You must select a modality in order to register your sign</string>
     <string name="in_day">" in day: "</string>
     <string name="sign_register">Sign Register</string>
+    <string name="back">Back</string>
+    <string name="there_is_no_record_of_a_signing_yesterday">There is no record of a signing yesterday</string>
+    <string name="no_signing">No signing</string>
 </resources>

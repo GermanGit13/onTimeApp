@@ -3,6 +3,7 @@ package com.svalero.ontimeapp.presenter;
 import com.svalero.ontimeapp.contract.SignListByUserContract;
 import com.svalero.ontimeapp.domain.Sign;
 import com.svalero.ontimeapp.model.SignListByUserModel;
+import com.svalero.ontimeapp.view.MainActivity;
 import com.svalero.ontimeapp.view.SignListByUserView;
 
 import java.util.List;
@@ -11,15 +12,26 @@ public class SignListByUserPresenter implements SignListByUserContract.Presenter
 
     private SignListByUserModel model;
     private SignListByUserView view;
+    private MainActivity viewMain;
 
     public SignListByUserPresenter(SignListByUserView view) {
         this.view = view;
         this.model = new SignListByUserModel(view.getApplicationContext());
     }
 
+    public SignListByUserPresenter(MainActivity viewMain) {
+        this.viewMain = viewMain;
+        this.model = new SignListByUserModel(viewMain.getApplicationContext());
+    }
+
     @Override
     public void OnLoadSignsByUserListenerSucess(List<Sign> signs) {
-        view.showSignsByUser(signs);
+
+        if (view != null){
+            view.showSignsByUser(signs);
+        } else {
+            viewMain.showSignsByUser(signs);
+        }
     }
 
     @Override
