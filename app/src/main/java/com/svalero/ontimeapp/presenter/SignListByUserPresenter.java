@@ -5,6 +5,7 @@ import com.svalero.ontimeapp.domain.Sign;
 import com.svalero.ontimeapp.model.SignListByUserModel;
 import com.svalero.ontimeapp.view.MainActivity;
 import com.svalero.ontimeapp.view.SignListByUserView;
+import com.svalero.ontimeapp.view.SignRegisterView;
 
 import java.util.List;
 
@@ -12,6 +13,7 @@ public class SignListByUserPresenter implements SignListByUserContract.Presenter
 
     private SignListByUserModel model;
     private SignListByUserView view;
+    private SignRegisterView viewRegister;
     private MainActivity viewMain;
 
     public SignListByUserPresenter(SignListByUserView view) {
@@ -24,14 +26,22 @@ public class SignListByUserPresenter implements SignListByUserContract.Presenter
         this.model = new SignListByUserModel(viewMain.getApplicationContext());
     }
 
+    public SignListByUserPresenter(SignRegisterView viewRegister) {
+        this.viewRegister = viewRegister;
+        this.model = new SignListByUserModel(viewRegister.getApplicationContext());
+    }
+
     @Override
     public void OnLoadSignsByUserListenerSucess(List<Sign> signs) {
 
         if (view != null){
             view.showSignsByUser(signs);
-        } else {
+        }
+        if (viewMain !=null) {
             viewMain.showSignsByUser(signs);
         }
+        if (viewRegister !=null)
+            viewRegister.showSignsByUser(signs);
     }
 
     @Override

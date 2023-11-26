@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
@@ -23,21 +24,28 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.snackbar.BaseTransientBottomBar;
 import com.google.android.material.snackbar.Snackbar;
 import com.svalero.ontimeapp.R;
+import com.svalero.ontimeapp.contract.SignListByUserContract;
 import com.svalero.ontimeapp.contract.SignRegisterContract;
 import com.svalero.ontimeapp.domain.Sign;
 import com.svalero.ontimeapp.domain.User;
+import com.svalero.ontimeapp.presenter.SignListByUserPresenter;
 import com.svalero.ontimeapp.presenter.SignRegisterPresenter;
 import com.svalero.ontimeapp.util.SavePreference;
 
+import java.time.Duration;
+import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SignRegisterView extends AppCompatActivity implements SignRegisterContract.View {
+public class SignRegisterView extends AppCompatActivity implements SignRegisterContract.View, SignListByUserContract.View {
 
     private SignRegisterPresenter presenter;
+    private SignListByUserPresenter userPresenter;
     private Context context;
     private Bundle bundle; // creamos un bundle para crecoger el objeta extra enviado que esta serializable
     private Snackbar snackbar;
@@ -46,6 +54,7 @@ public class SignRegisterView extends AppCompatActivity implements SignRegisterC
     private ImageView ivPhotoMenu;
     private TextView tvInRegister;
     private TextView tvOutRegister;
+    private TextView tvHourRegister;
     private Spinner spinnerModality;
     private Spinner spinnerIncidence;
     private String day;
@@ -55,6 +64,7 @@ public class SignRegisterView extends AppCompatActivity implements SignRegisterC
     private String incidence_in;
     private String incidence_out;
     private String modalityPreferences;
+    private Button btIn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,14 +89,55 @@ public class SignRegisterView extends AppCompatActivity implements SignRegisterC
         initializeSpinnerModality();
         initializeSpinnerIncidence();
         presenter = new SignRegisterPresenter(this);
+        userPresenter = new SignListByUserPresenter(this);
 
-
+        updateInTime();
     }
 
     @Override
     public void showError(String errorMessage) {
         Snackbar.make(((EditText) findViewById(R.id.et_snackback)), errorMessage,
                 BaseTransientBottomBar.LENGTH_LONG).show();
+    }
+
+    /**
+     * Para traernos una lista con los posibles fichajes en el dia y poder actualizar la hora en la vista y calcular el tiempo trabajado
+     */
+    @SuppressLint("WrongViewCast")
+    @Override
+    public void showSignsByUser(List<Sign> signs) {
+        if (!signs.isEmpty()) {
+            for (Sign sign  : signs) {
+                if (sign.getIn_time() != null && sign.getOut_time() == null)  {
+                    tvInRegister = findViewById(R.id.tv_in_register);
+                    tvInRegister.setText(sign.getIn_time());
+                    tvHourRegister = findViewById(R.id.tv_hours_register);
+                    btIn = findViewById(R.id.bt_in);
+                    btIn.setVisibility(View.GONE); // Quitamos el botón de IN
+
+                    DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+                    LocalTime in = LocalTime.parse(sign.getIn_time());
+                    LocalTime out = LocalTime.now(); // para saber la hora del móvil y calcular las horas
+                    long jornada = (Duration.between(in, out).getSeconds());
+                    long hora = (jornada / 3600);
+                    long minutos = ((jornada - (3600 * hora)) / 60);
+                    long segundos = (minutos-((hora*3600)+(minutos*60)));
+                    String jornadaCompleta = hora + ":" + minutos + ": 00 " ;
+
+                    tvHourRegister.setText(jornadaCompleta);
+                }
+                Log.d("Register Sign", String.valueOf(sign));
+            }
+        }
+    }
+
+    public void updateInTime() {
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate date = LocalDate.now();
+        String firstDay = String.valueOf(date.format(dateTimeFormatter));
+        String secondDay = "";
+        String userId = String.valueOf(user.getId());
+        userPresenter.loadSignsByUser(userId, firstDay, secondDay);
     }
 
     @Override

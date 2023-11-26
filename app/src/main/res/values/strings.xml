@@ -61,4 +61,5 @@
     <string name="personal_data">Personal Data</string>
     <string name="you_can_select_a_modality_in_your_preferences_of_sign">You can select a modality in your preferences of sign</string>
     <string name="you_aren_t_assigned_a_preferred_modality">You aren´t assigned a preferred modality</string>
+    <string name="actual_hours">Actual Hours:</string>
 </resources>

@@ -141,6 +141,7 @@ public class MainActivity extends AppCompatActivity implements SignListByUserCon
     public void notifiedNoSign() {
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDate date = LocalDate.now();
+        date = date.minusDays(1);
         String firstDay = String.valueOf(date.format(dateTimeFormatter));
         String secondDay = "";
 
