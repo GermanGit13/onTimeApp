@@ -62,6 +62,7 @@ public class SignListByParamsView extends AppCompatActivity implements SignListB
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_list_by_params_view);
+
         /**
          * Recuperamos el objeto selecciona en el adapterUSer
          */
@@ -151,24 +152,7 @@ public class SignListByParamsView extends AppCompatActivity implements SignListB
         signsList.clear(); // Limpiamos la lista para evitar que tenga datos previos
         signsList.addAll(signs); // Añadimos a la lista creada la que recibimos
         adapter.notifyDataSetChanged(); // Notificamos al adapter los cambios
-//        if (signs.isEmpty()) {
-//            new MaterialAlertDialogBuilder(this)
-//                    .setTitle(R.string.not_found_data_in_this_day)
-//                    .setMessage(R.string.there_is_no_data_for_the_selected_date)
-//                    .setPositiveButton(R.string.accept, new DialogInterface.OnClickListener() {
-//                        @Override
-//                        public void onClick(DialogInterface dialogInterface, int i) {
-//                            String failFirstDay = "";
-//                            String failSecondDay = "";
-//                            String failName = "";
-//                            presenter.loadSignsByParams(user.getDepartment(), failFirstDay, failSecondDay, name);
-//                            signsList.clear(); // Limpiamos la lista para evitar que tenga datos previos
-//                            signsList.addAll(signs); // Añadimos a la lista creada la que recibimos
-//                            adapter.notifyDataSetChanged(); // Notificamos al adapter los cambios
-//                        }
-//                    })
-//                    .show();
-//        }
+
         Log.d("List Sign Params", "Llamada desde view showSignsByParams: " );
     }
 
@@ -277,10 +261,10 @@ public class SignListByParamsView extends AppCompatActivity implements SignListB
      */
     @Override
     public boolean onQueryTextChange(String newText) {
-        String failSecondDay = "";
+//        String failSecondDay = "";
         name = newText;
         signsList.clear(); // Limpiamos la lista para evitar que tenga datos previos
-        presenter.loadSignsByParams(user.getDepartment(), firstDay, failSecondDay, name);
+        presenter.loadSignsByParams(user.getDepartment(), firstDay, secondDay, name);
 
         adapter.notifyDataSetChanged(); // Notificamos al adapter los cambios
         return false;

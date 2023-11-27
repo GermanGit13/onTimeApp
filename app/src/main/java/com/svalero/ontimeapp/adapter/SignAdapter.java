@@ -141,8 +141,8 @@ public class SignAdapter extends RecyclerView.Adapter<SignAdapter.SignHolder> im
             incidenceOut = view.findViewById(R.id.tv_card_incidence_out);
             signPhoto = view.findViewById(R.id.rv_card_photo);
 
-            modifySignButton = view.findViewById(R.id.bt_list_all_find);
-            deleteSignButton = view.findViewById(R.id.bt_list_all_clear);
+            modifySignButton = view.findViewById(R.id.bt_card_modify);
+            deleteSignButton = view.findViewById(R.id.bt_card_delete);
             detailsSignButton = view.findViewById(R.id.bt_card_details);
 
             // TODO añadir opción que realizarán los botones

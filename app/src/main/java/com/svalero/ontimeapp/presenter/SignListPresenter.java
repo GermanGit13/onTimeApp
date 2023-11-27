@@ -34,7 +34,7 @@ public class SignListPresenter implements SignListContract.Presenter, SignListCo
     }
 
     @Override
-    public void loadAllSings(String firstDay) {
-        model.loadAllSigns(this, firstDay);
+    public void loadAllSings(String firstDay, String seconDay, String name) {
+        model.loadAllSigns(this, firstDay, seconDay, name);
     }
 }

@@ -1,7 +1,6 @@
 package com.svalero.ontimeapp.view;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -15,6 +14,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,6 +27,7 @@ import com.svalero.ontimeapp.domain.Sign;
 import com.svalero.ontimeapp.domain.User;
 import com.svalero.ontimeapp.presenter.SignListByParamsPresenter;
 import com.svalero.ontimeapp.presenter.SignListPresenter;
+import com.svalero.ontimeapp.util.Calendario;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -39,7 +40,7 @@ import java.util.List;
 /**
  * Extiende de AppCompatActivity: donde hay un motón de código para usar por esos sobreescribimos los métodos de esta clase
  */
-public class SignListView extends AppCompatActivity implements SignListContract.View {
+public class SignListView extends AppCompatActivity implements SignListContract.View, SearchView.OnQueryTextListener {
 
     private Context context;
     private List<Sign> signsList; // Creamos la lista que vamos a recibir
@@ -47,12 +48,20 @@ public class SignListView extends AppCompatActivity implements SignListContract.
     private SignListPresenter presenter; // Declaramos el presenter para solicitar los datos
     private Bundle bundle; // creamos un bundle para crecoger el objeta extra enviado que esta serializable
     private User user;
-    private Button btPickDate;
-    private EditText etPlannedDate;
+    private EditText etPlannedDateFromList;
+    private EditText etPlannedDateToList;
     private String firstDay = "";
-    private Button btSearch;
-    private Button btClear;
-
+    private String secondDay = "";
+    private String name = "";
+    private Button btPickDateFrom;
+    private Button btPickDateTo;
+    private Button btSearchList;
+    private Button btClearList;
+    private Button btIncreaseDayFrom;
+    private Button btDecreateDayFrom;
+    private Button btIncreaseDayTo;
+    private Button btDecreateDayTo;
+    private SearchView svSearchList;
 
 
     @SuppressLint("MissingInflatedId")
@@ -71,19 +80,38 @@ public class SignListView extends AppCompatActivity implements SignListContract.
         initializeRecyclerView(); //inicializamos el RecyclerView
         initializeDatePicker(); //Inicializamos el DatePicker
 
-        btSearch = findViewById(R.id.bt_list_all_find);
-        btSearch.setOnClickListener(view -> {
+        btSearchList = findViewById(R.id.bt_list_find);
+        btSearchList.setOnClickListener(view -> {
         findSignsByDay();
         });
 
-        btClear = findViewById(R.id.bt_list_all_clear);
-        btClear.setOnClickListener(view -> {
+        btClearList = findViewById(R.id.bt_list_clear);
+        btClearList.setOnClickListener(view -> {
             resetDay();
         });
 
-//        firstDay = String.valueOf(((TextView) findViewById(R.id.etPlannedDate)));
-//        Log.d("List Sign", "Fecha del calendario " + firstDay); // depurar para ver hasta donde llego
+        btIncreaseDayFrom = findViewById(R.id.bt_list_From_increase);
+        btIncreaseDayFrom.setOnClickListener(view -> {
+            increaseDaySearchFrom();
+        });
 
+        btDecreateDayFrom = findViewById(R.id.bt_list_From_decrement);
+        btDecreateDayFrom.setOnClickListener(view -> {
+            subtractDaySearchFrom();
+        });
+
+        btIncreaseDayTo = findViewById(R.id.bt_list_To_increase);
+        btIncreaseDayTo.setOnClickListener(view -> {
+            increaseDaySearchTo();
+        });
+
+        btDecreateDayTo = findViewById(R.id.bt_list_To_decrement);
+        btDecreateDayTo.setOnClickListener(view -> {
+            subtractDaySearchTo();
+        });
+
+        svSearchList = findViewById(R.id.svSearchList);
+        svSearchList.setOnQueryTextListener(this); // uso la implementacion con sus métodos para buscar por nombre
     }
 
     /**
@@ -104,46 +132,15 @@ public class SignListView extends AppCompatActivity implements SignListContract.
      * Método para el Calendario
      */
     private void initializeDatePicker() {
-        etPlannedDate = findViewById(R.id.etPlannedDate);
-        btPickDate = findViewById(R.id.bt_pick_date_list_all);
+        etPlannedDateFromList = findViewById(R.id.etPlannedFromDateList);
+        etPlannedDateToList =findViewById(R.id.etPlannedToDateList);
+        btPickDateFrom = findViewById(R.id.bt_pick_date_list_From);
+        btPickDateTo = findViewById(R.id.bt_pick_date_list_To);
 
-        btPickDate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // on below line we are getting
-                // the instance of our calendar.
-                final Calendar c = Calendar.getInstance();
-
-                // on below line we are getting
-                // our day, month and year.
-                int year = c.get(Calendar.YEAR);
-                int month = c.get(Calendar.MONTH);
-                int day = c.get(Calendar.DAY_OF_MONTH);
-
-                // on below line we are creating a variable for date picker dialog.
-                DatePickerDialog datePickerDialog = new DatePickerDialog(
-                        // on below line we are passing context.
-                        SignListView.this,
-                        new DatePickerDialog.OnDateSetListener() {
-                            @Override
-                            public void onDateSet(DatePicker view, int year,
-                                                  int monthOfYear, int dayOfMonth) {
-                                // on below line we are setting date to our text view.
-                                LocalDate date = LocalDate.of(year, (monthOfYear + 1), dayOfMonth); // Pasar yyyy-MM-dd
-
-                                Log.d("List Sign Prueba Calender", "Llamada desde view " + date); // depurar para ver hasta donde llego
-                                etPlannedDate.setText(date.toString());
-
-                            }
-                        },
-                        // on below line we are passing year,
-                        // month and day for selected date in our date picker.
-                        year, month, day);
-                // at last we are calling show to
-                // display our date picker dialog.
-                datePickerDialog.show();
-            }
-        });
+        Calendario datePickerFrom = new Calendario();
+        datePickerFrom.datepicker(btPickDateFrom, etPlannedDateFromList, this);
+        Calendario datePickerTo = new Calendario();
+        datePickerTo.datepicker(btPickDateTo, etPlannedDateToList, this);
     }
 
     @Override
@@ -151,7 +148,7 @@ public class SignListView extends AppCompatActivity implements SignListContract.
         super.onResume();
 
         Log.d("List Sign", "Llamada desde view " + firstDay); // depurar para ver hasta donde llego
-        presenter.loadAllSings(firstDay); // Le decimos al presenter cuando vuelve del resume que cargue xtodo de nuevo
+        presenter.loadAllSings(firstDay, secondDay, name); // Le decimos al presenter cuando vuelve del resume que cargue xtodo de nuevo
     }
 
     @Override
@@ -160,6 +157,7 @@ public class SignListView extends AppCompatActivity implements SignListContract.
         signsList.clear(); // Limpiamos la lista para evitar que tenga datos previos
         signsList.addAll(signs); // Añadimos a la lista creada la que recibimos
         adapter.notifyDataSetChanged(); // Notificamos al adapter los cambios
+
         Log.d("List Sign", "Llamada desde view showSigns: ");
     }
 
@@ -169,29 +167,111 @@ public class SignListView extends AppCompatActivity implements SignListContract.
     }
 
     public void findSignsByDay() {
-        firstDay = etPlannedDate.getText().toString();
+        SimpleDateFormat fechaFormateada = new SimpleDateFormat("dd-MM-yyyy");
+        firstDay = etPlannedDateFromList.getText().toString();
+        secondDay = etPlannedDateToList.getText().toString();
         Log.d("List Sign", "Fecha del calendario " + firstDay); // depurar para ver hasta donde llego
 
-        presenter.loadAllSings(firstDay);
+        presenter.loadAllSings(firstDay, secondDay, name);
         adapter.notifyDataSetChanged(); // Notificamos al adapter los cambios
 
-//        new MaterialAlertDialogBuilder(this)
-//                .setTitle(R.string.you_don_t_have_an_department)
-//                .setMessage(R.string.contact_with_administration_depatment)
-//                .setPositiveButton(R.string.accept, new DialogInterface.OnClickListener() {
-//                    @Override
-//                    public void onClick(DialogInterface dialogInterface, int i) {
-//                        presenter.loadAllSings(firstDay);
-//                    }
-//                })
-//                .show();
         Log.d("List Sign with Day", "Llamada desde view showSigns with Day: " + firstDay );
     }
 
-    public void resetDay() {
-        ((TextView) findViewById(R.id.etPlannedDate)).setText("");
+    public void increaseDaySearchFrom() {
+        firstDay = etPlannedDateFromList.getText().toString();
+        if (firstDay.equals("")) {
+            DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            LocalDate dateNow = LocalDate.now();
+            firstDay = String.valueOf(dateNow.format(dateTimeFormatter));
+        }
+        LocalDate masOne = LocalDate.parse(firstDay);
+        masOne = masOne.plusDays(1);
+        firstDay= String.valueOf(masOne);
+        etPlannedDateFromList.setText(masOne.toString());
 
-        ((TextView) findViewById(R.id.etPlannedDate)).requestFocus();
+        Log.d("List Sign", "Llamada desde view showSigns: " + firstDay + " / " + secondDay + " / " + name);
+        presenter.loadAllSings(firstDay, secondDay, name);
+        adapter.notifyDataSetChanged(); // Notificamos al adapter los cambios
+    }
+
+    public void subtractDaySearchFrom() {
+        firstDay = etPlannedDateFromList.getText().toString();
+        if (firstDay.equals("")) {
+            DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            LocalDate dateNow = LocalDate.now();
+            firstDay = String.valueOf(dateNow.format(dateTimeFormatter));
+        }
+        LocalDate masOne = LocalDate.parse(firstDay);
+        masOne = masOne.minusDays(1);
+        firstDay= String.valueOf(masOne);
+        etPlannedDateFromList.setText(masOne.toString());
+
+        presenter.loadAllSings(firstDay, secondDay, name);
+        adapter.notifyDataSetChanged(); // Notificamos al adapter los cambios
+    }
+
+    public void increaseDaySearchTo() {
+        secondDay = etPlannedDateToList.getText().toString();
+        if (secondDay.equals("")) {
+            DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            LocalDate dateNow = LocalDate.now();
+            secondDay = String.valueOf(dateNow.format(dateTimeFormatter));
+        }
+        LocalDate masOne = LocalDate.parse(secondDay);
+        masOne = masOne.plusDays(1);
+        secondDay= String.valueOf(masOne);
+        etPlannedDateToList.setText(masOne.toString());
+
+        presenter.loadAllSings(firstDay, secondDay, name);
+        adapter.notifyDataSetChanged(); // Notificamos al adapter los cambios
+    }
+
+    public void subtractDaySearchTo() {
+        secondDay = etPlannedDateToList.getText().toString();
+        if (secondDay.equals("")) {
+            DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            LocalDate dateNow = LocalDate.now();
+            secondDay = String.valueOf(dateNow.format(dateTimeFormatter));
+        }
+        LocalDate masOne = LocalDate.parse(secondDay);
+        masOne = masOne.minusDays(1);
+        secondDay= String.valueOf(masOne);
+        etPlannedDateToList.setText(masOne.toString());
+
+        presenter.loadAllSings(firstDay, secondDay, name);
+        adapter.notifyDataSetChanged(); // Notificamos al adapter los cambios
+    }
+
+    /**
+     * Limiar filtros de busqueda
+     */
+    public void resetDay() {
+        ((TextView) findViewById(R.id.etPlannedToDateList)).setText("");
+        ((TextView) findViewById(R.id.etPlannedFromDateList)).setText("");
+
+        ((TextView) findViewById(R.id.etPlannedToDateList)).requestFocus();
+    }
+
+    /**
+     * Buscar por letra se implementan con SearchView.OnQueryTextListener en la clase
+     */
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+        return false;
+    }
+
+    /**
+     * Buscar por letra: se implementan con SearchView.OnQueryTextListener en la clase
+     */
+    @Override
+    public boolean onQueryTextChange(String newText) {
+        name = newText;
+        signsList.clear(); // Limpiamos la lista para evitar que tenga datos previos
+        presenter.loadAllSings(firstDay, secondDay, name);
+
+        adapter.notifyDataSetChanged(); // Notificamos al adapter los cambios
+        return false;
     }
 
     // Todo Falta añadir Menu actionBar

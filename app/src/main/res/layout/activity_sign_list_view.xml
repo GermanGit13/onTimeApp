@@ -8,8 +8,8 @@
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cardList"
-        android:layout_width="374dp"
-        android:layout_height="102dp"
+        android:layout_width="381dp"
+        android:layout_height="142dp"
         android:layout_margin="5dp"
         android:layout_marginStart="5dp"
         app:cardBackgroundColor="@color/DarkGoldenrod"
@@ -22,71 +22,153 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical">
 
             <!-- Media -->
+
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:padding="5dp">
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
-                <!-- Title, secondary and supporting text -->
-
-                <EditText
-                    android:id="@+id/etPlannedDate"
-                    android:layout_width="211dp"
-                    android:layout_height="match_parent"
-                    android:textAlignment="center"
-                    tools:ignore="TouchTargetSizeCheck" />
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/bt_pick_date_list_all"
-                    style="?attr/borderlessButtonStyle"
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Open Calender"
-                    tools:ignore="TouchTargetSizeCheck" />
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/bt_list_From_decrement"
+                            style="?attr/borderlessButtonStyle"
+                            android:layout_width="35dp"
+                            android:layout_height="wrap_content"
+                            app:icon="@drawable/baseline_arrow_circle_left_24"
+                            tools:ignore="TouchTargetSizeCheck" />
+
+                        <EditText
+                            android:id="@+id/etPlannedFromDateList"
+                            android:layout_width="125dp"
+                            android:layout_height="match_parent"
+                            android:paddingTop="2dp"
+                            android:textAlignment="center"
+                            android:textSize="15sp"
+                            tools:ignore="TouchTargetSizeCheck" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/bt_list_From_increase"
+                            style="?attr/borderlessButtonStyle"
+                            android:layout_width="35dp"
+                            android:layout_height="wrap_content"
+                            android:onClick="increaseDaySearchFrom"
+                            app:icon="@drawable/baseline_arrow_circle_right_24"
+                            tools:ignore="TouchTargetSizeCheck" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/bt_pick_date_list_From"
+                            style="?attr/borderlessButtonStyle"
+                            android:layout_width="35dp"
+                            android:layout_height="wrap_content"
+                            android:paddingEnd="0dp"
+                            app:icon="@drawable/baseline_calendar_month_24"
+                            tools:ignore="TouchTargetSizeCheck" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <!-- Title, secondary and supporting text -->
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/bt_list_To_decrement"
+                            style="?attr/borderlessButtonStyle"
+                            android:layout_width="35dp"
+                            android:layout_height="wrap_content"
+                            app:icon="@drawable/baseline_arrow_circle_left_24"
+                            tools:ignore="TouchTargetSizeCheck" />
+
+                        <EditText
+                            android:id="@+id/etPlannedToDateList"
+                            android:layout_width="125dp"
+                            android:layout_height="match_parent"
+                            android:paddingTop="2dp"
+                            android:textAlignment="center"
+                            android:textSize="15sp"
+                            tools:ignore="TouchTargetSizeCheck" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/bt_list_To_increase"
+                            style="?attr/borderlessButtonStyle"
+                            android:layout_width="35dp"
+                            android:layout_height="wrap_content"
+                            app:icon="@drawable/baseline_arrow_circle_right_24"
+                            tools:ignore="TouchTargetSizeCheck" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/bt_pick_date_list_To"
+                            style="?attr/borderlessButtonStyle"
+                            android:layout_width="35dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:paddingEnd="0dp"
+                            app:icon="@drawable/baseline_calendar_month_24"
+                            tools:ignore="TouchTargetSizeCheck" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/bt_list_find"
+                        style="?attr/borderlessButtonStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:onClick="findSignsByDay"
+                        android:text="Search by date"
+                        android:textSize="12sp"
+                        app:icon="@drawable/baseline_search_24"
+                        tools:ignore="TouchTargetSizeCheck" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/bt_list_clear"
+                        style="?attr/borderlessButtonStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:onClick="resetDay"
+                        android:text="clean filters"
+                        android:textSize="12sp"
+                        app:icon="@drawable/baseline_delete_24"
+                        tools:ignore="TouchTargetSizeCheck" />
+                </LinearLayout>
 
             </LinearLayout>
 
             <!-- Buttons -->
             <LinearLayout
-                android:layout_width="390dp"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_margin="5dp"
                 android:orientation="horizontal">
 
-                <androidx.constraintlayout.widget.ConstraintLayout
+
+                <SearchView
+                    android:id="@+id/svSearchList"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
-                    <com.google.android.material.button.MaterialButton
-                        android:id="@+id/bt_list_all_clear"
-                        style="?attr/borderlessButtonStyle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="65dp"
-                        android:onClick="resetDay"
-                        android:text="Clear"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        tools:ignore="TouchTargetSizeCheck"
-                        tools:layout_editor_absoluteY="0dp" />
-
-                    <com.google.android.material.button.MaterialButton
-                        android:id="@+id/bt_list_all_find"
-                        style="?attr/borderlessButtonStyle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:onClick="findSignsByDay"
-                        android:text="Search"
-                        app:layout_constraintEnd_toStartOf="@+id/bt_list_all_clear"
-                        app:layout_constraintStart_toStartOf="parent"
-                        tools:ignore="TouchTargetSizeCheck"
-                        tools:layout_editor_absoluteY="0dp" />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
+                </SearchView>
             </LinearLayout>
 
         </LinearLayout>
