@@ -19,11 +19,11 @@ import retrofit2.Response;
  */
 public class SignListModel implements SignListContract.Model {
 
-    private Context context; //para poder pasarle el contexto de la aplicacion
-
-    public SignListModel(Context context) {
-        this.context = context;
-    }
+//    private Context context; //para poder pasarle el contexto de la aplicacion
+//
+//    public SignListModel(Context context) {
+//        this.context = context;
+//    }
 
     /**
      * Sustituimos la llamada a la BBDD por la llamada a la API

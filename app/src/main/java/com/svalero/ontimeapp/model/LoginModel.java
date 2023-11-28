@@ -20,10 +20,12 @@ import retrofit2.Response;
  *Implementamos el contract LoginContract.Model
  */
 public class LoginModel  implements LoginContract.Model {
-    private Context context;
-//    public LoginModel(Context context) {
-//        this.context = context;
-//    }
+
+//    private Context context;
+////    public LoginModel(Context context) {
+////        this.context = context;
+////    }
+
     private LoginPresenter presenter;
     @Override
     public void getLogin(String username, String pass, OnLoginListener listener) {

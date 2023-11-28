@@ -15,11 +15,15 @@ public class SignListByParamsPresenter implements SignListByParamsContract.Prese
      * Le pasamos el model y la view ya que es el único que conoce a ambos
      */
     private SignListByParamsModel model;
-    private SignListByParamsView view;
+    /**
+     * Implementar siempre la View del contracto para encapsular bien y poder usarla
+     * desde cualquier vview que implemente el contrato
+     */
+    private SignListByParamsContract.View view;
 
-    public SignListByParamsPresenter(SignListByParamsView view) {
+    public SignListByParamsPresenter(SignListByParamsContract.View view) {
         this.view = view;
-        this.model = new SignListByParamsModel(view.getApplicationContext());
+        this.model = new SignListByParamsModel();
     }
 
     @Override

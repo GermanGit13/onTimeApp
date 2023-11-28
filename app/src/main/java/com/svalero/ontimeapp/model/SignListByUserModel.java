@@ -16,11 +16,11 @@ import retrofit2.Response;
 
 public class SignListByUserModel implements SignListByUserContract.Model {
 
-    private Context context; //para poder pasarle el contexto de la aplicacion
-
-    public SignListByUserModel(Context context) {
-        this.context = context;
-    }
+//    private Context context; //para poder pasarle el contexto de la aplicacion
+//
+//    public SignListByUserModel(Context context) {
+//        this.context = context;
+//    }
 
     @Override
     public void loadSignsByUser(String userId, OnLoadSignsByUserListener listener, String firstDay, String secondDay) {

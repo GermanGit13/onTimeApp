@@ -16,11 +16,11 @@ import retrofit2.Response;
 
 public class SignListByParamsModel implements SignListByParamsContract.Model {
 
-    private Context context; //para poder pasarle el contexto de la aplicacion
-
-    public SignListByParamsModel(Context context) {
-        this.context = context;
-    }
+//    private Context context; //para poder pasarle el contexto de la aplicacion
+//
+//    public SignListByParamsModel(Context context) {
+//        this.context = context;
+//    }
 
     /**
      * Sustituimos la llamada a la BBDD por la llamada a la API
