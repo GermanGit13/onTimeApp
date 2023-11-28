@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.svalero.ontimeapp.R;
 import com.svalero.ontimeapp.adapter.SignAdapter;
+import com.svalero.ontimeapp.adapter.SignByUserAdapter;
 import com.svalero.ontimeapp.contract.SignListByUserContract;
 import com.svalero.ontimeapp.domain.Sign;
 import com.svalero.ontimeapp.domain.User;
@@ -30,7 +31,7 @@ public class SignListByUserView extends AppCompatActivity implements SignListByU
 
     private Context context;
     private List<Sign> signsList; // Creamos la lista que vamos a recibir
-    private SignAdapter adapter; // Declaramos el adapter
+    private SignByUserAdapter adapter; // Declaramos el adapter
     private SignListByUserPresenter presenter; // Declaramos el presenter para solicitar los datos
     private Bundle bundle; // creamos un bundle para crecoger el objeta extra enviado que esta serializable
     private User user;
@@ -108,7 +109,7 @@ public class SignListByUserView extends AppCompatActivity implements SignListByU
         recyclerView.setHasFixedSize(true);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
-        adapter = new SignAdapter(this, signsList); // se lo pasamos al adapter para que pinte los datos de cada fichaje de la lista en el item
+        adapter = new SignByUserAdapter(this, signsList); // se lo pasamos al adapter para que pinte los datos de cada fichaje de la lista en el item
         recyclerView.setAdapter(adapter);
     }
 
