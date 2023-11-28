@@ -69,7 +69,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:hint="@string/new_password"
-            android:visibility="visible"
+            android:visibility="gone"
             app:endIconMode="password_toggle">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -77,7 +77,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPassword"
-                android:visibility="visible" />
+                android:visibility="gone" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -88,9 +88,10 @@
             android:layout_width="175dp"
             android:layout_height="48dp"
             android:layout_marginTop="10dp"
+            android:onClick="updatePass"
             android:text="Save Password"
             android:textColor="@color/DarkGoldenrod"
-            android:visibility="visible" />
+            android:visibility="gone" />
 
 
     </LinearLayout>

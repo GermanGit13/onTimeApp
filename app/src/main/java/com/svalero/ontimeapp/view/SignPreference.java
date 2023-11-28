@@ -6,7 +6,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -17,12 +20,22 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+import com.google.android.material.snackbar.BaseTransientBottomBar;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
 import com.svalero.ontimeapp.R;
+import com.svalero.ontimeapp.contract.UserPassDtoContract;
+import com.svalero.ontimeapp.domain.Dto.UserPassDto;
+import com.svalero.ontimeapp.domain.User;
+import com.svalero.ontimeapp.presenter.UserPassDtoPresenter;
 import com.svalero.ontimeapp.util.SavePreference;
 
-public class SignPreference extends AppCompatActivity {
+public class SignPreference extends AppCompatActivity implements UserPassDtoContract.View {
 
+    private UserPassDtoPresenter presenter;
+    private User user;
+    private Bundle bundle; // creamos un bundle para crecoger el objeta extra enviado que esta serializable
     private Context context;
     private ImageView ivPhotoMenu;
     private Button btChangePass;
@@ -51,8 +64,15 @@ public class SignPreference extends AppCompatActivity {
                 .error(R.drawable.notphoto)
                 .into(ivPhotoMenu);
 
+        /**
+         * Recuperamos el objeto selecciona que pasamos por intent
+         */
+        bundle = getIntent().getExtras();
+        user = (User) bundle.getSerializable("user");
+
         fillData();
         initializeSpinnerModality();
+        presenter = new UserPassDtoPresenter(this);
 
         btSavePass = findViewById(R.id.btSavePass);
         etNewPass = findViewById(R.id.etPassPreferences);
@@ -121,4 +141,47 @@ public class SignPreference extends AppCompatActivity {
         SavePreference.setSavePreference("modality", modalityPreference, this);
         fillData();
     }
+
+    @Override
+    public void showError(String errorMessage) {
+        Snackbar.make(((EditText) findViewById(R.id.et_snackback)), errorMessage,
+                BaseTransientBottomBar.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void showMessage(String message) {
+        new MaterialAlertDialogBuilder(this)
+                .setTitle("Update Pass")
+                .setMessage("Password correctly updated  ")
+                .setPositiveButton(R.string.accept, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                    }
+                })
+                .show();
+    }
+
+   public void updatePass(View view) {
+       Log.d("Update Pass User", "Cambiar la contraseña de usuario:");
+       etNewPass = findViewById(R.id.etPassPreferences);
+
+       String pass = etNewPass.getText().toString();
+
+       UserPassDto userPassDto = new UserPassDto();
+       userPassDto.setPass(pass);
+
+       presenter.updatePass(user.getId(), userPassDto);
+
+       if(btSavePass.getVisibility()  == GONE && tilNewPass.getVisibility() == GONE && etNewPass.getVisibility() == GONE) {
+           btSavePass.setVisibility(View.VISIBLE);
+           etNewPass.setVisibility(View.VISIBLE);
+           tilNewPass.setVisibility(View.VISIBLE);
+       } else {
+           btSavePass.setVisibility(GONE);
+           etNewPass.setVisibility(GONE);
+           tilNewPass.setVisibility(GONE);
+           etNewPass.setText("");
+       }
+   }
 }

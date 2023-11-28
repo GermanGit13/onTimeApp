@@ -38,7 +38,7 @@ public class SignRegisterPresenter implements SignRegisterContract.Presenter, Si
 
     @Override
     public void onRegisterError(String message) {
-        view.showError("Error to register Sign");
+        view.showError(String.valueOf(R.string.error_to_register_sign));
     }
 
     @Override

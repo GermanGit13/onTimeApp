@@ -1,5 +1,6 @@
 package com.svalero.ontimeapp.presenter;
 
+import com.svalero.ontimeapp.R;
 import com.svalero.ontimeapp.adapter.SignAdapter;
 import com.svalero.ontimeapp.contract.SignDeleteContract;
 import com.svalero.ontimeapp.model.SignDeleteModel;
@@ -16,12 +17,12 @@ public class SignDeletePresenter implements SignDeleteContract.Presenter, SignDe
 
     @Override
     public void onDeleteSuccess() {
-        view.showMessage("Sign deleted correctly");
+        view.showMessage(String.valueOf(R.string.sign_deleted_correctly));
     }
 
     @Override
     public void onDeleteError(String message) {
-        view.showError("Error to deleted sing");
+        view.showError(String.valueOf(R.string.error_to_deleted_sing));
     }
 
     @Override
