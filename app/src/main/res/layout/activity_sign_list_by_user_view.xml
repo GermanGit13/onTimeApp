@@ -6,12 +6,24 @@
     android:layout_height="match_parent"
     tools:context=".view.SignListByUserView">
 
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/fondofichaje" />
+
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cardListByUser"
         android:layout_width="378dp"
         android:layout_height="109dp"
         android:layout_margin="5dp"
         android:layout_marginStart="5dp"
+        android:visibility="visible"
         app:cardBackgroundColor="@color/DarkGoldenrod"
         app:cardCornerRadius="@dimen/mapbox_cameraModeButton_paddingStart"
         app:cardElevation="10dp"
@@ -169,6 +181,7 @@
         android:layout_width="388dp"
         android:layout_height="0dp"
         android:padding="10dp"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

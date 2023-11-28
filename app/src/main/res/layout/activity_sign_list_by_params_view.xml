@@ -6,6 +6,17 @@
     android:layout_height="match_parent"
     tools:context=".view.SignListByParamsView">
 
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/cardListParams"
+        app:srcCompat="@drawable/fondofichaje" />
+
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cardListParams"
         android:layout_width="381dp"
