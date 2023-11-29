@@ -81,7 +81,7 @@ public class SignAdapter extends RecyclerView.Adapter<SignAdapter.SignHolder> im
         holder.signOut.setText(signsList.get(position).getOut_time());
         holder.modality.setText(signsList.get(position).getModality());
         holder.incidenceIn.setText(signsList.get(position).getIncidence_in());
-        holder.incidenceOut.setText(signsList.get(position).getIncidence_out());
+        holder.incidenceOut.setText(String.valueOf(signsList.get(position).getIncidence_out()));
         String urlPhoto = signsList.get(position).getUserInSign().getPhoto();
         Log.d("List Sign", "Llamada desde el adapter: " + urlPhoto); //Para depurar errores y ver si avanza o donde se para
         Glide.with(context)

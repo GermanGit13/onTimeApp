@@ -208,6 +208,7 @@
             android:layout_margin="25dp"
             android:layout_weight="1"
             android:backgroundTint="@color/Brown"
+            android:onClick="registerOutSign"
             android:outlineSpotShadowColor="@color/black"
             android:shadowColor="@color/black"
             android:text="@string/out"

@@ -25,32 +25,33 @@ import com.google.android.material.snackbar.BaseTransientBottomBar;
 import com.google.android.material.snackbar.Snackbar;
 import com.svalero.ontimeapp.R;
 import com.svalero.ontimeapp.contract.SignListByUserContract;
+import com.svalero.ontimeapp.contract.SignOutDtoContract;
 import com.svalero.ontimeapp.contract.SignRegisterContract;
+import com.svalero.ontimeapp.domain.Dto.SignOutDto;
 import com.svalero.ontimeapp.domain.Sign;
 import com.svalero.ontimeapp.domain.User;
 import com.svalero.ontimeapp.presenter.SignListByUserPresenter;
+import com.svalero.ontimeapp.presenter.SignOutDtoPresenter;
 import com.svalero.ontimeapp.presenter.SignRegisterPresenter;
 import com.svalero.ontimeapp.util.SavePreference;
 
 import java.time.Duration;
-import java.time.Instant;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeFormatterBuilder;
-import java.util.ArrayList;
 import java.util.List;
 
-public class SignRegisterView extends AppCompatActivity implements SignRegisterContract.View, SignListByUserContract.View {
+public class SignRegisterView extends AppCompatActivity implements SignRegisterContract.View, SignListByUserContract.View, SignOutDtoContract.View {
 
     private SignRegisterPresenter presenter;
     private SignListByUserPresenter userPresenter;
+    private SignOutDtoPresenter signOutDtoPresenter;
     private Context context;
     private Bundle bundle; // creamos un bundle para crecoger el objeta extra enviado que esta serializable
     private Snackbar snackbar;
     private User user;
     private Sign sign;
+    private long signIdOut; // para recoger el id del fichaje con entrada y pasarselo al fichaje con salida
     private ImageView ivPhotoMenu;
     private TextView tvInRegister;
     private TextView tvOutRegister;
@@ -61,8 +62,7 @@ public class SignRegisterView extends AppCompatActivity implements SignRegisterC
     private String  in_time;
     private String out_time;
     private String modality = "";
-    private String incidence_in;
-    private String incidence_out;
+    private String incidence;
     private String modalityPreferences;
     private Button btIn;
 
@@ -90,6 +90,7 @@ public class SignRegisterView extends AppCompatActivity implements SignRegisterC
         initializeSpinnerIncidence();
         presenter = new SignRegisterPresenter(this);
         userPresenter = new SignListByUserPresenter(this);
+        signOutDtoPresenter = new SignOutDtoPresenter(this);
 
         updateInTime();
     }
@@ -109,6 +110,7 @@ public class SignRegisterView extends AppCompatActivity implements SignRegisterC
         if (!signs.isEmpty()) {
             for (Sign sign  : signs) {
                 if (sign.getIn_time() != null && sign.getOut_time() == null)  {
+                    signIdOut = sign.getId(); // para guardar el id del sign con entrada y poder pasarselo al sign de salida
                     tvInRegister = findViewById(R.id.tv_in_register);
                     tvInRegister.setText(sign.getIn_time());
                     tvHourRegister = findViewById(R.id.tv_hours_register);
@@ -144,7 +146,7 @@ public class SignRegisterView extends AppCompatActivity implements SignRegisterC
     public void showMessage(String message) {
         new MaterialAlertDialogBuilder(this)
                 .setTitle(R.string.sign_register)
-                .setMessage(message + sign.getUser().getUsername() + getString(R.string.in_day) + sign.getDay())
+                .setMessage(message)
                 .setPositiveButton(R.string.accept, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
@@ -177,7 +179,7 @@ public class SignRegisterView extends AppCompatActivity implements SignRegisterC
                 })
                 .show();
         } else {
-            sign = new Sign(modality, day, in_time, incidence_in, user);
+            sign = new Sign(modality, day, in_time, incidence, user);
             presenter.registerSign(user.getId(), sign);
         }
 
@@ -185,16 +187,11 @@ public class SignRegisterView extends AppCompatActivity implements SignRegisterC
     }
 
     public void registerOutSign(View view) {
-        DateTimeFormatter format = DateTimeFormatter.ofPattern("HH:mm:ss");
-        out_time = LocalDateTime.now().toLocalTime().format(format);
-        day = LocalDate.now().toString();
+        Log.d("Register Sign Out", "Ver la incidencia: " + incidence);
+        SignOutDto signOutDto = new SignOutDto();
+        signOutDto.setIncidende_out(incidence);
 
-        Log.d("Register Sign", "Ver el día y la hora que recojo: " + day + " - " + in_time);
-
-        Log.d("Register Sign", "Ver la modalidad seleccionada: " + modality);
-
-        sign = new Sign(modality, day, in_time, incidence_in, user);
-        presenter.registerSign(user.getId(), sign);
+        signOutDtoPresenter.signOut(signIdOut, signOutDto);
     }
 
     public void initializeSpinnerModality() {
@@ -247,7 +244,7 @@ public class SignRegisterView extends AppCompatActivity implements SignRegisterC
         spinnerIncidence.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                incidence_in = (String) parent.getItemAtPosition(position);
+                incidence = (String) parent.getItemAtPosition(position);
             }
 
             @Override

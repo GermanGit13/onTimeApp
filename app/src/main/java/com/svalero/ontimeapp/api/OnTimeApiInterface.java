@@ -1,5 +1,6 @@
 package com.svalero.ontimeapp.api;
 
+import com.svalero.ontimeapp.domain.Dto.SignOutDto;
 import com.svalero.ontimeapp.domain.Dto.UserPassDto;
 import com.svalero.ontimeapp.domain.Sign;
 import com.svalero.ontimeapp.domain.User;
@@ -36,6 +37,8 @@ public interface OnTimeApiInterface {
      */
     @POST("users/{userId}/signs")
     Call<Sign> addSign(@Path("userId") long userId, @Body Sign sign);
+    @PATCH("/signs/{id}")
+    Call<SignOutDto> signOut(@Path("id") long id, @Body SignOutDto signOutDto);
 
     @GET("signs")
     Call<List<Sign>> getSigns(@Query("day") String day, @Query("secondDay") String secondDay, @Query("name") String name);

@@ -33,7 +33,7 @@ public class SignRegisterPresenter implements SignRegisterContract.Presenter, Si
 
     @Override
     public void onRegisterSuccess(Sign sign) {
-        view.showMessage(String.valueOf(R.string.sign_register_ok_to));
+        view.showMessage("Sign Register Correct");
     }
 
     @Override

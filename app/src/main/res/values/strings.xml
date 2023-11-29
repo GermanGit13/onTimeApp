@@ -66,4 +66,6 @@
     <string name="sign_deleted_correctly">Sign deleted correctly</string>
     <string name="error_to_deleted_sing">Error to deleted sing</string>
     <string name="error_to_register_sign">Error to register Sign</string>
+    <string name="out_sign_register_correct">Out Sign register correct</string>
+    <string name="out_sign_correct">Out sign register correct</string>
 </resources>
