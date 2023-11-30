@@ -176,10 +176,22 @@
 
                 <SearchView
                     android:id="@+id/svSearchParams"
-                    android:layout_width="match_parent"
+                    android:layout_width="227dp"
                     android:layout_height="match_parent">
 
                 </SearchView>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/bt_list_params_seven_days"
+                    style="?attr/borderlessButtonStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="searchParamsLastSevenDays"
+                    android:text="Last Seven"
+                    android:textSize="12sp"
+                    app:icon="@drawable/baseline_calendar_month_24"
+                    tools:ignore="TouchTargetSizeCheck" />
+
             </LinearLayout>
 
         </LinearLayout>

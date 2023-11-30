@@ -61,6 +61,7 @@ public class SignListView extends AppCompatActivity implements SignListContract.
     private Button btDecreateDayFrom;
     private Button btIncreaseDayTo;
     private Button btDecreateDayTo;
+    private Button btLastSevenDays;
     private SearchView svSearchList;
 
 
@@ -108,6 +109,11 @@ public class SignListView extends AppCompatActivity implements SignListContract.
         btDecreateDayTo = findViewById(R.id.bt_list_To_decrement);
         btDecreateDayTo.setOnClickListener(view -> {
             subtractDaySearchTo();
+        });
+
+        btLastSevenDays = findViewById(R.id.bt_list_seven_days);
+        btLastSevenDays.setOnClickListener(view -> {
+            searchLastSevenDays();
         });
 
         svSearchList = findViewById(R.id.svSearchList);
@@ -244,13 +250,32 @@ public class SignListView extends AppCompatActivity implements SignListContract.
     }
 
     /**
+     * Buscar ultimos siete dias
+     */
+    public void searchLastSevenDays() {
+        resetDay();
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate dateNow = LocalDate.now();
+        LocalDate sevenDay;
+        sevenDay = dateNow.minusDays(7);
+
+        firstDay = String.valueOf(sevenDay.format(dateTimeFormatter));
+        secondDay = String.valueOf(dateNow.format(dateTimeFormatter));
+
+        Log.d("List Sign", "Llamada desde view showSigns 7 dias: " + firstDay + " / " + secondDay + " / " + name);
+        presenter.loadAllSings(firstDay, secondDay, name);
+        adapter.notifyDataSetChanged(); // Notificamos al adapter los cambios
+    }
+
+
+    /**
      * Limiar filtros de busqueda
      */
     public void resetDay() {
         ((TextView) findViewById(R.id.etPlannedToDateList)).setText("");
         ((TextView) findViewById(R.id.etPlannedFromDateList)).setText("");
 
-        ((TextView) findViewById(R.id.etPlannedToDateList)).requestFocus();
+        ((TextView) findViewById(R.id.etPlannedFromDateList)).requestFocus();
     }
 
     /**

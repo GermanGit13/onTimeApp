@@ -156,16 +156,34 @@
                         app:icon="@drawable/baseline_search_24"
                         tools:ignore="TouchTargetSizeCheck" />
 
-                    <com.google.android.material.button.MaterialButton
-                        android:id="@+id/bt_list_user_clear"
-                        style="?attr/borderlessButtonStyle"
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:onClick="resetUserByDay"
-                        android:text="clean filters"
-                        android:textSize="12sp"
-                        app:icon="@drawable/baseline_delete_24"
-                        tools:ignore="TouchTargetSizeCheck" />
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/bt_list_user_clear"
+                            style="?attr/borderlessButtonStyle"
+                            android:layout_width="41dp"
+                            android:layout_height="wrap_content"
+                            android:onClick="resetUserByDay"
+                            android:textSize="12sp"
+                            app:icon="@drawable/baseline_delete_24"
+                            tools:ignore="TouchTargetSizeCheck" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/bt_list_user_seven_days"
+                            style="?attr/borderlessButtonStyle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:onClick="searchLastSevenDaysByUser"
+                            android:text="Last 7 days"
+                            android:textSize="8sp"
+                            app:icon="@drawable/baseline_calendar_month_24"
+                            tools:ignore="TouchTargetSizeCheck" />
+                    </LinearLayout>
+
+
                 </LinearLayout>
 
             </LinearLayout>

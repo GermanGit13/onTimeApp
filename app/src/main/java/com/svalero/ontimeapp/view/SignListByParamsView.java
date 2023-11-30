@@ -54,6 +54,7 @@ public class SignListByParamsView extends AppCompatActivity implements SignListB
     private Button btDecreateDayFrom;
     private Button btIncreaseDayTo;
     private Button btDecreateDayTo;
+    private Button btLastSevenDays;
     private SearchView svSearchParams;
 
 
@@ -105,6 +106,11 @@ public class SignListByParamsView extends AppCompatActivity implements SignListB
         btDecreateDayTo = findViewById(R.id.bt_list_paramsTo_decrement);
         btDecreateDayTo.setOnClickListener(view -> {
             subtractDaySearchTo();
+        });
+
+        btLastSevenDays = findViewById(R.id.bt_list_params_seven_days);
+        btLastSevenDays.setOnClickListener(view -> {
+            searchParamsLastSevenDays();
         });
 
         svSearchParams = findViewById(R.id.svSearchParams);
@@ -234,6 +240,24 @@ public class SignListByParamsView extends AppCompatActivity implements SignListB
         etPlannedDateToParams.setText(masOne.toString());
 
         presenter.loadSignsByParams(user.getDepartment(), firstDay, secondDay, name);
+        adapter.notifyDataSetChanged(); // Notificamos al adapter los cambios
+    }
+
+    /**
+     * Buscar ultimos siete dias
+     */
+    public void searchParamsLastSevenDays() {
+        resetDay();
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate dateNow = LocalDate.now();
+        LocalDate sevenDay;
+        sevenDay = dateNow.minusDays(7);
+
+        firstDay = String.valueOf(sevenDay.format(dateTimeFormatter));
+        secondDay = String.valueOf(dateNow.format(dateTimeFormatter));
+
+        Log.d("List Sign Params", "Llamada desde view showSigns 7 dias: " + firstDay + " / " + secondDay + " / " + name);
+        presenter.loadSignsByParams(department, firstDay, secondDay, name);
         adapter.notifyDataSetChanged(); // Notificamos al adapter los cambios
     }
 

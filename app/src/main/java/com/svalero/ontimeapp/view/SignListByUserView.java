@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
@@ -48,7 +49,9 @@ public class SignListByUserView extends AppCompatActivity implements SignListByU
     private Button btDecreateDayFrom;
     private Button btIncreaseDayTo;
     private Button btDecreateDayTo;
+    private Button btSearchLastDays;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -97,6 +100,12 @@ public class SignListByUserView extends AppCompatActivity implements SignListByU
         btDecreateDayTo.setOnClickListener(view -> {
             subtractDaySearchTo();
         });
+
+        btSearchLastDays = findViewById(R.id.bt_list_user_seven_days);
+        btSearchLastDays.setOnClickListener(view -> {
+            searchLastSevenDaysByUser();
+        });
+
     }
 
     /**
@@ -210,10 +219,10 @@ public class SignListByUserView extends AppCompatActivity implements SignListByU
             LocalDate dateNow = LocalDate.now();
             firstDay = String.valueOf(dateNow.format(dateTimeFormatter));
         }
-        LocalDate masOne = LocalDate.parse(firstDay);
-        masOne = masOne.minusDays(1);
-        firstDay= String.valueOf(masOne);
-        etPlannedDateFromUser.setText(masOne.toString());
+        LocalDate lessOne = LocalDate.parse(firstDay);
+        lessOne = lessOne.minusDays(1);
+        firstDay= String.valueOf(lessOne);
+        etPlannedDateFromUser.setText(lessOne.toString());
 
         presenter.loadSignsByUser(userId, firstDay, secondDay);
         adapter.notifyDataSetChanged(); // Notificamos al adapter los cambios
@@ -251,10 +260,28 @@ public class SignListByUserView extends AppCompatActivity implements SignListByU
         adapter.notifyDataSetChanged(); // Notificamos al adapter los cambios
     }
 
+    /**
+     * Buscar ultimos siete dias
+     */
+    public void searchLastSevenDaysByUser() {
+        resetUserByDay();
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate dateNow = LocalDate.now();
+        LocalDate sevenDay;
+        sevenDay = dateNow.minusDays(7);
+
+        firstDay = String.valueOf(sevenDay.format(dateTimeFormatter));
+        secondDay = String.valueOf(dateNow.format(dateTimeFormatter));
+
+        Log.d("List Sign User", "Llamada desde view showSigns 7 dias: " + firstDay + " / " + secondDay + " / " );
+        presenter.loadSignsByUser(userId, firstDay, secondDay);
+        adapter.notifyDataSetChanged(); // Notificamos al adapter los cambios
+    }
+
     public void resetUserByDay() {
         ((TextView) findViewById(R.id.etPlannedDateFromUser)).setText("");
         ((TextView) findViewById(R.id.etPlannedDateToUser)).setText("");
 
-        ((TextView) findViewById(R.id.etPlannedDateToUser)).requestFocus();
+        ((TextView) findViewById(R.id.etPlannedDateFromUser)).requestFocus();
     }
 }
