@@ -30,6 +30,7 @@ import com.svalero.ontimeapp.domain.Dto.UserPassDto;
 import com.svalero.ontimeapp.domain.User;
 import com.svalero.ontimeapp.presenter.UserPassDtoPresenter;
 import com.svalero.ontimeapp.util.SavePreference;
+import com.svalero.ontimeapp.util.TimePicker;
 
 public class SignPreference extends AppCompatActivity implements UserPassDtoContract.View {
 
@@ -49,8 +50,12 @@ public class SignPreference extends AppCompatActivity implements UserPassDtoCont
     private TextView tvSurnamePreferences;
     private TextView tvDepartmentPreferences;
     private TextView tvModalityPreferences;
+    private TextView tvScheduleInPreferences;
+    private TextView tvScheduleOutPreferences;
     private Spinner spinnerModality;
-    private String modalityPreference = "1";
+    private String modalityPreference;
+    private String scheduleInPreference;
+    private String scheduleOutPreference;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -72,6 +77,7 @@ public class SignPreference extends AppCompatActivity implements UserPassDtoCont
 
         fillData();
         initializeSpinnerModality();
+        initializeTimePicker();
         presenter = new UserPassDtoPresenter(this);
 
         btSavePass = findViewById(R.id.btSavePass);
@@ -103,11 +109,15 @@ public class SignPreference extends AppCompatActivity implements UserPassDtoCont
         tvSurnamePreferences = findViewById(R.id.tvSurnamePreferences);
         tvDepartmentPreferences = findViewById((R.id.tvDepartmentPreferences));
         tvModalityPreferences = findViewById(R.id.tvModalityPreferences);
+        tvScheduleInPreferences = findViewById(R.id.tv_horario_in);
+        tvScheduleOutPreferences = findViewById(R.id.tv_horario_out);
 
         tvNamePreferences.setText(SavePreference.getSavePreference("name", this));
         tvSurnamePreferences.setText(SavePreference.getSavePreference("surname", this));
         tvDepartmentPreferences.setText(SavePreference.getSavePreference("department", this));
         tvModalityPreferences.setText(SavePreference.getSavePreference("modality", this));
+        tvScheduleInPreferences.setText(SavePreference.getSavePreference("scheduleIn", this));
+        tvScheduleOutPreferences.setText(SavePreference.getSavePreference("scheduleOut", this));
     }
 
     public void initializeSpinnerModality() {
@@ -137,8 +147,30 @@ public class SignPreference extends AppCompatActivity implements UserPassDtoCont
         });
     }
 
+    /**
+     * Método para el TimePicker
+     */
+    private void initializeTimePicker() {
+        tvScheduleInPreferences = findViewById(R.id.tv_horario_in);
+        tvScheduleOutPreferences = findViewById(R.id.tv_horario_out);
+
+        TimePicker timePickerIn = new TimePicker();
+        timePickerIn.timePickerTextView(tvScheduleInPreferences, tvScheduleInPreferences, this);
+        TimePicker timePickerOut = new TimePicker();
+        timePickerOut.timePickerTextView(tvScheduleOutPreferences, tvScheduleOutPreferences, this);
+    }
+
     public void savePreferences() {
+        /**
+         * Recoger el horario de los timepicker
+         */
+        scheduleInPreference = tvScheduleInPreferences.getText().toString();
+        scheduleOutPreference = tvScheduleOutPreferences.getText().toString();
+
         SavePreference.setSavePreference("modality", modalityPreference, this);
+        SavePreference.setSavePreference("scheduleIn", scheduleInPreference, this);
+        SavePreference.setSavePreference("scheduleOut", scheduleOutPreference, this);
+
         fillData();
     }
 

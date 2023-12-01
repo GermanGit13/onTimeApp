@@ -49,7 +49,7 @@ public class Calendario {
         });
     }
 
-    public void datepickerTextView(TextView textView, EditText editText, Context context) {
+    public void datepickerTextView(TextView textView, TextView textViewDos, Context context) {
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -73,7 +73,7 @@ public class Calendario {
                                                   int monthOfYear, int dayOfMonth) {
                                 // on below line we are setting date to our text view.
                                 LocalDate date = LocalDate.of(year, (monthOfYear + 1), dayOfMonth); // Pasar yyyy-MM-dd
-                                editText.setText(date.toString());
+                                textViewDos.setText(date.toString());
                             }
                         },
                         // on below line we are passing year,
