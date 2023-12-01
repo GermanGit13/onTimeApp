@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity implements SignListByUserCon
     private ImageView ivPhotoMenu;
     private Button btListSignsDepartment;
     private Button btRegisterSign;
+    private Button btRegisterLate;
     private Button btBookingDesk;
     private Button btListMySings;
     private Button btListAllSings;
@@ -89,6 +90,13 @@ public class MainActivity extends AppCompatActivity implements SignListByUserCon
         btRegisterSign = findViewById(R.id.btRegisterSing);
         btRegisterSign.setOnClickListener(view -> {
             Intent intent = new Intent(this, SignRegisterView.class);
+            intent.putExtra("user", user);
+            startActivity(intent);
+        });
+
+        btRegisterLate = findViewById(R.id.btRegisterSingLate);
+        btRegisterLate.setOnClickListener(view -> {
+            Intent intent = new Intent(this, SignRegisterLateView.class);
             intent.putExtra("user", user);
             startActivity(intent);
         });

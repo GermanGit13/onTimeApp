@@ -38,7 +38,7 @@ public class SignListByParamsView extends AppCompatActivity implements SignListB
     private List<Sign> signsList; // Creamos la lista que vamos a recibir
     private SignAdapter adapter; // Declaramos el adapter
     private SignListByParamsPresenter presenter; // Declaramos el presenter para solicitar los datos
-    private Bundle bundle; // creamos un bundle para crecoger el objeta extra enviado que esta serializable
+    private Bundle bundle; // creamos un bundle para recoger el objeta extra enviado que esta serializable
     private User user;
     private String department;
     private Button btPickDate;
@@ -140,10 +140,15 @@ public class SignListByParamsView extends AppCompatActivity implements SignListB
         btPickDate = findViewById(R.id.bt_pick_date_list_params);
         btPickDateTo = findViewById(R.id.bt_pick_date_list_paramsTo);
 
+
         Calendario datePickerFrom = new Calendario();
         datePickerFrom.datepicker(btPickDate, etPlannedDateFromParams, this);
         Calendario datePickerTo = new Calendario();
         datePickerTo.datepicker(btPickDateTo, etPlannedDateToParams, this);
+        Calendario datePicketTextFrom = new Calendario();
+        datePicketTextFrom.datepickerTextView(etPlannedDateFromParams, etPlannedDateFromParams, this);
+        Calendario datePicketTextTo = new Calendario();
+        datePicketTextTo.datepickerTextView(etPlannedDateToParams, etPlannedDateToParams, this);
     }
 
     @Override

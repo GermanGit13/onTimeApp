@@ -153,22 +153,14 @@
 
             <!-- Buttons -->
             <LinearLayout
-                android:layout_width="390dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
                 <com.google.android.material.button.MaterialButton
-                    android:id="@+id/bt_card_modify_user"
-                    style="?attr/borderlessButtonStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
-                    android:text="Modify" />
-
-                <com.google.android.material.button.MaterialButton
                     android:id="@+id/bt_card_details_user"
                     style="?attr/borderlessButtonStyle"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
                     android:text="Details" />

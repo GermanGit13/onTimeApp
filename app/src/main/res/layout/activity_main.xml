@@ -54,8 +54,8 @@
 
     <TableLayout
         android:id="@+id/tableLayout2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="328dp"
+        android:layout_height="421dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
@@ -82,9 +82,27 @@
 
         </TableRow>
 
-        <com.google.android.material.divider.MaterialDivider
+        <TableRow
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/btRegisterSingLate"
+                style="@style/Widget.Material3.Button.IconButton.Outlined"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="#BFB8860B"
+                android:text="@string/register_late_day"
+                android:textColor="#0B0B0B"
+                android:textSize="24sp"
+                app:icon="@drawable/reloj"
+                app:iconSize="30dp"
+                app:iconTint="#151414"
+                app:strokeColor="@color/Black"
+                tools:ignore="MissingConstraints" />
+
+        </TableRow>
 
         <TableRow
             android:layout_width="match_parent"

@@ -100,8 +100,6 @@ public class SignByUserAdapter extends RecyclerView.Adapter<SignByUserAdapter.Si
         public TextView date;
         public TextView incidenceIn;
         public TextView incidenceOut;
-
-        public Button modifySignButton;
         public Button detailsSignButton;
 
         private View parentView; // vista padre - como el recyclerView
@@ -120,7 +118,6 @@ public class SignByUserAdapter extends RecyclerView.Adapter<SignByUserAdapter.Si
             incidenceIn = view.findViewById(R.id.tv_card_incidence_in_user);
             incidenceOut = view.findViewById(R.id.tv_card_incidence_out_user);
 
-            modifySignButton = view.findViewById(R.id.bt_card_modify_user);
             detailsSignButton = view.findViewById(R.id.bt_card_details_user);
 
             // TODO añadir opción que realizarán los botones
