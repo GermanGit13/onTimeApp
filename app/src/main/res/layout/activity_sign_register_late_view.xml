@@ -68,7 +68,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
                                 android:background="#00FFFFFF"
-                                android:onClick="subtractDaySearchFrom"
+                                android:onClick="subtractDaySearchFromRegisterLate"
                                 app:icon="@drawable/baseline_arrow_circle_left_24" />
 
                             <EditText
@@ -77,7 +77,6 @@
                                 android:layout_height="wrap_content"
                                 android:background="@drawable/style_borde_textview"
                                 android:editable="false"
-                                android:text="@string/select_day_to_register"
                                 android:textAlignment="center"
                                 android:textAppearance="@style/TextAppearance.AppCompat.Body2"
                                 android:textColor="?android:attr/textColorSecondary" />
@@ -88,7 +87,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
                                 android:background="#00FFFFFF"
-                                android:onClick="increaseDaySearchFrom"
+                                android:onClick="increaseDaySearchFromRegisterLate"
                                 app:icon="@drawable/baseline_arrow_circle_right_24" />
 
                         </LinearLayout>

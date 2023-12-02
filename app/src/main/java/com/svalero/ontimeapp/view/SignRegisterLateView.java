@@ -65,6 +65,16 @@ public class SignRegisterLateView extends AppCompatActivity implements SignRegis
         initializeDatePicker();
         initializeTimePicker();
 
+        btIncreaseDay = findViewById(R.id.btincrement_register_late);
+        btIncreaseDay.setOnClickListener(view -> {
+            increaseDaySearchFromRegisterLate();
+        });
+
+        btDecreateDay = findViewById(R.id.btdecrement_register_late);
+        btDecreateDay.setOnClickListener(view -> {
+            subtractDaySearchFromRegisterLate();
+        });
+
     }
 
     /**
@@ -134,8 +144,13 @@ public class SignRegisterLateView extends AppCompatActivity implements SignRegis
     /**
      * Añadir un día a la fecha seleccionada en el calendario que aparece en el TextView
      */
-    public void increaseDaySearchFrom() {
+    public void increaseDaySearchFromRegisterLate() {
         day = tvDLateDay.getText().toString();
+        if (day.equals("")) {
+            DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            LocalDate dateNow = LocalDate.now();
+            day = String.valueOf(dateNow.format(dateTimeFormatter));
+        }
 
         LocalDate masOne = LocalDate.parse(day);
         masOne = masOne.plusDays(1);
@@ -146,8 +161,13 @@ public class SignRegisterLateView extends AppCompatActivity implements SignRegis
     /**
      * Quitar un día a la fecha seleccionada en el calendario que aparece en el TextView
      */
-    public void subtractDaySearchFrom() {
+    public void subtractDaySearchFromRegisterLate() {
         day = tvDLateDay.getText().toString();
+        if (day.equals("")) {
+            DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            LocalDate dateNow = LocalDate.now();
+            day = String.valueOf(dateNow.format(dateTimeFormatter));
+        }
 
         LocalDate masOne = LocalDate.parse(day);
         masOne = masOne.minusDays(1);
