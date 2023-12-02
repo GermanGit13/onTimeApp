@@ -36,6 +36,8 @@ public class SignRegisterLateView extends AppCompatActivity implements SignRegis
     private String modality;
     private String scheduleIn;
     private String scheduleOut;
+    private String incidence_in = "";
+    private String incidence_out = "";
     private Bundle bundle; // creamos un bundle para recoger el objeta extra enviado que esta serializable
     private User user;
     private Button btIncreaseDay;
@@ -62,6 +64,7 @@ public class SignRegisterLateView extends AppCompatActivity implements SignRegis
 
         initializeDatePicker();
         initializeTimePicker();
+
     }
 
     /**
@@ -80,6 +83,8 @@ public class SignRegisterLateView extends AppCompatActivity implements SignRegis
     private void initializeTimePicker() {
         tvScheduleIn = findViewById(R.id.tv_in_register_late);
         tvScheduleOut = findViewById(R.id.tv_out_register_late);
+        tvScheduleIn.setText(SavePreference.getSavePreference("scheduleIn", this));
+        tvScheduleOut.setText(SavePreference.getSavePreference("scheduleOut", this));
 
         TimePicker timePickerIn = new TimePicker();
         timePickerIn.timePickerTextView(tvScheduleIn, tvScheduleIn, this);
@@ -114,16 +119,15 @@ public class SignRegisterLateView extends AppCompatActivity implements SignRegis
 
     }
 
-    public void registerOutSign(View view) {
-        Log.d("Register Sign Late", "Registrar sing atrasada: ");
-        day = String.valueOf(tvDLateDay);
+    public void registerLateSign(View view) {
+        Log.d("Register Sign Late", "Registrar sing atrasada: " );
+        day = tvDLateDay.getText().toString();
         modality = SavePreference.getSavePreference("modality", this);
         scheduleIn = SavePreference.getSavePreference("scheduleIn", this);
         scheduleOut = SavePreference.getSavePreference("scheduleOut", this);
 
-
-        Sign signLateDay = new Sign(modality, day, scheduleIn, scheduleOut, user);
-
+        Log.d("Register Sign Late", "Registrar sing atrasada: " + modality + " / " + scheduleIn + " / " + scheduleOut + " / " + user.getId());
+        Sign signLateDay = new Sign(modality, day, scheduleIn, scheduleOut, incidence_in, incidence_out, user);
         presenter.registerSign(user.getId(), signLateDay);
     }
 
