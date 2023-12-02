@@ -197,7 +197,7 @@ public class SignListByUserView extends AppCompatActivity implements SignListByU
     }
 
     public void increaseDaySearchFrom() {
-        firstDay = etPlannedDateToUser.getText().toString();
+        firstDay = etPlannedDateFromUser.getText().toString();
         if (firstDay.equals("")) {
             DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
             LocalDate dateNow = LocalDate.now();
