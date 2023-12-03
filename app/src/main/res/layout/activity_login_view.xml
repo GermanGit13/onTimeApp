@@ -51,7 +51,7 @@
             android:layout_marginTop="5dp">
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/tvUserLogin"
+                android:id="@+id/tilUserLogin"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="225dp"
                 android:layout_height="wrap_content"
@@ -88,7 +88,7 @@
             android:layout_marginTop="5dp">
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/tvPassLogin"
+                android:id="@+id/itlPassLogin"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="225dp"
                 android:layout_height="wrap_content"

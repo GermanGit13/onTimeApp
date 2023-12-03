@@ -52,17 +52,21 @@
             tools:ignore="MissingConstraints" />
     </LinearLayout>
 
-    <TableLayout
-        android:id="@+id/tableLayout2"
-        android:layout_width="328dp"
-        android:layout_height="421dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <LinearLayout
+        android:layout_width="376dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingBottom="15dp"
+        app:layout_constraintBottom_toBottomOf="@+id/fondoMenu"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
-        <TableRow
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
             <Button
                 android:id="@+id/btRegisterSing"
@@ -73,18 +77,12 @@
                 android:backgroundTint="#BFB8860B"
                 android:text="@string/register_sign"
                 android:textColor="#0B0B0B"
-                android:textSize="24sp"
+                android:textSize="14sp"
                 app:icon="@drawable/reloj"
                 app:iconSize="30dp"
                 app:iconTint="#151414"
                 app:strokeColor="@color/Black"
                 tools:ignore="MissingConstraints" />
-
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
 
             <Button
                 android:id="@+id/btRegisterSingLate"
@@ -95,45 +93,24 @@
                 android:backgroundTint="#BFB8860B"
                 android:text="@string/register_late_day"
                 android:textColor="#0B0B0B"
-                android:textSize="24sp"
+                android:textSize="14sp"
                 app:icon="@drawable/reloj"
                 app:iconSize="30dp"
                 app:iconTint="#151414"
                 app:strokeColor="@color/Black"
                 tools:ignore="MissingConstraints" />
+        </LinearLayout>
 
-        </TableRow>
-
-        <TableRow
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <Button
-                android:id="@+id/btBookingDesk"
-                style="@style/Widget.Material3.Button.IconButton.Outlined"
-                android:layout_width="250dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:backgroundTint="#BFB8860B"
-                android:text="@string/booking_desk"
-                android:textColor="#0B0B0B"
-                android:textSize="24sp"
-                app:icon="@drawable/baseline_desk_24"
-                app:iconSize="30dp"
-                app:iconTint="#151414"
-                app:strokeColor="@color/Black"
-                tools:ignore="MissingConstraints" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
             <Button
                 android:id="@+id/btListMySign"
                 style="@style/Widget.Material3.Button.IconButton.Outlined"
-                android:layout_width="250dp"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:backgroundTint="#BFB8860B"
                 android:text="@string/list_my_sings"
@@ -144,16 +121,17 @@
                 app:iconTint="#151414"
                 app:strokeColor="@color/Black"
                 tools:ignore="MissingConstraints" />
-        </TableRow>
+        </LinearLayout>
 
-        <TableRow
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
             <Button
                 android:id="@+id/btListSignsByDepartment"
                 style="@style/Widget.Material3.Button.IconButton.Outlined"
-                android:layout_width="250dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:backgroundTint="#BFB8860B"
@@ -166,16 +144,17 @@
                 app:iconTint="#151414"
                 app:strokeColor="@color/Black"
                 tools:ignore="MissingConstraints" />
-        </TableRow>
+        </LinearLayout>
 
-        <TableRow
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
             <Button
                 android:id="@+id/btListAllSigns"
                 style="@style/Widget.Material3.Button.IconButton.Outlined"
-                android:layout_width="250dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:backgroundTint="#BFB8860B"
@@ -189,8 +168,30 @@
                 app:strokeColor="@color/Black"
                 tools:ignore="MissingConstraints" />
 
-        </TableRow>
+        </LinearLayout>
 
-    </TableLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/btBookingDesk"
+                style="@style/Widget.Material3.Button.IconButton.Outlined"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="#BFB8860B"
+                android:text="@string/booking_desk"
+                android:textColor="#0B0B0B"
+                android:textSize="24sp"
+                app:icon="@drawable/baseline_desk_24"
+                app:iconSize="30dp"
+                app:iconTint="#151414"
+                app:strokeColor="@color/Black"
+                tools:ignore="MissingConstraints" />
+        </LinearLayout>
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

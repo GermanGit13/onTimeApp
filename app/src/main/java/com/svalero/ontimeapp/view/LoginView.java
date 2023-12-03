@@ -7,10 +7,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import com.google.android.material.snackbar.BaseTransientBottomBar;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.textfield.TextInputLayout;
 import com.svalero.ontimeapp.R;
 import com.svalero.ontimeapp.contract.LoginContract;
 import com.svalero.ontimeapp.domain.User;
@@ -26,13 +26,11 @@ public class LoginView extends AppCompatActivity implements LoginContract.View {
 //    private Context context; // Activity en la que estamos
     private Snackbar snackbar;
     private LoginPresenter presenter;
-
-    /**
-     * Declaramos la parte gráfica de la activity uy le asociamos el id del recurso
-     */
     private Button btEnter;
 //    TextView tvUser;
+    private TextInputLayout tilUsername;
     private EditText etUsername;
+    private TextInputLayout tilPass;
     private EditText etPass;
 
     @Override
@@ -44,7 +42,6 @@ public class LoginView extends AppCompatActivity implements LoginContract.View {
     }
 
     public void loginUser(View view) {
-//        tvUser = findViewById(R.id.tvUserLogin);
         etUsername = findViewById(R.id.etUserLogin);
         etPass = findViewById(R.id.etPassLogin);
 
@@ -56,32 +53,31 @@ public class LoginView extends AppCompatActivity implements LoginContract.View {
 
     @Override
     public void showLogin(User user) {
-        if (user != null ){
-            Intent intent = new Intent(LoginView.this, MainActivity.class);
-            intent.putExtra("user", user); // Mandamos el objeto entero ya que es una clase serializable
-            startActivity(intent);
-        } else {
-            snackbar.make(((EditText) findViewById(R.id.tvUserLogin)), "Incorrect Data", BaseTransientBottomBar.LENGTH_SHORT)
+        if (user == null ){
+            snackbar.make(((EditText) findViewById(R.id.etUserLogin)), "Incorrect Data", BaseTransientBottomBar.LENGTH_SHORT)
                     .setAction("Accept", new View.OnClickListener() { // Crea un boton en el snackbar
                         @Override
                         public void onClick(View v) {
-//                            onBackPressed();
+
                         }
                     })
                     .show();
+        } else {
+            Intent intent = new Intent(LoginView.this, MainActivity.class);
+            intent.putExtra("user", user); // Mandamos el objeto entero ya que es una clase serializable
+            startActivity(intent);
         }
     }
 
     @Override
     public void showError(String errorMessage) {
-        Snackbar.make(((EditText) findViewById(R.id.tvUserLogin)), errorMessage,
-                BaseTransientBottomBar.LENGTH_SHORT).show();
+        snackbar.make(((EditText) findViewById(R.id.tilUserLogin)), "Incorrect Data", BaseTransientBottomBar.LENGTH_SHORT)
+                .setAction("Accept", new View.OnClickListener() { // Crea un boton en el snackbar
+                    @Override
+                    public void onClick(View v) {
+
+                    }
+                })
+                .show();
     }
 }
-
-
-//        btEnter = findViewById(R.id.btInicio);//botón declarado en el layout
-//                btEnter.setOnClickListener(view -> {
-//                Intent intent = new Intent(this, MainActivity.class);
-//        startActivity(intent);
-//        });

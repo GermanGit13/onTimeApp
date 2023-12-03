@@ -82,9 +82,14 @@ public class MainActivity extends AppCompatActivity implements SignListByUserCon
                 .error(R.drawable.notphoto)
                 .into(ivPhotoMenu);
 
-        if (!user.getRol().equals("USER")) {
-            btListSignsDepartment = findViewById(R.id.btListAllSigns);
-            btListSignsDepartment.setVisibility(View.VISIBLE);
+        if (user.getRol().equals("MANAGER") || user.getRol().equals("USER")) {
+            btListAllSings = findViewById(R.id.btListAllSigns);
+            btListAllSings.setVisibility(View.GONE);
+        }
+
+        if(user.getRol().equals("USER")) {
+            btListSignsDepartment = findViewById(R.id.btListSignsByDepartment);
+            btListSignsDepartment.setVisibility(View.GONE);
         }
 
         btRegisterSign = findViewById(R.id.btRegisterSing);
