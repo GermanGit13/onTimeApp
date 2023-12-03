@@ -19,13 +19,25 @@
         app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/fondofichaje" />
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/tbRegisterLate"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="#B3D5D4"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        tools:ignore="MissingConstraints" />
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayoutDatos"
-        android:layout_width="408dp"
-        android:layout_height="121dp"
+        android:layout_width="389dp"
+        android:layout_height="131dp"
         android:layout_weight="1"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="0dp">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tbRegisterLate"
+        tools:ignore="MissingConstraints">
 
         <LinearLayout
             android:id="@+id/linearLayoutName"

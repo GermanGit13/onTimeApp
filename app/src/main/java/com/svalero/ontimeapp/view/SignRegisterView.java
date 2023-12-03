@@ -10,6 +10,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -65,6 +67,7 @@ public class SignRegisterView extends AppCompatActivity implements SignRegisterC
     private String incidence;
     private String modalityPreferences;
     private Button btIn;
+    private androidx.appcompat.widget.Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,6 +79,14 @@ public class SignRegisterView extends AppCompatActivity implements SignRegisterC
          */
         bundle = getIntent().getExtras();
         user = (User) bundle.getSerializable("user");
+
+        /**
+         * Toolbar: http://www.androidcurso.com/index.php/473
+         */
+        toolbar = (androidx.appcompat.widget.Toolbar) findViewById(R.id.tbRegisterLate);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle( "Register your sing" );
+//        getSupportActionBar().setIcon(R.drawable.logo);
 
         Log.d("Register Sign", "Ver si traigo el user: " + user.getId() + " photo: " + user.getPhoto());
         @SuppressLint({"MissingInflatedId", "LocalSuppress"}) TextView tvName = findViewById(R.id.tv_name_register);
@@ -256,5 +267,38 @@ public class SignRegisterView extends AppCompatActivity implements SignRegisterC
 
     public void goBackButton(View view) {
         onBackPressed();
+    }
+
+    /**
+     * Para crear el menu (toolbar)
+     */
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.toolbar, menu);
+        return true; /** true -> el menú ya está visible */
+    }
+
+    /**
+     * Para cuando elegimos una opcion del menu
+     */
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        if (item.getItemId() == R.id.itMyList) {
+            Intent intent = new Intent(this, SignListByUserView.class);
+            intent.putExtra("user", user);
+            startActivity(intent);
+            return true;
+        } else if (item.getItemId() == R.id.itPreferences) {
+            Intent intent = new Intent(this, SignPreference.class);
+            intent.putExtra("user", user);
+            startActivity(intent);
+        } else if (item.getItemId() == R.id.itLogout) {
+            Intent intent = new Intent(this, LoginView.class);
+            startActivity(intent);
+            finish();
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }

@@ -7,6 +7,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -46,6 +48,7 @@ public class SignRegisterLateView extends AppCompatActivity implements SignRegis
     private EditText tvDLateDay;
     private TextView tvScheduleIn;
     private TextView tvScheduleOut;
+    private androidx.appcompat.widget.Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +60,14 @@ public class SignRegisterLateView extends AppCompatActivity implements SignRegis
          */
         bundle = getIntent().getExtras();
         user = (User) bundle.getSerializable("user");
+
+        /**
+         * Toolbar: http://www.androidcurso.com/index.php/473
+         */
+        toolbar = (androidx.appcompat.widget.Toolbar) findViewById(R.id.tbRegisterLate);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle( "Register your missing signings" );
+//        getSupportActionBar().setIcon(R.drawable.logo);
 
         Log.d("List Sign Register Late", "Llamada desde view "); // depurar para ver hasta donde llego
 
@@ -173,5 +184,38 @@ public class SignRegisterLateView extends AppCompatActivity implements SignRegis
         masOne = masOne.minusDays(1);
         day= String.valueOf(masOne);
         tvDLateDay.setText(masOne.toString());
+    }
+
+    /**
+     * Para crear el menu (toolbar)
+     */
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.toolbar, menu);
+        return true; /** true -> el menú ya está visible */
+    }
+
+    /**
+     * Para cuando elegimos una opcion del menu
+     */
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        if (item.getItemId() == R.id.itMyList) {
+            Intent intent = new Intent(this, SignListByUserView.class);
+            intent.putExtra("user", user);
+            startActivity(intent);
+            return true;
+        } else if (item.getItemId() == R.id.itPreferences) {
+            Intent intent = new Intent(this, SignPreference.class);
+            intent.putExtra("user", user);
+            startActivity(intent);
+        } else if (item.getItemId() == R.id.itLogout) {
+            Intent intent = new Intent(this, LoginView.class);
+            startActivity(intent);
+            finish();
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }

@@ -8,11 +8,14 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 import com.bumptech.glide.Glide;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
@@ -45,6 +48,7 @@ public class MainActivity extends AppCompatActivity implements SignListByUserCon
     private Button btListMySings;
     private Button btListAllSings;
     private String photoUrl;
+    private androidx.appcompat.widget.Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,7 +72,15 @@ public class MainActivity extends AppCompatActivity implements SignListByUserCon
         SavePreference.setSavePreference("surname", String.valueOf(user.getSurname()), this);
         SavePreference.setSavePreference("department", String.valueOf(user.getDepartment()), this );
         SavePreference.setSavePreference("userPhoto", String.valueOf(user.getPhoto()), this);
-//        SavePreference.setSavePreference("modality", "", this);
+
+        /**
+         * Toolbar: http://www.androidcurso.com/index.php/473
+         */
+        toolbar = (androidx.appcompat.widget.Toolbar) findViewById(R.id.tbMain);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle( "Prueba Titulo" );
+        getSupportActionBar().setIcon(R.drawable.logo);
+
 
         presenter = new SignListByUserPresenter(this);
         notifiedNoSign(); // Para saber si ficho el día anterior
@@ -184,5 +196,38 @@ public class MainActivity extends AppCompatActivity implements SignListByUserCon
     @Override
     public void showMessage(String message) {
         Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+    }
+
+    /**
+     * Para crear el menu (toolbar)
+     */
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.toolbar, menu);
+        return true; /** true -> el menú ya está visible */
+    }
+
+    /**
+     * Para cuando elegimos una opcion del menu
+     */
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        if (item.getItemId() == R.id.itMyList) {
+            Intent intent = new Intent(this, SignListByUserView.class);
+            intent.putExtra("user", user);
+            startActivity(intent);
+            return true;
+        } else if (item.getItemId() == R.id.itPreferences) {
+            Intent intent = new Intent(this, SignPreference.class);
+            intent.putExtra("user", user);
+            startActivity(intent);
+        } else if (item.getItemId() == R.id.itLogout) {
+            Intent intent = new Intent(this, LoginView.class);
+            startActivity(intent);
+            finish();
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }

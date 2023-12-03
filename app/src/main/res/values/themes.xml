@@ -3,7 +3,7 @@
     <style name="Theme.OnTimeApp" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/Black</item>
-        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorPrimaryVariant">@color/Black</item>
         <item name="colorOnPrimary">@color/DarkOrange</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>

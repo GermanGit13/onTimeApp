@@ -6,6 +6,16 @@
     android:layout_height="match_parent"
     tools:context=".view.SignRegisterLateView">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/tbRegisterLate"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="#B3D5D4"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        tools:ignore="MissingConstraints" />
+
     <ImageView
         android:id="@+id/imageView7"
         android:layout_width="wrap_content"
@@ -168,12 +178,12 @@
 
     <ImageView
         android:id="@+id/imageView8"
-        android:layout_width="343dp"
-        android:layout_height="354dp"
+        android:layout_width="355dp"
+        android:layout_height="306dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tbRegisterLate"
         app:srcCompat="@drawable/logo" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

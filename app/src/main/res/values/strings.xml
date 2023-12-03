@@ -71,4 +71,6 @@
     <string name="schedule">Schedule</string>
     <string name="select_day_to_register">Select Day to Register</string>
     <string name="register_late_day">Register Late Day</string>
+    <string name="preferences">Preferences</string>
+    <string name="logout">Logout</string>
 </resources>
