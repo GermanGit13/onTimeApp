@@ -5,20 +5,37 @@
     tools:context=".MainActivity">
 
     <item
-        android:id="@+id/itMyList"
-        android:icon="@android:drawable/ic_menu_my_calendar"
+        android:id="@+id/itgeneral"
+        android:icon="@drawable/outline_drag_indicator_24"
         android:orderInCategory="5"
-        android:title="My List Signs"
-        app:showAsAction="never" />
-    <item android:id="@+id/itPreferences"
-        android:title="@string/preferences"
-        android:icon="@android:drawable/ic_menu_preferences"
-        android:orderInCategory="10"
-        app:showAsAction="never"/>
-    <item
-        android:id="@+id/itLogout"
-        android:icon="@android:drawable/ic_lock_power_off"
-        android:orderInCategory="115"
-        android:title="@string/logout"
-        app:showAsAction="never" />
+        android:title="General"
+        android:visible="true"
+        app:showAsAction="always">
+
+        <menu>
+
+            <item
+                android:id="@+id/itMyList"
+                android:icon="@android:drawable/ic_menu_my_calendar"
+                android:orderInCategory="5"
+                android:title="My List Signs"
+                android:visible="true"
+                app:showAsAction="never" />
+            <item
+                android:id="@+id/itPreferences"
+                android:icon="@android:drawable/ic_menu_preferences"
+                android:iconTint="@color/Black"
+                android:orderInCategory="10"
+                android:title="@string/preferences"
+                app:showAsAction="never" />
+            <item
+                android:id="@+id/itLogout"
+                android:icon="@android:drawable/ic_lock_power_off"
+                android:orderInCategory="115"
+                android:title="@string/logout"
+                android:visible="true"
+                app:showAsAction="never" />
+
+        </menu>
+    </item>
 </menu>
