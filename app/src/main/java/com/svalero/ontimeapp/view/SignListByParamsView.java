@@ -70,8 +70,7 @@ public class SignListByParamsView extends AppCompatActivity implements SignListB
         bundle = getIntent().getExtras();
         user = (User) bundle.getSerializable("user");
         department = user.getDepartment();
-
-        Log.d("List Sign Params", "Llamada desde view "+ department + " / " + firstDay); // depurar para ver hasta donde llego
+//        Log.d("List Sign Params", "Llamada desde view "+ department + " / " + firstDay); // depurar para ver hasta donde llego
 
         presenter = new SignListByParamsPresenter(this); // Instanciamos el presenter y le pasamos el contexto
         presenter.loadSignsByParams(department, firstDay, secondDay, name);
@@ -154,7 +153,7 @@ public class SignListByParamsView extends AppCompatActivity implements SignListB
     @Override
     protected void onResume() {
         super.onResume();
-        Log.d("List Sign Params", "Llamada desde view"); // depurar para ver hasta donde llego
+//        Log.d("List Sign Params", "Llamada desde view"); // depurar para ver hasta donde llego
         presenter.loadSignsByParams(user.getDepartment(), firstDay, secondDay, name); // Le decimos al presenter cuando vuelve del resume que cargue xtodo de nuevo
     }
 
@@ -164,7 +163,7 @@ public class SignListByParamsView extends AppCompatActivity implements SignListB
         signsList.addAll(signs); // Añadimos a la lista creada la que recibimos
         adapter.notifyDataSetChanged(); // Notificamos al adapter los cambios
 
-        Log.d("List Sign Params", "Llamada desde view showSignsByParams: " );
+//        Log.d("List Sign Params", "Llamada desde view showSignsByParams: " );
     }
 
     @Override
@@ -176,12 +175,11 @@ public class SignListByParamsView extends AppCompatActivity implements SignListB
         SimpleDateFormat fechaFormateada = new SimpleDateFormat("dd-MM-yyyy");
         firstDay = etPlannedDateFromParams.getText().toString();
         secondDay = etPlannedDateToParams.getText().toString();
-        Log.d("List Sign with Params", "Fecha del calendario " + firstDay + " / " + department); // depurar para ver hasta donde llego
+//        Log.d("List Sign with Params", "Fecha del calendario " + firstDay + " / " + department); // depurar para ver hasta donde llego
 
         presenter.loadSignsByParams(user.getDepartment(), firstDay, secondDay, name);
         adapter.notifyDataSetChanged(); // Notificamos al adapter los cambios
-
-        Log.d("List Sign with Params", "Llamada desde view loadSignsByParams with Params: " + firstDay + " / " + department);
+//        Log.d("List Sign with Params", "Llamada desde view loadSignsByParams with Params: " + firstDay + " / " + department);
     }
 
     public void increaseDaySearchFrom() {
@@ -261,7 +259,7 @@ public class SignListByParamsView extends AppCompatActivity implements SignListB
         firstDay = String.valueOf(sevenDay.format(dateTimeFormatter));
         secondDay = String.valueOf(dateNow.format(dateTimeFormatter));
 
-        Log.d("List Sign Params", "Llamada desde view showSigns 7 dias: " + firstDay + " / " + secondDay + " / " + name);
+//        Log.d("List Sign Params", "Llamada desde view showSigns 7 dias: " + firstDay + " / " + secondDay + " / " + name);
         presenter.loadSignsByParams(department, firstDay, secondDay, name);
         adapter.notifyDataSetChanged(); // Notificamos al adapter los cambios
     }

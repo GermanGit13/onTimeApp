@@ -8,11 +8,14 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.snackbar.BaseTransientBottomBar;
+import com.google.android.material.snackbar.Snackbar;
 import com.svalero.ontimeapp.R;
 import com.svalero.ontimeapp.adapter.SignAdapter;
 import com.svalero.ontimeapp.adapter.SignByUserAdapter;
@@ -50,6 +53,7 @@ public class SignListByUserView extends AppCompatActivity implements SignListByU
     private Button btIncreaseDayTo;
     private Button btDecreateDayTo;
     private Button btSearchLastDays;
+    private Snackbar snackbar;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -63,8 +67,7 @@ public class SignListByUserView extends AppCompatActivity implements SignListByU
         bundle = getIntent().getExtras();
         user = (User) bundle.getSerializable("user");
         userId = String.valueOf(user.getId());
-
-        Log.d("List Sign By User and Day", "Llamada desde view "+ userId + " / " + firstDay); // depurar para ver hasta donde llego
+//        Log.d("List Sign By User and Day", "Llamada desde view "+ userId + " / " + firstDay); // depurar para ver hasta donde llego
 
         presenter = new SignListByUserPresenter(this); // Instanciamos el presenter y le pasamos el contexto
         presenter.loadSignsByUser(userId, firstDay, secondDay);
@@ -141,7 +144,7 @@ public class SignListByUserView extends AppCompatActivity implements SignListByU
     protected void onResume() {
         super.onResume();
         super.onResume();
-        Log.d("List Sign By User and Day", "Llamada desde view"); // depurar para ver hasta donde llego
+//        Log.d("List Sign By User and Day", "Llamada desde view"); // depurar para ver hasta donde llego
         presenter.loadSignsByUser(userId, firstDay, secondDay);
     }
 
@@ -166,12 +169,19 @@ public class SignListByUserView extends AppCompatActivity implements SignListByU
 //                    })
 //                    .show();
 //        }
-        Log.d("List Sign By User and Day", "Llamada desde view_showSignsByDepartment: ");
+//        Log.d("List Sign By User and Day", "Llamada desde view_showSignsByDepartment: ");
     }
 
     @Override
     public void showMessage(String message) {
-        Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+        snackbar.make(((EditText) findViewById(R.id.etPlannedDateFromUser)), message, BaseTransientBottomBar.LENGTH_SHORT)
+                .setAction(R.string.accept, new View.OnClickListener() { // Crea un boton en el snackbar
+                    @Override
+                    public void onClick(View v) {
+
+                    }
+                })
+                .show();
     }
 
     public void findSignsUserByDay() {

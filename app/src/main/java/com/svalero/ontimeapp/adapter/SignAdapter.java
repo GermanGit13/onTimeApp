@@ -88,11 +88,6 @@ public class SignAdapter extends RecyclerView.Adapter<SignAdapter.SignHolder> im
             .load(signsList.get(position).getUserInSign().getPhoto())
             .error(R.drawable.notphoto)
             .into(holder.signPhoto);
-//        if ((signsList.get(position).getUserInSign().getPhoto()).equals("") ){
-//            holder.signPhoto.setImageResource(R.drawable.notphoto);
-//        } else{
-//            holder.signPhoto.setImageURI(Uri.parse(signsList.get(position).getUserInSign().getPhoto()));
-//        }
     }
 
     /**
@@ -141,9 +136,9 @@ public class SignAdapter extends RecyclerView.Adapter<SignAdapter.SignHolder> im
             incidenceOut = view.findViewById(R.id.tv_card_incidence_out);
             signPhoto = view.findViewById(R.id.rv_card_photo);
 
-            modifySignButton = view.findViewById(R.id.bt_card_modify);
+//            modifySignButton = view.findViewById(R.id.bt_card_modify);
             deleteSignButton = view.findViewById(R.id.bt_card_delete);
-            detailsSignButton = view.findViewById(R.id.bt_card_details);
+//            detailsSignButton = view.findViewById(R.id.bt_card_details);
 
             // TODO añadir opción que realizarán los botones
             deleteSignButton.setOnClickListener( v -> deleteSign(getAdapterPosition()));
@@ -167,19 +162,6 @@ public class SignAdapter extends RecyclerView.Adapter<SignAdapter.SignHolder> im
     private void deleteSign(int position) {
         Sign sign = signsList.get(position);
         Log.d("Delete Sign", "Desde Aviso de Borrar:" + sign.getId());
-
-//        AlertDialog.Builder builder = new AlertDialog.Builder(context);
-//        builder.setMessage(R.string.delete_sign)
-//                .setTitle("Delete select Sign")
-//                .setPositiveButton(R.string.yes, (dialog, id) -> {
-//                    presenter.deleteSign(String.valueOf(sign.getId()));
-//
-//                    signsList.remove(position);
-//                    notifyItemRemoved(position);
-//                })
-//                .setNegativeButton(R.string.not, (dialog, id) -> dialog.dismiss());
-//        AlertDialog dialog = builder.create();
-//        dialog.show();
 
         new MaterialAlertDialogBuilder(context)
                 .setTitle(R.string.delete_select_sign)

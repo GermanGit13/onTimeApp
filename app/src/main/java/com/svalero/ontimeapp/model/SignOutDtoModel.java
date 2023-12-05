@@ -18,18 +18,18 @@ public class SignOutDtoModel implements SignOutDtoContract.Model {
         try {
             OnTimeApiInterface onTimeApi = OnTimeApi.buildInstance();
             Call<SignOutDto> callSign = onTimeApi.signOut(id, signOutDto);
-            Log.d("Register Sign Out", "Llamada desde el model"); //Para depurar errores y ver si avanza o donde se para
+//            Log.d("Register Sign Out", "Llamada desde el model"); //Para depurar errores y ver si avanza o donde se para
             callSign.enqueue(new Callback<SignOutDto>() {
                 @Override
                 public void onResponse(Call<SignOutDto> call, Response<SignOutDto> response) {
-                    Log.d("Register Sign Out", "Llamada desde el model OK"); //Para depurar errores y ver si avanza o donde se para
+//                    Log.d("Register Sign Out", "Llamada desde el model OK"); //Para depurar errores y ver si avanza o donde se para
                     SignOutDto signOutDto = response.body();
                     listener.OnSingOutSucess(signOutDto); // recibimos el fichaje por el listener
                 }
 
                 @Override
                 public void onFailure(Call<SignOutDto> call, Throwable t) {
-                    Log.d("Register Sign Out", "Llamada desde el model ERROR"); //Para depurar errores y ver si avanza o donde se para
+//                    Log.d("Register Sign Out", "Llamada desde el model ERROR"); //Para depurar errores y ver si avanza o donde se para
                     t.printStackTrace();
                     String message = "Error invocando a la operación";
                     listener.OnSingOutError(message);

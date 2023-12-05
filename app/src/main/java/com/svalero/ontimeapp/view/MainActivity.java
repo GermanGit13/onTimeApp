@@ -81,7 +81,6 @@ public class MainActivity extends AppCompatActivity implements SignListByUserCon
         getSupportActionBar().setTitle( "Prueba Titulo" );
         getSupportActionBar().setIcon(R.drawable.logo);
 
-
         presenter = new SignListByUserPresenter(this);
         notifiedNoSign(); // Para saber si ficho el día anterior
 
@@ -114,13 +113,6 @@ public class MainActivity extends AppCompatActivity implements SignListByUserCon
         btRegisterLate = findViewById(R.id.btRegisterSingLate);
         btRegisterLate.setOnClickListener(view -> {
             Intent intent = new Intent(this, SignRegisterLateView.class);
-            intent.putExtra("user", user);
-            startActivity(intent);
-        });
-
-        btBookingDesk = findViewById(R.id.btBookingDesk);
-        btBookingDesk.setOnClickListener(view -> {
-            Intent intent = new Intent(this, SignPreference.class);
             intent.putExtra("user", user);
             startActivity(intent);
         });

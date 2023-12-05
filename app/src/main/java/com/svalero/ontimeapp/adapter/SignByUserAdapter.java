@@ -118,7 +118,7 @@ public class SignByUserAdapter extends RecyclerView.Adapter<SignByUserAdapter.Si
             incidenceIn = view.findViewById(R.id.tv_card_incidence_in_user);
             incidenceOut = view.findViewById(R.id.tv_card_incidence_out_user);
 
-            detailsSignButton = view.findViewById(R.id.bt_card_details_user);
+//            detailsSignButton = view.findViewById(R.id.bt_card_details_user);
 
             // TODO añadir opción que realizarán los botones
 

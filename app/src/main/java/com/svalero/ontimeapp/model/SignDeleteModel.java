@@ -20,17 +20,17 @@ public class SignDeleteModel implements SignDeleteContract.Model {
         //Nos devuelve una instancia de onTimeApi como la definimos en OnTimeApiInterface, tiene los métodos que usamos para comunicarnos con la API
         OnTimeApiInterface onTimeApi = OnTimeApi.buildInstance();
         Call<Void> callSigns = onTimeApi.deleteSign(signId);
-        Log.d("List Sign Delete", "Llamada desde el model"); //Para depurar errores y ver si avanza o donde se para
+//        Log.d("List Sign Delete", "Llamada desde el model"); //Para depurar errores y ver si avanza o donde se para
         callSigns.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
-                Log.d("List Sign Delete", "Llamada desde el model OK"); //Para depurar errores y ver si avanza o donde se para
+//                Log.d("List Sign Delete", "Llamada desde el model OK"); //Para depurar errores y ver si avanza o donde se para
                 listener.onDeleteSuccess();
             }
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
-                Log.d("List Sign Delete", "Llamada desde el model ERROR"); //Para depurar errores y ver si avanza o donde se para
+//                Log.d("List Sign Delete", "Llamada desde el model ERROR"); //Para depurar errores y ver si avanza o donde se para
                 t.printStackTrace();
                 String message = "Error invocando la operación";
                 listener.onDeleteError(message);

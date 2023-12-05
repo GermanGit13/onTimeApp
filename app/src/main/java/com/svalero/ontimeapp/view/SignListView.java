@@ -164,7 +164,7 @@ public class SignListView extends AppCompatActivity implements SignListContract.
         signsList.addAll(signs); // Añadimos a la lista creada la que recibimos
         adapter.notifyDataSetChanged(); // Notificamos al adapter los cambios
 
-        Log.d("List Sign", "Llamada desde view showSigns: ");
+//        Log.d("List Sign", "Llamada desde view showSigns: ");
     }
 
     @Override
@@ -176,12 +176,12 @@ public class SignListView extends AppCompatActivity implements SignListContract.
         SimpleDateFormat fechaFormateada = new SimpleDateFormat("dd-MM-yyyy");
         firstDay = etPlannedDateFromList.getText().toString();
         secondDay = etPlannedDateToList.getText().toString();
-        Log.d("List Sign", "Fecha del calendario " + firstDay); // depurar para ver hasta donde llego
+//        Log.d("List Sign", "Fecha del calendario " + firstDay); // depurar para ver hasta donde llego
 
         presenter.loadAllSings(firstDay, secondDay, name);
         adapter.notifyDataSetChanged(); // Notificamos al adapter los cambios
 
-        Log.d("List Sign with Day", "Llamada desde view showSigns with Day: " + firstDay );
+//        Log.d("List Sign with Day", "Llamada desde view showSigns with Day: " + firstDay );
     }
 
     public void increaseDaySearchFrom() {
@@ -298,6 +298,4 @@ public class SignListView extends AppCompatActivity implements SignListContract.
         adapter.notifyDataSetChanged(); // Notificamos al adapter los cambios
         return false;
     }
-
-    // Todo Falta añadir Menu actionBar
 }

@@ -155,12 +155,10 @@ public class SignRegisterView extends AppCompatActivity implements SignRegisterC
 
     @Override
     public void showMessage(String message) {
-        new MaterialAlertDialogBuilder(this)
-                .setTitle(R.string.sign_register)
-                .setMessage(message)
-                .setPositiveButton(R.string.accept, new DialogInterface.OnClickListener() {
+        snackbar.make(((TextView) findViewById(R.id.tv_in_register)), message, BaseTransientBottomBar.LENGTH_SHORT)
+                .setAction(R.string.accept, new View.OnClickListener() { // Crea un boton en el snackbar
                     @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
+                    public void onClick(View v) {
                         Intent intent = new Intent(SignRegisterView.this, MainActivity.class);
                         intent.putExtra("user", user); // Mandamos el objeto entero ya que es una clase serializable
                         startActivity(intent);
@@ -175,8 +173,7 @@ public class SignRegisterView extends AppCompatActivity implements SignRegisterC
     }
 
     public void registerInSign(View view) {
-//        day = LocalDate.now().toString();
-        Log.d("Register Sign", "Ver el día y la hora que recojo: " + day + " - " + in_time);
+//        Log.d("Register Sign", "Ver el día y la hora que recojo: " + day + " - " + in_time);
 
         if (modality.equals("")) {
               new MaterialAlertDialogBuilder(this)
@@ -194,11 +191,11 @@ public class SignRegisterView extends AppCompatActivity implements SignRegisterC
             presenter.registerSign(user.getId(), sign);
         }
 
-        Log.d("Register Sign", "Ver la modalidad seleccionada: " + modality);
+//        Log.d("Register Sign", "Ver la modalidad seleccionada: " + modality);
     }
 
     public void registerOutSign(View view) {
-        Log.d("Register Sign Out", "Ver la incidencia: " + incidence);
+//        Log.d("Register Sign Out", "Ver la incidencia: " + incidence);
         SignOutDto signOutDto = new SignOutDto();
         signOutDto.setIncidende_out(incidence);
 

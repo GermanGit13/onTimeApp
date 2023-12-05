@@ -23,11 +23,9 @@ import com.svalero.ontimeapp.presenter.LoginPresenter;
  */
 public class LoginView extends AppCompatActivity implements LoginContract.View {
 
-//    private Context context; // Activity en la que estamos
     private Snackbar snackbar;
     private LoginPresenter presenter;
     private Button btEnter;
-//    TextView tvUser;
     private TextInputLayout tilUsername;
     private EditText etUsername;
     private TextInputLayout tilPass;

@@ -171,34 +171,21 @@
 
             <!-- Buttons -->
             <LinearLayout
-                android:layout_width="390dp"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:orientation="horizontal">
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/bt_card_modify"
-                    style="?attr/borderlessButtonStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
-                    android:text="Modify" />
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="135dp"
+                android:baselineAligned="false"
+                android:orientation="horizontal"
+                android:textAlignment="center">
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/bt_card_delete"
                     style="?attr/borderlessButtonStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
-                    android:text="Delete" />
+                    android:layout_width="124dp"
+                    android:layout_height="70dp"
+                    android:text="Delete"
+                    app:icon="@drawable/baseline_delete_24" />
 
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/bt_card_details"
-                    style="?attr/borderlessButtonStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
-                    android:text="Details" />
             </LinearLayout>
 
         </LinearLayout>
