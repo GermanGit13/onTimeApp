@@ -147,6 +147,10 @@ public class SignListView extends AppCompatActivity implements SignListContract.
         datePickerFrom.datepicker(btPickDateFrom, etPlannedDateFromList, this);
         Calendario datePickerTo = new Calendario();
         datePickerTo.datepicker(btPickDateTo, etPlannedDateToList, this);
+        Calendario datePicketTextFrom = new Calendario();
+        datePicketTextFrom.datepickerTextView(etPlannedDateFromList, etPlannedDateFromList, this);
+        Calendario datePicketTextTo = new Calendario();
+        datePicketTextTo.datepickerTextView(etPlannedDateToList, etPlannedDateToList, this);
     }
 
     @Override
