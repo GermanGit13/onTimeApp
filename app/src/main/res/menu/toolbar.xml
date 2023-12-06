@@ -18,7 +18,7 @@
                 android:id="@+id/itMyList"
                 android:icon="@android:drawable/ic_menu_my_calendar"
                 android:orderInCategory="5"
-                android:title="My List Signs"
+                android:title="@string/my_list_signs"
                 android:visible="true"
                 app:showAsAction="never" />
             <item

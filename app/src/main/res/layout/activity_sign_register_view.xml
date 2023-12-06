@@ -270,13 +270,12 @@
 
     <LinearLayout
         android:id="@+id/linearLayoutIncidence"
-        android:layout_width="180dp"
-        android:layout_height="110dp"
-        android:layout_marginStart="10dp"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="@+id/imageView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayoutBotones">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
         <View
             android:id="@+id/viewIncidence"
@@ -302,43 +301,25 @@
             app:layout_constraintEnd_toStartOf="@+id/constraintLayoutModality"
             app:layout_constraintStart_toStartOf="parent"
             tools:ignore="MissingConstraints" />
+
         <Spinner
             android:id="@+id/incidence_spinner"
             style="@android:style/Widget.Spinner.DropDown"
-            android:layout_width="176dp"
-            android:layout_height="50dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             tools:layout_editor_absoluteX="-1dp"
             tools:layout_editor_absoluteY="0dp" />
 
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/linearLayouySeparacion"
-        android:layout_width="5dp"
-        android:layout_height="110dp"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
-        app:layout_constraintEnd_toStartOf="@+id/linearLayoutModality"
-        app:layout_constraintStart_toEndOf="@+id/linearLayoutIncidence"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayoutBotones">
-
-        <View
-            android:id="@+id/viewSeparacion"
-            android:layout_width="match_parent"
-            android:layout_height="110dp"
-            android:background="@color/DarkGoldenrod"
-            tools:ignore="MissingConstraints" />
-
-    </LinearLayout>
-
-    <LinearLayout
         android:id="@+id/linearLayoutModality"
-        android:layout_width="180dp"
-        android:layout_height="110dp"
-        android:layout_marginEnd="10dp"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayoutIncidence"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayoutBotones"
         tools:ignore="MissingConstraints">
 
@@ -353,10 +334,16 @@
             android:id="@+id/textViewModality"
             style="@android:style/Widget.Holo.Light.TextView"
             android:layout_width="match_parent"
-            android:layout_height="37dp"
+            android:layout_height="match_parent"
             android:text="@string/select_modality"
             android:textAlignment="center"
             android:textStyle="bold" />
+
+        <Spinner
+            android:id="@+id/modality_spinner"
+            style="@android:style/Widget.Spinner.DropDown"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayoutRadioModality"
@@ -366,14 +353,6 @@
             app:layout_constraintEnd_toStartOf="@+id/constraintLayoutModality"
             app:layout_constraintStart_toStartOf="parent"
             tools:ignore="MissingConstraints">
-
-            <Spinner
-                android:id="@+id/modality_spinner"
-                style="@android:style/Widget.Spinner.DropDown"
-                android:layout_width="176dp"
-                android:layout_height="50dp"
-                tools:layout_editor_absoluteX="-1dp"
-                tools:layout_editor_absoluteY="0dp" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

@@ -155,7 +155,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:onClick="findSignsUserByDay"
-                        android:text="Search by date"
+                        android:text="@string/search_by_date"
                         android:textSize="12sp"
                         app:icon="@drawable/baseline_search_24"
                         tools:ignore="TouchTargetSizeCheck" />
@@ -181,7 +181,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:onClick="searchLastSevenDaysByUser"
-                            android:text="Last 7 days"
+                            android:text="@string/last_seven"
                             android:textSize="8sp"
                             app:icon="@drawable/baseline_calendar_month_24"
                             tools:ignore="TouchTargetSizeCheck" />

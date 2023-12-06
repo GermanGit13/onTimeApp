@@ -73,4 +73,8 @@
     <string name="register_late_day">Register Late Day</string>
     <string name="preferences">Preferences</string>
     <string name="logout">Logout</string>
+    <string name="clean_filters">clean filters</string>
+    <string name="last_seven">Last Seven</string>
+    <string name="my_list_signs">My List Signs</string>
+    <string name="sign_in_late_day">Sign in late day</string>
 </resources>

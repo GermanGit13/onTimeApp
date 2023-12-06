@@ -61,6 +61,7 @@ public class MainActivity extends AppCompatActivity implements SignListByUserCon
         bundle = getIntent().getExtras();
         user = (User) bundle.getSerializable("user");
         userId = String.valueOf(user.getId());
+        context = this; // para evitar fallo al pulsar sobre el mensaje que no existe fichaje dia anterior
 
         /**
          * Salvar los datos de usuario en SharedPreference
@@ -78,7 +79,6 @@ public class MainActivity extends AppCompatActivity implements SignListByUserCon
          */
         toolbar = (androidx.appcompat.widget.Toolbar) findViewById(R.id.tbMain);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle( "Prueba Titulo" );
         getSupportActionBar().setIcon(R.drawable.logo);
 
         presenter = new SignListByUserPresenter(this);
@@ -174,7 +174,6 @@ public class MainActivity extends AppCompatActivity implements SignListByUserCon
                     .setPositiveButton(R.string.register_sign, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
-                        // TODO decidir si quiero mandarle a crear un fichaje nuevo
                             Intent intent = new Intent(context, SignRegisterView.class);
                             intent.putExtra("user", user);
                             startActivity(intent);

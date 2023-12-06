@@ -151,7 +151,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:onClick="findSignsByDepartmentAndDay"
-                        android:text="Search by date"
+                        android:text="@string/search_by_date"
                         android:textSize="12sp"
                         app:icon="@drawable/baseline_search_24"
                         tools:ignore="TouchTargetSizeCheck" />
@@ -162,8 +162,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:onClick="resetDay"
-                        android:text="clean filters"
-                        android:textSize="12sp"
+                        android:text="@string/clean_filters"
+                        android:textSize="8sp"
                         app:icon="@drawable/baseline_delete_24"
                         tools:ignore="TouchTargetSizeCheck" />
                 </LinearLayout>
@@ -191,8 +191,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:onClick="searchParamsLastSevenDays"
-                    android:text="Last Seven"
-                    android:textSize="12sp"
+                    android:text="@string/last_seven"
+                    android:textSize="10sp"
                     app:icon="@drawable/baseline_calendar_month_24"
                     tools:ignore="TouchTargetSizeCheck" />
 
