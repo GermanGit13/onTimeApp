@@ -9,9 +9,13 @@ import com.svalero.ontimeapp.view.LoginView;
 
 public class LoginPresenter implements LoginContract.Presenter, LoginContract.Model.OnLoginListener {
     private LoginModel model;
-    private LoginView view;
+    /**
+     * Implementar siempre la View del contracto para encapsular bien y poder usarla
+     * desde cualquier vview que implemente el contrato
+     */
+    private LoginContract.View view;
 
-    public LoginPresenter(LoginView view){
+    public LoginPresenter(LoginContract.View view){
         this.model = new LoginModel();
         this.view = view;
     }

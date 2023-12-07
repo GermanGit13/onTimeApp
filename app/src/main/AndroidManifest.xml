@@ -27,7 +27,19 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".view.SignRegisterLateView"
+            android:exported="false" />
+        <activity
+            android:name=".view.SignPreference"
+            android:exported="false" />
+        <activity
+            android:name=".view.SignListByUserView"
+            android:exported="false" />
+        <activity
             android:name=".view.SignListView"
+            android:exported="false" />
+        <activity
+            android:name=".view.SignListByParamsView"
             android:exported="false" />
         <activity
             android:name=".view.SignRegisterView"

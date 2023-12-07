@@ -19,13 +19,25 @@
         app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/fondofichaje" />
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/tbRegisterLate"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="#B3D5D4"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        tools:ignore="MissingConstraints" />
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayoutDatos"
-        android:layout_width="412dp"
-        android:layout_height="93dp"
+        android:layout_width="389dp"
+        android:layout_height="131dp"
         android:layout_weight="1"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="0dp">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tbRegisterLate"
+        tools:ignore="MissingConstraints">
 
         <LinearLayout
             android:id="@+id/linearLayoutName"
@@ -47,17 +59,17 @@
 
         <LinearLayout
             android:id="@+id/linearLayoutPhoto"
-            android:layout_width="83dp"
-            android:layout_height="90dp"
+            android:layout_width="109dp"
+            android:layout_height="112dp"
             android:orientation="vertical"
             app:layout_constraintStart_toStartOf="parent"
             tools:ignore="MissingConstraints">
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/iv_register_photo"
-                android:layout_width="71dp"
-                android:layout_height="70dp"
-                android:layout_margin="10dp"
+                android:layout_width="102dp"
+                android:layout_height="99dp"
+                android:layout_margin="5dp"
                 android:padding="10dp"
                 android:paddingTop="1dp"
                 app:shapeAppearanceOverlay="@style/circleImageView"
@@ -68,9 +80,10 @@
 
         <LinearLayout
             android:id="@+id/linearLayoutText"
-            android:layout_width="207dp"
-            android:layout_height="60dp"
+            android:layout_width="159dp"
+            android:layout_height="85dp"
             android:orientation="vertical"
+            app:layout_constraintEnd_toStartOf="@+id/linearLayoutTextVariable"
             app:layout_constraintStart_toEndOf="@+id/linearLayoutPhoto"
             app:layout_constraintTop_toBottomOf="@+id/linearLayoutName">
 
@@ -92,10 +105,19 @@
                 android:visibility="visible"
                 tools:ignore="MissingConstraints" />
 
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:layout_marginEnd="5dp"
+                android:text="@string/actual_hours"
+                android:textAlignment="center" />
+
             <View
                 android:id="@+id/view"
                 android:layout_width="320dp"
                 android:layout_height="2dp"
+                android:layout_marginTop="3dp"
                 android:layout_marginBottom="28dp"
                 android:background="@color/DarkGoldenrod"
                 tools:ignore="MissingConstraints" />
@@ -104,8 +126,8 @@
 
         <LinearLayout
             android:id="@+id/linearLayoutTextVariable"
-            android:layout_width="98dp"
-            android:layout_height="60dp"
+            android:layout_width="115dp"
+            android:layout_height="85dp"
             android:orientation="vertical"
             app:layout_constraintStart_toEndOf="@+id/linearLayoutText"
             app:layout_constraintTop_toBottomOf="@+id/linearLayoutName">
@@ -123,9 +145,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="25dp"
                 android:background="@color/DarkGreen"
-                android:textAlignment="textStart"
+                android:textAlignment="center"
                 android:textColor="@color/DarkGoldenrod"
                 android:visibility="visible"
+
                 tools:ignore="MissingConstraints" />
 
             <TextView
@@ -138,10 +161,19 @@
                 android:visibility="visible"
                 tools:ignore="MissingConstraints" />
 
+            <TextView
+                android:id="@+id/tv_hours_register"
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:background="@color/Orange"
+                android:textAlignment="center"
+                android:textColor="@color/Black" />
+
             <View
                 android:id="@+id/view2"
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
+                android:layout_marginTop="3dp"
                 android:layout_marginBottom="28dp"
                 android:background="@color/DarkGoldenrod"
                 tools:ignore="MissingConstraints" />
@@ -151,8 +183,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayoutLogo"
-        android:layout_width="wrap_content"
-        android:layout_height="313dp"
+        android:layout_width="365dp"
+        android:layout_height="274dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayoutDatos"
@@ -160,13 +192,14 @@
 
         <ImageView
             android:id="@+id/imageView3"
-            android:layout_width="386dp"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:srcCompat="@drawable/logo"
-            tools:ignore="MissingConstraints" />
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteY="-43dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -187,6 +220,7 @@
             android:layout_margin="25dp"
             android:layout_weight="1"
             android:backgroundTint="@color/Brown"
+            android:onClick="registerOutSign"
             android:outlineSpotShadowColor="@color/black"
             android:shadowColor="@color/black"
             android:text="@string/out"
@@ -199,8 +233,6 @@
             app:iconSize="25dp"
             app:iconTint="@color/DarkGoldenrod"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.709"
-            app:layout_constraintStart_toEndOf="@+id/bt_in"
             app:strokeWidth="2dp"
             tools:ignore="MissingConstraints"
             tools:layout_editor_absoluteY="7dp" />
@@ -238,13 +270,12 @@
 
     <LinearLayout
         android:id="@+id/linearLayoutIncidence"
-        android:layout_width="181dp"
-        android:layout_height="191dp"
-        android:layout_marginStart="10dp"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="@+id/imageView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayoutBotones">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
         <View
             android:id="@+id/viewIncidence"
@@ -269,65 +300,26 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/constraintLayoutModality"
             app:layout_constraintStart_toStartOf="parent"
-            tools:ignore="MissingConstraints">
+            tools:ignore="MissingConstraints" />
 
-
-            <RadioGroup
-                android:id="@+id/rg_incidence"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintEnd_toEndOf="parent">
-
-                <RadioButton
-                    android:id="@+id/rb_holidays"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="@string/holidays" />
-
-                <RadioButton
-                    android:id="@+id/rb_medical"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="@string/medical" />
-
-                <RadioButton
-                    android:id="@+id/rb_personal"
-                    android:layout_width="151dp"
-                    android:layout_height="match_parent"
-                    android:text="@string/personal_issues" />
-            </RadioGroup>
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/linearLayouySeparacion"
-        android:layout_width="5dp"
-        android:layout_height="191dp"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
-        app:layout_constraintEnd_toStartOf="@+id/linearLayoutModality"
-        app:layout_constraintStart_toEndOf="@+id/linearLayoutIncidence"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayoutBotones">
-
-        <View
-            android:id="@+id/viewSeparacion"
+        <Spinner
+            android:id="@+id/incidence_spinner"
+            style="@android:style/Widget.Spinner.DropDown"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/DarkGoldenrod"
-            tools:ignore="MissingConstraints" />
+            tools:layout_editor_absoluteX="-1dp"
+            tools:layout_editor_absoluteY="0dp" />
 
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/linearLayoutModality"
-        android:layout_width="181dp"
-        android:layout_height="191dp"
-        android:layout_marginEnd="10dp"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayoutIncidence"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayoutBotones"
         tools:ignore="MissingConstraints">
 
@@ -342,40 +334,26 @@
             android:id="@+id/textViewModality"
             style="@android:style/Widget.Holo.Light.TextView"
             android:layout_width="match_parent"
-            android:layout_height="37dp"
+            android:layout_height="match_parent"
             android:text="@string/select_modality"
             android:textAlignment="center"
             android:textStyle="bold" />
 
+        <Spinner
+            android:id="@+id/modality_spinner"
+            style="@android:style/Widget.Spinner.DropDown"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayoutRadioModality"
-            android:layout_width="165dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/constraintLayoutModality"
             app:layout_constraintStart_toStartOf="parent"
             tools:ignore="MissingConstraints">
 
-            <RadioGroup
-                android:id="@+id/rg_modality"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent">
-
-                <RadioButton
-                    android:id="@+id/rb_office"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="@string/office" />
-
-                <RadioButton
-                    android:id="@+id/rb_homework"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="@string/homework" />
-
-            </RadioGroup>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </LinearLayout>

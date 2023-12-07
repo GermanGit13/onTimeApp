@@ -17,7 +17,7 @@ public interface SignListContract {
             void onLoadSignsSucess(List<Sign> signs);
             void onLoadSignsError(String message);
         }
-        void loadAllSigns(OnLoadSignsListener listener); // quien le llame tiene que tener un listener para que le chive lo que ha pasado
+        void loadAllSigns(OnLoadSignsListener listener, String firstDay, String secondDay, String name); // quien le llame tiene que tener un listener para que le chive lo que ha pasado
     }
 
     /**
@@ -29,6 +29,6 @@ public interface SignListContract {
     }
 
     interface Presenter {
-        void loalAllSigns();
+        void loadAllSings(String firstDay, String secondDay, String name);
     }
 }

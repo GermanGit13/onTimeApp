@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".view.LoginView">
 
+
     <androidx.constraintlayout.utils.widget.ImageFilterView
         android:id="@+id/fondoMenu"
         android:layout_width="wrap_content"
@@ -14,12 +15,11 @@
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/fondoini" />
-
 
     <androidx.constraintlayout.utils.widget.ImageFilterView
         android:id="@+id/LogoOnTime"
@@ -34,80 +34,118 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/logo" />
 
-    <TableLayout
-        android:id="@+id/tableLayout"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="384dp"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="5dp"
+        android:orientation="vertical"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="@+id/fondoMenu"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/LogoOnTime">
 
-        <TableRow
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_marginTop="5dp">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etUser"
-                android:layout_width="match_parent"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilUserLogin"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="225dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="52dp"
-                android:layout_marginEnd="8dp"
-                android:backgroundTint="@color/DarkGoldenrod"
-                android:drawableStart="@drawable/person"
                 android:hint="@string/enter_your_user"
-                android:inputType="text"
-                android:minHeight="48dp"
-                tools:ignore="MissingConstraints"/>
-        </TableRow>
+                android:textAlignment="center"
+                android:textColor="@color/AliceBlue"
+                android:textColorHint="@color/AliceBlue"
+                app:boxBackgroundColor="#E6000000"
+                app:boxStrokeColor="@color/DarkGoldenrod"
+                app:hintTextColor="@color/AliceBlue"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:passwordToggleTint="@color/AliceBlue"
+                app:placeholderTextColor="@color/AliceBlue"
+                app:prefixTextColor="@color/AliceBlue"
+                app:startIconDrawable="@drawable/person"
+                app:startIconTint="@color/DarkOrange"
+                tools:ignore="MissingConstraints">
 
-        <TableRow
+                <com.google.android.material.textfield.TextInputEditText
+
+                    android:id="@+id/etUserLogin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:textColor="@color/AliceBlue" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_marginTop="5dp">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etPass"
-                android:layout_width="match_parent"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/itlPassLogin"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="225dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="32dp"
-                android:layout_marginEnd="8dp"
-                android:backgroundTint="#B8860B"
-                android:drawableStart="@drawable/lock"
                 android:hint="@string/enter_your_password"
-                android:inputType="textPassword"
-                android:minHeight="48dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                tools:ignore="MissingConstraints" />
-        </TableRow>
+                android:textAlignment="center"
+                android:textColor="@color/AliceBlue"
+                android:textColorHint="@color/AliceBlue"
+                app:boxBackgroundColor="#E6000000"
+                app:boxStrokeColor="@color/DarkGoldenrod"
+                app:hintTextColor="@color/AliceBlue"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:passwordToggleTint="@color/AliceBlue"
+                app:placeholderTextColor="@color/AliceBlue"
+                app:prefixTextColor="@color/AliceBlue"
+                app:startIconDrawable="@drawable/lock"
+                app:startIconTint="@color/DarkOrange"
+                tools:ignore="MissingConstraints">
 
-        <TableRow
-            android:layout_width="408dp"
-            android:layout_height="wrap_content">
+                <com.google.android.material.textfield.TextInputEditText
 
-            <Button
-                android:id="@+id/btInicio"
-                style="@style/Widget.Material3.Button.IconButton.Outlined"
-                android:layout_width="match_parent"
-                android:layout_height="55dp"
-                android:layout_gravity="center"
-                android:layout_margin="15dp"
-                android:layout_weight="1"
-                android:backgroundTint="#390E0D0D"
-                android:onClick="loginUser"
-                android:outlineSpotShadowColor="@color/black"
-                android:shadowColor="@color/black"
-                android:text="@string/enter"
-                android:textAllCaps="false"
-                android:textColor="@color/DarkGoldenrod"
-                android:textColorHighlight="#070607"
-                android:textSize="24sp"
-                android:visibility="visible"
-                app:icon="@drawable/ic_baseline_fingerprint_24"
-                app:iconSize="25dp"
-                app:strokeColor="@color/Black"
-                tools:ignore="MissingConstraints" />
-        </TableRow>
-    </TableLayout>
+                    android:id="@+id/etPassLogin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:password="true"
+                    android:textColor="@color/AliceBlue" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <Button
+            android:id="@+id/btInicio"
+            style="@style/Widget.Material3.Button.IconButton.Outlined"
+            android:layout_width="179dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="15dp"
+            android:layout_weight="1"
+            android:backgroundTint="#E60E0D0D"
+            android:drawableTint="@color/DarkGoldenrod"
+            android:onClick="loginUser"
+            android:outlineSpotShadowColor="@color/black"
+            android:shadowColor="@color/black"
+            android:text="@string/enter"
+            android:textAllCaps="false"
+            android:textColor="@color/DarkGoldenrod"
+            android:textColorHighlight="#070607"
+            android:textSize="24sp"
+            android:visibility="visible"
+            app:icon="@drawable/ic_baseline_fingerprint_24"
+            app:iconSize="25dp"
+            app:iconTint="@color/DarkGoldenrod"
+            app:strokeColor="@color/DarkGoldenrod"
+            tools:ignore="MissingConstraints" />
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

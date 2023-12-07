@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/ tools"
+    tools:context=".MainActivity">
+
+    <item
+        android:id="@+id/itgeneral"
+        android:icon="@drawable/outline_drag_indicator_24"
+        android:orderInCategory="5"
+        android:title="General"
+        android:visible="true"
+        app:showAsAction="always">
+
+        <menu>
+
+            <item
+                android:id="@+id/itMyList"
+                android:icon="@android:drawable/ic_menu_my_calendar"
+                android:orderInCategory="5"
+                android:title="@string/my_list_signs"
+                android:visible="true"
+                app:showAsAction="never" />
+            <item
+                android:id="@+id/itPreferences"
+                android:icon="@android:drawable/ic_menu_preferences"
+                android:iconTint="@color/Black"
+                android:orderInCategory="10"
+                android:title="@string/preferences"
+                app:showAsAction="never" />
+            <item
+                android:id="@+id/itLogout"
+                android:icon="@android:drawable/ic_lock_power_off"
+                android:orderInCategory="115"
+                android:title="@string/logout"
+                android:visible="true"
+                app:showAsAction="never" />
+
+        </menu>
+    </item>
+</menu>

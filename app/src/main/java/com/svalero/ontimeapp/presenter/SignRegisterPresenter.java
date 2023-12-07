@@ -1,5 +1,7 @@
 package com.svalero.ontimeapp.presenter;
 
+import android.content.Context;
+
 import com.svalero.ontimeapp.R;
 import com.svalero.ontimeapp.contract.SignRegisterContract;
 import com.svalero.ontimeapp.domain.Sign;
@@ -15,24 +17,28 @@ public class SignRegisterPresenter implements SignRegisterContract.Presenter, Si
      * Le pasamos el model y la view ya que es el único que conoce a ambos
      */
     private SignRegisterModel model;
-    private SignRegisterView view;
+    /**
+     * Implementar siempre la View del contracto para encapsular bien y poder usarla
+     * desde cualquier vview que implemente el contrato
+     */
+    private SignRegisterContract.View view;
 
     /**
      * Constructor para pasarle ambas cosas
      */
-    public SignRegisterPresenter(SignRegisterView view) {
+    public SignRegisterPresenter(SignRegisterContract.View view) {
         this.model = new SignRegisterModel();
         this.view = view;
     }
 
     @Override
     public void onRegisterSuccess(Sign sign) {
-        view.showMessage(view.getString(R.string.sign_register_ok_to));
+        view.showMessage("Sign Register Correct");
     }
 
     @Override
     public void onRegisterError(String message) {
-        view.showError("Error to register Sign");
+        view.showError(String.valueOf(R.string.error_to_register_sign));
     }
 
     @Override

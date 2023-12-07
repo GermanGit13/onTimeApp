@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="modality_array">
+        <item></item>
+        <item>OFFICE</item>
+        <item>HOMEWORK</item>
+        <item>IN CLIENT</item>
+    </string-array>
+</resources>

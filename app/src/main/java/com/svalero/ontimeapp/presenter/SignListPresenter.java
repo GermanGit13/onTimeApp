@@ -16,11 +16,15 @@ public class SignListPresenter implements SignListContract.Presenter, SignListCo
      * Le pasamos el model y la view ya que es el único que conoce a ambos
      */
     private SignListModel model;
-    private SignListView view;
+    /**
+     * Implementar siempre la View del contracto para encapsular bien y poder usarla
+     * desde cualquier vview que implemente el contrato
+     */
+    private SignListContract.View view;
 
-    public SignListPresenter(SignListView view) {
+    public SignListPresenter(SignListContract.View view) {
         this.view = view;
-        this.model = new SignListModel(view.getApplicationContext()); // Le pasamos el contexto
+        this.model = new SignListModel(); // Le pasamos el contexto
     }
 
     @Override
@@ -34,7 +38,7 @@ public class SignListPresenter implements SignListContract.Presenter, SignListCo
     }
 
     @Override
-    public void loalAllSigns() {
-        model.loadAllSigns(this);
+    public void loadAllSings(String firstDay, String seconDay, String name) {
+        model.loadAllSigns(this, firstDay, seconDay, name);
     }
 }
