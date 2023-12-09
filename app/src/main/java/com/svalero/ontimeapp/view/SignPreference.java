@@ -56,24 +56,25 @@ public class SignPreference extends AppCompatActivity implements UserPassDtoCont
     private String modalityPreference;
     private String scheduleInPreference;
     private String scheduleOutPreference;
+    private String userId;
 
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_preference);
-
-        ivPhotoMenu = findViewById(R.id.ivPhotoPreferences);
-        Glide.with(this)
-                .load(SavePreference.getSavePreference("userPhoto", this))
-                .error(R.drawable.notphoto)
-                .into(ivPhotoMenu);
-
         /**
-         * Recuperamos el objeto selecciona que pasamos por intent
+         * Recuperamos el objeto selecciona en el adapterUSer
          */
         bundle = getIntent().getExtras();
         user = (User) bundle.getSerializable("user");
+        userId = String.valueOf(user.getId());
+
+        ivPhotoMenu = findViewById(R.id.ivPhotoPreferences);
+        Glide.with(this)
+                .load(user.getPhoto())
+                .error(R.drawable.notphoto)
+                .into(ivPhotoMenu);
 
         fillData();
         initializeSpinnerModality();
