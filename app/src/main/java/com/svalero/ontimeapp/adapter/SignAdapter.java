@@ -2,10 +2,8 @@ package com.svalero.ontimeapp.adapter;
 
 import static android.app.ProgressDialog.show;
 
-import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -75,7 +73,7 @@ public class SignAdapter extends RecyclerView.Adapter<SignAdapter.SignHolder> im
      */
     @Override
     public void onBindViewHolder(SignHolder holder, int position) {
-        holder.signUsername.setText(String.valueOf(signsList.get(position).getUserInSign().getName()));
+        holder.signName.setText(String.valueOf(signsList.get(position).getUserInSign().getName()));
         holder.date.setText(String.valueOf(signsList.get(position).getDay()));
         holder.signIn.setText(signsList.get(position).getIn_time());
         holder.signOut.setText(signsList.get(position).getOut_time());
@@ -105,7 +103,7 @@ public class SignAdapter extends RecyclerView.Adapter<SignAdapter.SignHolder> im
      * Creamos todos los componentes que tenemos
      */
     public class SignHolder extends RecyclerView.ViewHolder {
-        public TextView signUsername;
+        public TextView signName;
         public TextView signIn;
         public TextView signOut;
         public TextView modality;
@@ -127,7 +125,7 @@ public class SignAdapter extends RecyclerView.Adapter<SignAdapter.SignHolder> im
             super(view); // Vista padre
             parentView = view; // Guardamos el componente padre
 
-            signUsername = view.findViewById(R.id.tv_card_username);
+            signName = view.findViewById(R.id.tv_card_username);
             date = view.findViewById(R.id.tv_card_date);
             signIn = view.findViewById(R.id.tv_card_in);
             signOut = view.findViewById(R.id.tv_card_out);
