@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity implements SignListByUserCon
         SavePreference.setSavePreference("name", String.valueOf(user.getName()), this);
         SavePreference.setSavePreference("surname", String.valueOf(user.getSurname()), this);
         SavePreference.setSavePreference("department", String.valueOf(user.getDepartment()), this );
-        SavePreference.setSavePreference("userPhoto", String.valueOf(user.getPhoto()), this);
+//        SavePreference.setSavePreference("userPhoto", String.valueOf(user.getPhoto()), this);
 
         /**
          * Toolbar: http://www.androidcurso.com/index.php/473
@@ -89,7 +89,7 @@ public class MainActivity extends AppCompatActivity implements SignListByUserCon
         tvName.setText(SavePreference.getSavePreference("name", this));
         ivPhotoMenu = findViewById(R.id.iv_PhotoMenu);
         Glide.with(this)
-                .load(SavePreference.getSavePreference("userPhoto", this))
+                .load(user.getPhoto())
                 .error(R.drawable.notphoto)
                 .into(ivPhotoMenu);
 

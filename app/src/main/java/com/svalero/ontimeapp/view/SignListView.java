@@ -280,6 +280,11 @@ public class SignListView extends AppCompatActivity implements SignListContract.
         ((TextView) findViewById(R.id.etPlannedFromDateList)).setText("");
 
         ((TextView) findViewById(R.id.etPlannedFromDateList)).requestFocus();
+
+        firstDay  = "";
+        secondDay = "";
+        presenter.loadAllSings(firstDay, secondDay, name);
+        adapter.notifyDataSetChanged(); // Notificamos al adapter los cambios
     }
 
     /**

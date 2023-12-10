@@ -272,6 +272,11 @@ public class SignListByParamsView extends AppCompatActivity implements SignListB
         ((TextView) findViewById(R.id.etPlannedToDateParams)).setText("");
 
         ((TextView) findViewById(R.id.etPlannedDateParams)).requestFocus();
+
+        firstDay  = "";
+        secondDay = "";
+        presenter.loadSignsByParams(user.getDepartment(), firstDay, secondDay, name);
+        adapter.notifyDataSetChanged();
     }
 
 

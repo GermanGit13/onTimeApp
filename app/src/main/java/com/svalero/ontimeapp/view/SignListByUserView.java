@@ -14,6 +14,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.search.SearchView;
 import com.google.android.material.snackbar.BaseTransientBottomBar;
 import com.google.android.material.snackbar.Snackbar;
 import com.svalero.ontimeapp.R;
@@ -297,5 +298,10 @@ public class SignListByUserView extends AppCompatActivity implements SignListByU
         ((TextView) findViewById(R.id.etPlannedDateToUser)).setText("");
 
         ((TextView) findViewById(R.id.etPlannedDateFromUser)).requestFocus();
+
+        firstDay  = "";
+        secondDay = "";
+        presenter.loadSignsByUser(userId, firstDay, secondDay);
+        adapter.notifyDataSetChanged(); // Notificamos al adapter los cambios
     }
 }

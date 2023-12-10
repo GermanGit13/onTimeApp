@@ -142,8 +142,10 @@ public class SignRegisterLateView extends AppCompatActivity implements SignRegis
 //        Log.d("Register Sign Late", "Registrar sing atrasada: " );
         day = tvDLateDay.getText().toString();
         modality = SavePreference.getSavePreference("modality", this);
-        scheduleIn = SavePreference.getSavePreference("scheduleIn", this);
-        scheduleOut = SavePreference.getSavePreference("scheduleOut", this);
+//        scheduleIn = SavePreference.getSavePreference("scheduleIn", this);
+//        scheduleOut = SavePreference.getSavePreference("scheduleOut", this);
+        scheduleIn = tvScheduleIn.getText().toString();
+        scheduleOut = tvScheduleOut.getText().toString();
 
 //        Log.d("Register Sign Late", "Registrar sing atrasada: " + modality + " / " + scheduleIn + " / " + scheduleOut + " / " + user.getId());
         Sign signLateDay = new Sign(modality, day, scheduleIn, scheduleOut, incidence_in, incidence_out, user);
