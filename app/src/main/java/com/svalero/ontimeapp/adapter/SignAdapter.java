@@ -75,7 +75,7 @@ public class SignAdapter extends RecyclerView.Adapter<SignAdapter.SignHolder> im
      */
     @Override
     public void onBindViewHolder(SignHolder holder, int position) {
-        holder.signUsername.setText(String.valueOf(signsList.get(position).getUserInSign().getUsername()));
+        holder.signUsername.setText(String.valueOf(signsList.get(position).getUserInSign().getName()));
         holder.date.setText(String.valueOf(signsList.get(position).getDay()));
         holder.signIn.setText(signsList.get(position).getIn_time());
         holder.signOut.setText(signsList.get(position).getOut_time());
