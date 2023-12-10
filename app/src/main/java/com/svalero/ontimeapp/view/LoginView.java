@@ -69,7 +69,7 @@ public class LoginView extends AppCompatActivity implements LoginContract.View {
 
     @Override
     public void showError(String errorMessage) {
-        snackbar.make(((EditText) findViewById(R.id.tilUserLogin)), "Incorrect Data", BaseTransientBottomBar.LENGTH_SHORT)
+        snackbar.make(((TextInputLayout) findViewById(R.id.tilUserLogin)), "Incorrect Data", BaseTransientBottomBar.LENGTH_SHORT)
                 .setAction("Accept", new View.OnClickListener() { // Crea un boton en el snackbar
                     @Override
                     public void onClick(View v) {
