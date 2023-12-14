@@ -136,9 +136,9 @@ public class SignListByUserView extends AppCompatActivity implements SignListByU
         btPickDateFrom = findViewById(R.id.bt_pick_date_list_userTo);
 
         Calendario datePickerFrom = new Calendario();
-        datePickerFrom.datepicker(btPickDateTo, etPlannedDateToUser, this);
+        datePickerFrom.datepicker(btPickDateFrom, etPlannedDateFromUser, this);
         Calendario datePickerTo = new Calendario();
-        datePickerTo.datepicker(btPickDateFrom, etPlannedDateFromUser, this);
+        datePickerTo.datepicker(btPickDateTo, etPlannedDateToUser, this);
         Calendario datePicketTextFrom = new Calendario();
         datePicketTextFrom.datepickerTextView(etPlannedDateFromUser, etPlannedDateFromUser, this);
         Calendario datePicketTextTo = new Calendario();
